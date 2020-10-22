@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    android:label="@string/menu_ca"
+    app:startDestination="@id/nav_ca">
+
+    <fragment
+        android:id="@+id/nav_listadosenas"
+        android:name="com.example.tp_integrador.ui.ListadoSenas.fragListadoSenas"
+        android:label="@string/menu_listadosenas"
+        tools:layout="@layout/fragment_listadosenas" />
+
+    <fragment
+        android:id="@+id/nav_ca"
+        android:name="com.example.tp_integrador.ui.CA.fragCA"
+        android:label="@string/menu_ca"
+        tools:layout="@layout/fragment_ca">
+        <action
+            android:id="@+id/action_nav_gallery_to_nav_slideshow"
+            app:destination="@id/nav_mapa" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_mapa"
+        android:name="com.example.tp_integrador.ui.Mapa.fragMapa"
+        android:label="@string/menu_mapa"
+        tools:layout="@layout/fragment_mapa">
+        <action
+            android:id="@+id/action_nav_mapa_to_nav_listadosenas"
+            app:destination="@id/nav_listadosenas" />
+    </fragment>
+</navigation>
