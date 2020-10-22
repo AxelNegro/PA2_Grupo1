@@ -25,7 +25,7 @@
 	
 	Con esto ya tendríamos configurado el git para usarlo localmente.
 
-## Pasos a seguir para hacer un Pull luego de cambiar algo(Actualizar el proyecto):
+## Pasos a seguir para hacer un Pull luego de cambiar algo (Actualizar el proyecto):
  
 	1. Abrimos CMD.
 	2. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
@@ -34,6 +34,20 @@
 	"git pull main HEAD:main --allow-unrelated-histories" sin las comillas.
 	
 	De esta forma obtendriamos el repositorio que está en GitHub.
+	
+## Pasos a seguir para hacer un Push (Enviar modificaciones al repositorio remoto):
+
+	1. Abrimos CMD.
+	2. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	3. Utilizamos el comando "git init" sin las comillas.
+	4. Utilizamos el comando "git add <Ruta local>" sin las comillas (Le estamos diciendo a git donde tenemos el repositorio local).
+	Un ejemplo sería: "git add C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	5. Utilizamos el comando "git commit -m <Texto del commit entre comillas dobles>". 
+	Un ejemplo sería: 'git commit -m "Agregada info al Readme.md"'.
+	6. Si ya tenemos configurado el repositorio localmente, simplemente tendríamos que utilizar el siguiente comando:
+	"git push main HEAD:main" sin las comillas.
+	
+	De esta forma habríamos enviado los archivos al repositorio remoto.
 
 ## Entregas:
 
