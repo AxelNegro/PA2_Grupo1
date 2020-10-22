@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="798dp"
+        android:layout_height="1184dp"
+        android:layout_marginBottom="4dp"
+        android:contentDescription="@string/btnregistrarse"
+        android:scaleType="matrix"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/backlogin3" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="191dp"
+        android:layout_height="158dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/descimguserlogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/userlog" />
+
+    <EditText
+        android:id="@+id/txtNombre"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="52dp"
+        android:autofillHints="Ingrese su nombre"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/TxtNombre"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+    <EditText
+        android:id="@+id/txtKey"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:autofillHints="Confirme su contrasenia"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="@string/TxtKey"
+        android:inputType="textPassword"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+
+    <Button
+        android:id="@+id/btniniciarsession"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="355dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/btn_dos"
+        android:ems="10"
+        android:onClick="RedirecLogin"
+        android:text="@string/btnIniciarsession"
+        android:textColor="@drawable/txt_btn_dos"
+        android:textSize="30sp"
+        android:typeface="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtKey" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginLeft="108dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/lbllog1"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btniniciarsession" />
+
+    <Button
+        android:id="@+id/btnRegistrarse"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="138dp"
+        android:layout_height="27dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:ems="10"
+        android:onClick="RedirecRegistrarse"
+        android:text="@string/btnregistrarse"
+        android:textColor="@color/ic_launcher_background"
+        android:textSize="18sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
