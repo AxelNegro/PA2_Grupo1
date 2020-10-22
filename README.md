@@ -12,17 +12,28 @@
 
 - Realizar Push a un repositorio GitHub desde Android Studio: https://www.youtube.com/watch?v=-dAr6VnmomM
 
-  Si al dar Push, te dice "Push Rejected", probá lo siguiente:
-  Proyecto > Git > Repository > Branches > En Remote Branches, elegí el que corresponde al repositorio nuestro > Rebase Current onto Selected
+## Pasos a seguir para configurar el repositorio localmente:
 
-  Hecho eso, volvé a probar el Push y ahí debería funcionar.
+	1. Descargamos el proyecto de GitHub.
+	2. Abrimos CMD.
+	3. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	4. Utilizamos el comando "git init" sin las comillas (Esto va a crear una carpeta oculta llamada .git con la info que vamos a guardar acá).
+	5. Utilizamos el comando "git add <Ruta local>" sin las comillas (Le estamos diciendo a git donde tenemos el repositorio local).
+	Un ejemplo sería: "git add C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	6. Utilizamos "git remote add <nombre> <URL>" sin las comillas (Agregamos el repositorio remoto a la info).
+	Un ejemplo sería: "git remote add main https://github.com/AxelNegro/PA2_Grupo1.git".
+	
+	Con esto ya tendríamos configurado el git para usarlo localmente.
 
-  Luego para obtener el proyecto por primera vez,
-  recomiendo que lo descarguen, hagan sus cambios y sigan los pasos del video anterior.
-  De esta manera ya tienen configurado el github en su android studio.
-
-  Luego para volver a obtener el proyecto, ya no es necesario seguir los pasos del video.
-  Basta con ir en las opciones de arriba, VCS > Git > Pull.
+## Pasos a seguir para hacer un Pull luego de cambiar algo(Actualizar el proyecto):
+ 
+	1. Abrimos CMD.
+	2. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	3. Utilizamos el comando "git init" sin las comillas.
+	4. Si ya tenemos configurado el repositorio localmente, simplemente tendríamos que utilizar el siguiente comando:
+	"git pull main HEAD:main --allow-unrelated-histories" sin las comillas.
+	
+	De esta forma obtendriamos el repositorio que está en GitHub.
 
 ## Entregas:
 
