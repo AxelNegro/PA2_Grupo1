@@ -18,9 +18,7 @@
 	2. Abrimos CMD.
 	3. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
 	4. Utilizamos el comando "git init" sin las comillas (Esto va a crear una carpeta oculta llamada .git con la info que vamos a guardar acá).
-	5. Utilizamos el comando "git add <Ruta local>" sin las comillas (Le estamos diciendo a git donde tenemos el repositorio local).
-	Un ejemplo sería: "git add C:\Users\Axel\Desktop\PA2_Grupo1-main".
-	6. Utilizamos "git remote add <nombre> <URL>" sin las comillas (Agregamos el repositorio remoto a la info).
+	5. Utilizamos "git remote add <nombre> <URL>" sin las comillas (Agregamos el repositorio remoto a la info).
 	Un ejemplo sería: "git remote add main https://github.com/AxelNegro/PA2_Grupo1.git".
 	
 	Con esto ya tendríamos configurado el git para usarlo localmente.
@@ -30,7 +28,9 @@
 	1. Abrimos CMD.
 	2. Utilizar el comando cd para ubicarnos en la carpeta del proyecto. Un ejemplo sería: "cd C:\Users\Axel\Desktop\PA2_Grupo1-main".
 	3. Utilizamos el comando "git init" sin las comillas.
-	4. Si ya tenemos configurado el repositorio localmente, simplemente tendríamos que utilizar el siguiente comando:
+	4. Utilizamos el comando "git add <Ruta local>" sin las comillas (Le estamos diciendo a git donde tenemos el repositorio local).
+	Un ejemplo sería: "git add C:\Users\Axel\Desktop\PA2_Grupo1-main".
+	5. Si ya tenemos configurado el repositorio localmente, simplemente tendríamos que utilizar el siguiente comando:
 	"git pull main HEAD:main --allow-unrelated-histories" sin las comillas.
 	
 	De esta forma obtendriamos el repositorio que está en GitHub.
