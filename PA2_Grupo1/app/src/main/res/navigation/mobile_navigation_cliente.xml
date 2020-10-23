@@ -28,7 +28,7 @@
 
     <fragment
         android:id="@+id/nav_mapa"
-        android:name="com.example.tp_integrador.ui.cliente.Mapa.fragmentMapa"
+        android:name="com.example.tp_integrador.ui.cliente.Mapa.fragMapa"
         android:label="@string/menu_mapa"
         tools:layout="@layout/fragment_mapa">
         <action

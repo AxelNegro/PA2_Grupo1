@@ -63,7 +63,7 @@ public class NivelAdapter extends BaseAdapter {
         }
 
         TextView txtNivel =  (TextView)convertView.findViewById(R.id.lblNivel);
-        TextView txtDesc = (TextView)convertView.findViewById(R.id.lblDescripcion);
+        TextView txtDesc = (TextView)convertView.findViewById(R.id.lblDescOpc);
         txtNivel.setText("Nivel " + String.valueOf(lvl.getIdNivel()));
         txtDesc.setText(lvl.getNivel());
 

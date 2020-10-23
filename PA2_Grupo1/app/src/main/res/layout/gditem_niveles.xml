@@ -23,7 +23,7 @@
             android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/lblDescripcion"
+            android:id="@+id/lblDescOpc"
             android:layout_width="370dp"
             android:layout_height="20dp"
             android:gravity="center_horizontal"

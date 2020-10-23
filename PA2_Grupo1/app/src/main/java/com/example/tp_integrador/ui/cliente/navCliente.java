@@ -25,7 +25,6 @@ public class navCliente extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation_cliente);
         Toolbar toolbar = findViewById(R.id.toolbar_cli);
-        toolbar.setBackgroundColor(Color.parseColor("#2271B3"));
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout_cli);
         NavigationView navigationView = findViewById(R.id.nav_view_cli);

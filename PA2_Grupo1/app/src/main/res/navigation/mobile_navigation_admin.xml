@@ -4,30 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation_admin"
     android:label="@string/menu_ca"
-    app:startDestination="@id/nav_usuarios_mod">
+    app:startDestination="@id/nav_usuarios">
 
 
     <fragment
         android:id="@+id/nav_usuarios_mod"
         android:name="com.example.tp_integrador.ui.admin.fragUsuarioMod"
-        android:label="fragment_adm_usuario"
-        tools:layout="@layout/fragment_adm_usuarios_mod">
-        <action
-            android:id="@+id/action_fragUsuarioMod_to_fragConsignasAlta2"
-            app:destination="@id/nav_consignas_alta" />
-    </fragment>
+        android:label="@string/menu_usuarios"
+        tools:layout="@layout/fragment_adm_usuarios_mod"/>
     <fragment
         android:id="@+id/nav_consignas_alta"
         android:name="com.example.tp_integrador.ui.admin.fragConsignasAlta"
-        android:label="fragment_adm_consignas_alta"
-        tools:layout="@layout/fragment_adm_consignas_alta" >
-        <action
-            android:id="@+id/action_fragConsignasAlta_to_fragOpcionesAlta"
-            app:destination="@id/nav_opciones_alta" />
-    </fragment>
+        android:label="@string/menu_consignas"
+        tools:layout="@layout/fragment_adm_consignas_alta" />
     <fragment
         android:id="@+id/nav_opciones_alta"
         android:name="com.example.tp_integrador.ui.admin.fragOpcionesAlta"
-        android:label="fragment_adm_opciones_alta"
+        android:label="@string/menu_opciones"
         tools:layout="@layout/fragment_adm_opciones_alta" />
+    <fragment
+        android:id="@+id/nav_opciones_list"
+        android:name="com.example.tp_integrador.ui.admin.fragOpcionesList"
+        android:label="@string/menu_opciones"
+        tools:layout="@layout/fragment_adm_opciones_list" />
+    <fragment
+        android:id="@+id/nav_opciones_mod"
+        android:name="com.example.tp_integrador.ui.admin.fragOpcionesMod"
+        android:label="@string/menu_opciones"
+        tools:layout="@layout/fragment_adm_opciones_mod" />
+    <fragment
+        android:id="@+id/nav_opciones"
+        android:name="com.example.tp_integrador.ui.admin.fragOpciones"
+        android:label="@string/menu_opciones"
+        tools:layout="@layout/fragment_adm_opciones">
+        <action
+            android:id="@+id/action_nav_opciones_to_nav_opciones_alta"
+            app:destination="@id/nav_opciones_alta" />
+        <action
+            android:id="@+id/action_nav_opciones_to_nav_opciones_list"
+            app:destination="@id/nav_opciones_list" />
+        <action
+            android:id="@+id/action_nav_opciones_to_nav_opciones_mod"
+            app:destination="@id/nav_opciones_mod" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_usuarios"
+        android:name="com.example.tp_integrador.fragUsuarios"
+        android:label="@string/menu_usuarios"
+        tools:layout="@layout/fragment_adm_usuarios" >
+        <action
+            android:id="@+id/action_nav_usuarios_to_nav_usuarios_mod"
+            app:destination="@id/nav_usuarios_mod" />
+        <action
+            android:id="@+id/action_nav_usuarios_to_nav_consignas"
+            app:destination="@id/nav_consignas" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_consignas"
+        android:name="com.example.tp_integrador.fragConsignas"
+        android:label="@string/menu_consignas"
+        tools:layout="@layout/fragment_adm_consignas" >
+        <action
+            android:id="@+id/action_nav_consignas_to_nav_consignas_alta"
+            app:destination="@id/nav_consignas_alta" />
+        <action
+            android:id="@+id/action_nav_consignas_to_nav_opciones"
+            app:destination="@id/nav_opciones" />
+    </fragment>
 </navigation>

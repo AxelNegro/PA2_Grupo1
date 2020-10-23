@@ -45,4 +45,19 @@
     <string name="title_activity_navigation_admin">navAdmin</string>
     <string name="title_activity_fragment_mapa">Map</string>
 
+    <string name="lblIdConsigna">Id de la consigna:</string>
+    <string name="lblDescOpc">Descripción de la opción:</string>
+    <string name="lblTituloOpcAlta">Alta de Opciones</string>
+    <string name="txtIdConsigna">Id de la consigna</string>
+    <string name="txtDescOpc">Descripción de la opción</string>
+    <string name="lblResultadoOpc">¿Es la opción correcta?</string>
+    <string name="btnAlta">Dar de alta</string>
+
+    <string name="Alta">Alta</string>
+    <string name="Modificacion">Modificación</string>
+    <string name="BajayList">Baja y Listado</string>
+    lblTituloOpcList
+
+    <string name="lblTituloOpcList">Baja y Listado de Opciones</string>
+
 </resources>
