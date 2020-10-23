@@ -74,17 +74,17 @@ Fecha límite de entrega: Lunes 16/11/2020.
 - Tipo Usuario – Consumidor:
 
 	- Usuario:
-		- Alta de usuario. **(Hecha)
-		- Modificación de usuario. **(Hecha)
-		- Validación de usuario. **(Hecha)
-		- Listado de datos de usuario. **(Hecha)
+		- Alta de usuario. **(Hecha)**
+		- Modificación de usuario. **(Hecha)**
+		- Validación de usuario. **(Hecha)**
+		- Listado de datos de usuario. **(Hecha)**
 		
 	- Señas:
 		- Listado de señas.
 		- Búsqueda de señas.
 		
 	- Niveles:
-		- Listado de niveles. **(Hecha)
+		- Listado de niveles. **(Hecha)**
 		
 	- Consignas:
 		- Listado de consignas.
