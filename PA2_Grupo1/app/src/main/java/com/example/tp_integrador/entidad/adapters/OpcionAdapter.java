@@ -14,15 +14,15 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.Opcion;
 
 import java.util.List;
 
-public class NivelAdapter extends BaseAdapter {
+public class OpcionAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     Context context;
-    List<Nivel> items;
-    public NivelAdapter(Context _context, List<Nivel> _items) {
+    List<Opcion> items;
+    public OpcionAdapter(Context _context, List<Opcion> _items) {
         this.context = _context;
         this.items = _items;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -34,7 +34,7 @@ public class NivelAdapter extends BaseAdapter {
     }
 
     @Override
-    public Nivel getItem(int position) {
+    public Opcion getItem(int position) {
         return items.get(position);
     }
 
@@ -43,34 +43,30 @@ public class NivelAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent)
     {
         if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.gditem_niveles, parent, false);
+            convertView = mInflater.inflate(R.layout.gditem_opciones, parent, false);
             //convertView.setLayoutParams(new GridView.LayoutParams(200,200));
         }
-        final Nivel lvl = items.get(position);
+        final Opcion opc = items.get(position);
 
         LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
-        switch (position){
-            case 0:
-                lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_superado));
-                break;
-            case 1:
-                lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_desbloqueado));
-                break;
-            default:
-                lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_bloqueado));
-                break;
-        }
+        TextView lblIdConsigna = (TextView)convertView.findViewById(R.id.lblIdConsigna);
+        TextView lblIdOpcion = (TextView)convertView.findViewById(R.id.lblIdOpcion);
+        TextView lblDesc = (TextView)convertView.findViewById(R.id.lblDesc);
+        TextView lblResultado = (TextView)convertView.findViewById(R.id.lblResultado);
+        TextView lblEstado = (TextView)convertView.findViewById(R.id.lblResultado);
 
-        TextView txtNivel =  (TextView)convertView.findViewById(R.id.lblNivel);
-        TextView txtDesc = (TextView)convertView.findViewById(R.id.lblDescripcion);
-        txtNivel.setText("Nivel " + String.valueOf(lvl.getIdNivel()));
-        txtDesc.setText(lvl.getNivel());
+        lblIdConsigna.setText(String.valueOf(opc.getConsigna().getIdConsigna()));
+        lblIdOpcion.setText(String.valueOf(opc.getIdOpcion()));
+        lblDesc.setText(opc.getDesc());
+        lblResultado.setText(String.valueOf(opc.isRes()));
+        lblEstado.setText(String.valueOf(opc.isEstado()));
+
 
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,String.valueOf(lvl.getIdNivel()),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,String.valueOf(opc.getConsigna().getIdConsigna())+" - "+String.valueOf(opc.getIdOpcion()),Toast.LENGTH_SHORT).show();
             }
         });
 

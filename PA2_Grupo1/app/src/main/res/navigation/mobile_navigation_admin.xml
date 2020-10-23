@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_admin"
+    android:label="@string/menu_ca"
+    app:startDestination="@id/nav_usuarios_mod">
+
+
+    <fragment
+        android:id="@+id/nav_usuarios_mod"
+        android:name="com.example.tp_integrador.ui.admin.fragUsuarioMod"
+        android:label="fragment_adm_usuario"
+        tools:layout="@layout/fragment_adm_usuarios_mod">
+        <action
+            android:id="@+id/action_fragUsuarioMod_to_fragConsignasAlta2"
+            app:destination="@id/nav_consignas_alta" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_consignas_alta"
+        android:name="com.example.tp_integrador.ui.admin.fragConsignasAlta"
+        android:label="fragment_adm_consignas_alta"
+        tools:layout="@layout/fragment_adm_consignas_alta" >
+        <action
+            android:id="@+id/action_fragConsignasAlta_to_fragOpcionesAlta"
+            app:destination="@id/nav_opciones_alta" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_opciones_alta"
+        android:name="com.example.tp_integrador.ui.admin.fragOpcionesAlta"
+        android:label="fragment_adm_opciones_alta"
+        tools:layout="@layout/fragment_adm_opciones_alta" />
+</navigation>

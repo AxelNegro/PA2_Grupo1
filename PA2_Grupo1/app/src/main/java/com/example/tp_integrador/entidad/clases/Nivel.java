@@ -1,38 +1,38 @@
 package com.example.tp_integrador.entidad.clases;
 
 public class Nivel {
-    private int IdNivel;
-    private String Nivel;
+    private int idNivel;
+    private String nivel;
 
     public Nivel() {
     }
 
     public Nivel(int idNivel, String nivel) {
-        IdNivel = idNivel;
-        Nivel = nivel;
+        this.idNivel = idNivel;
+        this.nivel = nivel;
     }
 
     public int getIdNivel() {
-        return IdNivel;
+        return idNivel;
     }
 
     public void setIdNivel(int idNivel) {
-        IdNivel = idNivel;
+        this.idNivel = idNivel;
     }
 
     public String getNivel() {
-        return Nivel;
+        return nivel;
     }
 
     public void setNivel(String nivel) {
-        Nivel = nivel;
+        this.nivel = nivel;
     }
 
     @Override
     public String toString() {
         return "Nivel{" +
-                "IdNivel=" + IdNivel +
-                ", Nivel='" + Nivel + '\'' +
+                "IdNivel=" + idNivel +
+                ", Nivel='" + nivel + '\'' +
                 '}';
     }
 }

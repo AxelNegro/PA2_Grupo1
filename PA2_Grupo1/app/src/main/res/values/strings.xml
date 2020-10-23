@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EnseñarteLSA</string>
     <string name="bienvenido">¡Bienvenido!</string>
-    <string name="bvn2">Esta aplicacion te ayudara a aprender los conceptos básicos del lenguaje de señas argentina.</string>
+    <string name="bvn2">Esta aplicación te ayudará a aprender los conceptos básicos del lenguaje de señas argentina.</string>
     <string name="TxtNombre">Nombre</string>
     <string name="TxtApellido">Apellido</string>
     <string name="TxtKey">Contraseña</string>
@@ -11,7 +11,7 @@
     <string name="btnbnv">Continuar</string>
     <string name="lblreg1">¿Ya tiene una cuenta?</string>
     <string name="lbllog1">¿Aún no esta registrado?</string>
-    <string name="btnIniciarsession">Iniciar sesion</string>
+    <string name="btnIniciarsession">Iniciar sesión</string>
     <string name="lblreg2">Registrese por favor</string>
     <string name="descimguserlogin">user</string>
     <string name="title_activity_navigation">Navigation</string>
@@ -37,5 +37,11 @@
     <string name="empty"></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_nav_admin">navAdmin</string>
+
+    <string name="menu_usuarios">Usuarios</string>
+    <string name="menu_consignas">Consignas</string>
+    <string name="menu_opciones">Opciones</string>
+    <string name="title_activity_navigation_admin">navAdmin</string>
 
 </resources>

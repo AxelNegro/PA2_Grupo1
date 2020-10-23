@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_usuarios_mod"
+            android:icon="@drawable/ic_path"
+            android:title="@string/menu_usuarios" />
+        <item
+            android:id="@+id/nav_consignas_alta"
+            android:icon="@drawable/ic_signs"
+            android:title="@string/menu_consignas" />
+        <item
+            android:id="@+id/nav_opciones_alta"
+            android:icon="@drawable/ic_map"
+            android:title="@string/menu_opciones" />
+    </group>
+</menu>

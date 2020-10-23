@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.ui.admin.navAdmin;
 import com.example.tp_integrador.ui.cliente.navCliente;
 
 public class actLogin extends AppCompatActivity {

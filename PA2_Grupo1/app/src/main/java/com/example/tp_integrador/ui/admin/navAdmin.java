@@ -1,6 +1,5 @@
-package com.example.tp_integrador.ui.cliente;
+package com.example.tp_integrador.ui.admin;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 
@@ -16,27 +15,26 @@ import com.google.android.material.navigation.NavigationView;
 
 import static androidx.navigation.Navigation.findNavController;
 
-public class navCliente extends AppCompatActivity {
+public class navAdmin extends AppCompatActivity {
 
-    private AppBarConfiguration mAppBarConfiguration;
+    private AppBarConfiguration mAppBarConfiguration_adm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation_cliente);
-        Toolbar toolbar = findViewById(R.id.toolbar_cli);
-        toolbar.setBackgroundColor(Color.parseColor("#2271B3"));
+        setContentView(R.layout.activity_navigation_admin);
+        Toolbar toolbar = findViewById(R.id.toolbar_adm);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = findViewById(R.id.drawer_layout_cli);
-        NavigationView navigationView = findViewById(R.id.nav_view_cli);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout_adm);
+        NavigationView navigationView = findViewById(R.id.nav_view_adm);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_listadosenas, R.id.nav_ca, R.id.nav_mapa,R.id.nav_perfil)
+        mAppBarConfiguration_adm = new AppBarConfiguration.Builder(
+                R.id.nav_usuarios_mod, R.id.nav_consignas_alta, R.id.nav_opciones_alta)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = findNavController(this, R.id.nav_host_fragment_cli);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavController navController = findNavController(this,R.id.nav_host_fragment_adm);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration_adm);
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
@@ -49,8 +47,8 @@ public class navCliente extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = findNavController(this, R.id.nav_host_fragment_cli);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+        NavController navController = findNavController(this, R.id.nav_host_fragment_adm);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration_adm)
                 || super.onSupportNavigateUp();
     }
 }

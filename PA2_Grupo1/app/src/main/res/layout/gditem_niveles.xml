@@ -9,7 +9,7 @@
         android:id="@+id/lnItem"
         android:layout_width="419dp"
         android:layout_height="62dp"
-        android:background="@drawable/cb_lvl_superado"
+        android:background="@drawable/cb_superado"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
