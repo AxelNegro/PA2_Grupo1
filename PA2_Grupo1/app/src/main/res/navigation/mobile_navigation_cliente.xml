@@ -8,13 +8,17 @@
 
     <fragment
         android:id="@+id/nav_listadosenas"
-        android:name="com.example.tp_integrador.ui.ListadoSenas.fragListadoSenas"
+        android:name="com.example.tp_integrador.ui.cliente.ListadoSenas.fragListadoSenas"
         android:label="@string/menu_listadosenas"
-        tools:layout="@layout/fragment_listadosenas" />
+        tools:layout="@layout/fragment_listadosenas" >
+        <action
+            android:id="@+id/action_nav_listadosenas_to_nav_perfil"
+            app:destination="@id/nav_perfil" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_ca"
-        android:name="com.example.tp_integrador.ui.CA.fragCA"
+        android:name="com.example.tp_integrador.ui.cliente.CA.fragCA"
         android:label="@string/menu_ca"
         tools:layout="@layout/fragment_ca">
         <action
@@ -24,7 +28,7 @@
 
     <fragment
         android:id="@+id/nav_mapa"
-        android:name="com.example.tp_integrador.ui.Mapa.fragMapa"
+        android:name="com.example.tp_integrador.ui.cliente.Mapa.fragMapa"
         android:label="@string/menu_mapa"
         tools:layout="@layout/fragment_mapa">
         <action
@@ -34,7 +38,7 @@
 
     <fragment
         android:id="@+id/nav_perfil"
-        android:name="com.example.tp_integrador.ui.Perfil.fragPerfil"
+        android:name="com.example.tp_integrador.ui.cliente.Perfil.fragPerfil"
         android:label="@string/menu_perfil"
         tools:layout="@layout/fragment_perfil">
     </fragment>

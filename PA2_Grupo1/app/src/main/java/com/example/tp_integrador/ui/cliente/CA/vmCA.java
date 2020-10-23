@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui.CA;
+package com.example.tp_integrador.ui.cliente.CA;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui.ListadoSenas;
+package com.example.tp_integrador.ui.cliente.ListadoSenas;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

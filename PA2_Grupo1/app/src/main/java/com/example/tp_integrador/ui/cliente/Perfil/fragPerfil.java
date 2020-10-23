@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui.Perfil;
+package com.example.tp_integrador.ui.cliente.Perfil;
 
 import android.app.AlertDialog;
 import android.os.Bundle;

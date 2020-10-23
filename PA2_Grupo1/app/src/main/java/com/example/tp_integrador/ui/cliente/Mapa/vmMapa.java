@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui.Mapa;
+package com.example.tp_integrador.ui.cliente.Mapa;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

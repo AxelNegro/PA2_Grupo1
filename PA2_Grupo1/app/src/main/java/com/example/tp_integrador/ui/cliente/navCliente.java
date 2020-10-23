@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui;
+package com.example.tp_integrador.ui.cliente;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,14 +16,14 @@ import com.google.android.material.navigation.NavigationView;
 
 import static androidx.navigation.Navigation.findNavController;
 
-public class navPrincipal extends AppCompatActivity {
+public class navCliente extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_navigation);
+        setContentView(R.layout.activity_navigation_cliente);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#2271B3"));
         setSupportActionBar(toolbar);

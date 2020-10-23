@@ -1,4 +1,4 @@
-package com.example.tp_integrador.ui.CA;
+package com.example.tp_integrador.ui.cliente.CA;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.adapters.NivelAdapter;
 import com.example.tp_integrador.entidad.clases.Nivel;

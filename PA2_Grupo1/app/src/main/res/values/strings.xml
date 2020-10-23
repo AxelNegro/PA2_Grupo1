@@ -25,8 +25,7 @@
     <string name="menu_ca">Camino de Aprendizaje</string>
     <string name="menu_listadosenas">Listado de Señas</string>
     <string name="menu_mapa">Mapa de institutos</string>
-    <string name="menu_perfil">Modificar perfil</string>
-
+    <string name="menu_perfil">Perfil</string>
 
     <string name="cambiar_key">Cambiar contraseña</string>
     <string name="modificar_datos">Modificar datos</string>

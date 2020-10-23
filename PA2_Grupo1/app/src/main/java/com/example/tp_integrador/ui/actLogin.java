@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.ui.cliente.navCliente;
 
 public class actLogin extends AppCompatActivity {
     @Override
@@ -21,7 +22,7 @@ public class actLogin extends AppCompatActivity {
     }
 
     public void RedirecPrincipal(View V){
-        Intent Sig=new Intent(this, navPrincipal.class);
+        Intent Sig=new Intent(this, navCliente.class);
         startActivity(Sig);
     }
 }
