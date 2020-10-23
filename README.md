@@ -156,6 +156,9 @@ Fecha límite de entrega: Lunes 16/11/2020.
 - Opciones x Consignas:
   - IdConsigna.
   - IdOpcion.
+
+- Opciones:
+  - IdOpcion.
   - Descripción.
   - Resultado.
   - Estado.
