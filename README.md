@@ -69,6 +69,51 @@ Se deberá entregar el proyecto completo y funcionando. La entrega se realizará
 
 Fecha límite de entrega: Lunes 16/11/2020.
 
+## Pantallas:
+
+- Tipo Usuario – Consumidor:
+
+	- Usuario:
+		- Alta de usuario. **(Hecha)
+		- Modificación de usuario. **(Hecha)
+		- Validación de usuario. **(Hecha)
+		- Listado de datos de usuario. **(Hecha)
+		
+	- Señas:
+		- Listado de señas.
+		- Búsqueda de señas.
+		
+	- Niveles:
+		- Listado de niveles. **(Hecha)
+		
+	- Consignas:
+		- Listado de consignas.
+		
+	- Instituto:
+		- Búsqueda de institutos.
+		
+- Tipo Usuario – Administrador:
+
+	- Usuario:
+		- Modificación de usuarios.
+		- Baja y Listado de usuarios
+		
+	- Niveles:
+		- Alta de Niveles.
+		- Modificación de niveles.
+		- Baja y Listado de niveles.
+		
+	- Consignas:
+		- Alta de consignas.
+		- Modificación de consignas.
+		- Baja y Listado de consignas.
+		
+	- Opciones:
+		- Alta de opciones.
+		- Modificación de opciones.
+		- Baja y Listado de opciones.
+
+
 ## Tablas:
 
 - Usuarios:
@@ -80,6 +125,7 @@ Fecha límite de entrega: Lunes 16/11/2020.
   - Email.
   - Ubicación.
   - Estado.
+  - Tipo.
   
 - Señas:
   - IdSeña.
@@ -89,11 +135,12 @@ Fecha límite de entrega: Lunes 16/11/2020.
 - Niveles:
   - IdNivel.
   - Nivel.
+  - Estado
   
 - Consignas:
   - IdConsigna.
-  - IdSeña.
   - Descripción.
+  - Estado.
   
 - Niveles x Usuario:
   - IdUsuario.
@@ -111,10 +158,11 @@ Fecha límite de entrega: Lunes 16/11/2020.
   - IdNivel.
   - IdConsigna.
   
-- Respuestas x Consignas:
+- Opciones x Consignas:
   - IdConsigna.
-  - IdRespuesta.
+  - IdOpcion.
   - Descripción.
   - Resultado.
+  - Estado.
 
 
