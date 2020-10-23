@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/lblConsigna"
+        android:layout_width="wrap_content"
+        android:layout_height="wr"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="60dp"
+        android:text="@string/lblConsigna"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgSena"
+        android:layout_width="370dp"
+        android:layout_height="292dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@string/imgSena"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblConsigna"
+        app:srcCompat="@drawable/ic_sena_perro" />
+
+    <RadioGroup
+        android:id="@+id/rgOpciones"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgSena">
+
+        <RadioButton
+            android:id="@+id/rdPerro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rdPerro" />
+
+        <RadioButton
+            android:id="@+id/rdGato"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rdGato" />
+
+        <RadioButton
+            android:id="@+id/rdAguila"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rdAguila" />
+
+        <RadioButton
+            android:id="@+id/rdPez"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/rdPez" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnConfirmar"
+        android:layout_width="172dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/boton_confirmar"
+        android:text="@string/confirmar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgOpciones" />
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="172dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/boton_volver"
+        android:text="@string/volver"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgOpciones" />
+</androidx.constraintlayout.widget.ConstraintLayout>

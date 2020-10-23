@@ -23,7 +23,7 @@ public class actLogin extends AppCompatActivity {
     }
 
     public void RedirecPrincipal(View V){
-        Intent Sig=new Intent(this, navAdmin.class);
+        Intent Sig=new Intent(this, navCliente.class);
         startActivity(Sig);
     }
 }
