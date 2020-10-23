@@ -98,11 +98,6 @@ Fecha límite de entrega: Lunes 16/11/2020.
 		- Modificación de usuarios.
 		- Baja y Listado de usuarios
 		
-	- Niveles:
-		- Alta de Niveles.
-		- Modificación de niveles.
-		- Baja y Listado de niveles.
-		
 	- Consignas:
 		- Alta de consignas.
 		- Modificación de consignas.
