@@ -43,5 +43,6 @@
     <string name="menu_consignas">Consignas</string>
     <string name="menu_opciones">Opciones</string>
     <string name="title_activity_navigation_admin">navAdmin</string>
+    <string name="title_activity_fragment_mapa">Map</string>
 
 </resources>
