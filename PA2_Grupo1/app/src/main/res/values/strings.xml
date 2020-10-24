@@ -67,5 +67,8 @@
     <string name="rdPez">Pez</string>
 
     <string name="imgSena">Seña</string>
+    <string name="lblNombreSena">Seña</string>
+    <string name="lblDescripcionSena">Seña</string>
+
 
 </resources>
