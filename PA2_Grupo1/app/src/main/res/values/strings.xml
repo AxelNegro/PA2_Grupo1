@@ -49,10 +49,15 @@
     <string name="lblIdConsigna">Id de la consigna:</string>
     <string name="lblDescOpc">Descripción de la opción:</string>
     <string name="lblTituloOpcAlta">Alta de Opciones</string>
+    <string name="lblTituloOpcMod">Modificación de Opciones</string>
     <string name="txtIdConsigna">Id de la consigna</string>
     <string name="txtDescOpc">Descripción de la opción</string>
     <string name="lblResultadoOpc">¿Es la opción correcta?</string>
+    <string name="lblImportante">Importante</string>
     <string name="btnAlta">Dar de alta</string>
+    <string name="btnModificar">Modificar</string>
+    <string name="btnEliminar">Eliminar</string>
+    <string name="lblBajaOMod">¿Desea dar de baja o modificar?</string>
 
     <string name="Alta">Alta</string>
     <string name="Modificacion">Modificación</string>

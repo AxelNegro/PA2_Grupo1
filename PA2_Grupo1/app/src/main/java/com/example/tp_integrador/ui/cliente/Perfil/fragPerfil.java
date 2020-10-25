@@ -69,7 +69,7 @@ public class fragPerfil extends Fragment {
         dialogBuilder = new AlertDialog.Builder(getContext());
         final View PopUp = getLayoutInflater().inflate(R.layout.popup_datos,null);
 
-        btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
+        btnVolver = (Button) PopUp.findViewById(R.id.btnModficar);
 
         dialogBuilder.setView(PopUp);
         dialog = dialogBuilder.create();
