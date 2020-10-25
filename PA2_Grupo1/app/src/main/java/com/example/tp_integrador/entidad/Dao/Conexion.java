@@ -50,6 +50,17 @@ public class Conexion {
         return Resultado;
     }
 
+    public InputStream obtenerInfo(){
+        InputStream inputStream = null;
+        try {
+            inputStream = httpURLConnection.getInputStream();
+        }catch(Exception e){
+            e.printStackTrace();
+            inputStream = null;
+        }
+        return inputStream;
+    }
+
     public boolean cerrar_1(){
         boolean Resultado = false;
         try {
@@ -65,18 +76,8 @@ public class Conexion {
         return Resultado;
     }
 
-    public InputStream obtenerInfo(){
-        InputStream inputStream = null;
-        try {
-            inputStream = httpURLConnection.getInputStream();
-        }catch(Exception e){
-            e.printStackTrace();
-            inputStream = null;
-        }
-        return inputStream;
-    }
-
     public void cerrar_2(){
         httpURLConnection.disconnect();
     }
+
 }

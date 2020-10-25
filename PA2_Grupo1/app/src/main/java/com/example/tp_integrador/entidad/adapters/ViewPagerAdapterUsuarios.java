@@ -8,7 +8,7 @@ import com.example.tp_integrador.ui.admin.ListadoUsuarios;
 import com.example.tp_integrador.ui.admin.ModBajaUsuario;
 
 public class ViewPagerAdapterUsuarios extends FragmentStatePagerAdapter {
-    private static int TAB_COUNT = 3;
+    private static int TAB_COUNT = 2;
 
     public ViewPagerAdapterUsuarios(FragmentManager fm) {
         super(fm);

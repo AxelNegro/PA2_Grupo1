@@ -29,7 +29,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private ListadoUsuarios list;
     private Main_bml_usuario main;
 
-    //Utiliza estos constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
+    //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public UsuarioDao(Context context,Usuario user, int accion, Main_bml_usuario main) {
         this.context = context;
         this.User = user;
@@ -67,26 +67,26 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de articulo
-                urlAux = "http://pagrupo1.freeoda.com/altaArticulo.php";
+                urlAux = "http://pagrupo1.freeoda.com/altaUsuario.php";
                 llenarData();
                 break;
             case 2: // Modificación de articulo
-                urlAux = "http://pagrupo1.freeoda.com/modificarArticulo.php";
+                urlAux = "http://pagrupo1.freeoda.com/modificarUsuario.php";
                 llenarData();
                 break;
             case 3: // Obtener un articulo
-                urlAux = "http://pagrupo1.freeoda.com/obtenerArticulo.php";
+                urlAux = "http://pagrupo1.freeoda.com/obtenerUsuario.php";
                 llenarData();
                 break;
             case 4: // Obtener todos los articulos
-                urlAux = "http://pagrupo1.freeoda.com/obtenerTodosArticulos.php";
+                urlAux = "http://pagrupo1.freeoda.com/obtenerTodosUsuarios.php";
                 break;
         }
     }
 
     public void llenarData(){
         try {
-            if(accion == 1 || accion == 2) { //Alta/Modificación de productos
+            if(accion == 1 || accion == 2) { //Alta-Modificación de productos
                // String id = String.valueOf(articulo.getId());
                //String nombre = articulo.getNombre();
                // String stock = String.valueOf(articulo.getStock());
@@ -105,32 +105,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         }catch (Exception e){
             e.printStackTrace();
         }
-    }
-
-
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    @Override
-    protected String doInBackground(String... strings) {
-        String resultado = "";
-        Conexion conn = new Conexion();
-
-        if(conn.conectar(urlAux)){
-            if(accion == 1 || accion == 2 || accion == 3) { //Acciones que realizan escritura (Alta/Modificación)
-                if (conn.mandarInfo(data)) {
-                    resultado = obtenerInfo(conn);
-                } else {
-                    Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
-                }
-            }
-            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno/Todos)
-                resultado = obtenerInfo(conn);
-            }
-        }
-        else{
-            Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
-        }
-
-        return resultado;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -162,6 +136,32 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         return resultado;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    @Override
+    //se ejecuta primero despues de execute()
+    protected String doInBackground(String... strings) {
+        String resultado = "";
+        Conexion conn = new Conexion();
+
+        if(conn.conectar(urlAux)){
+            if(accion == 1 || accion == 2 || accion == 3) { //Acciones que realizan escritura (Alta/Modificación)
+                if (conn.mandarInfo(data)) {
+                    resultado = obtenerInfo(conn);
+                } else {
+                    Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
+                }
+            }
+            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno/Todos)
+                resultado = obtenerInfo(conn);
+            }
+        }
+        else{
+            Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
+        }
+
+        return resultado;
+    }
+//resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();

@@ -76,6 +76,13 @@ public class Usuario {
     }
 
     public Usuario(){
+        NameUser="Default";
+        KeyUser="123456";
+        Nombre="Default";
+        Apellido="Default";
+        Email="default@gmail.com";
+        Ubicacion="default";
+        Estado=true;
     }
 
     public Usuario(int idUsuario, String nameUser, String keyUser, String nombre, String apellido, String email, String ubicacion, boolean estado) {
@@ -87,5 +94,19 @@ public class Usuario {
         Email = email;
         Ubicacion = ubicacion;
         Estado = estado;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "IdUsuario=" + IdUsuario +
+                ", NameUser='" + NameUser + '\'' +
+                ", KeyUser='" + KeyUser + '\'' +
+                ", Nombre='" + Nombre + '\'' +
+                ", Apellido='" + Apellido + '\'' +
+                ", Email='" + Email + '\'' +
+                ", Ubicacion='" + Ubicacion + '\'' +
+                ", Estado=" + Estado +
+                '}';
     }
 }

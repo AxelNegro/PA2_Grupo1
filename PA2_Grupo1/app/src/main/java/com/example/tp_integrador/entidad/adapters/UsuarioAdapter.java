@@ -54,10 +54,10 @@ public class UsuarioAdapter extends BaseAdapter {
         TextView lblStock = (TextView)convertView.findViewById(R.id.lblStock);
         TextView lblCategoria = (TextView)convertView.findViewById(R.id.lblCategoria);
 
-       // lblId.setText(String.valueOf(User.getId()));
-       // lblNombre.setText(User.getNombre());
-      //  lblStock.setText(String.valueOf(User.getStock()));
-       // lblCategoria.setText(String.valueOf(User.getCat().getDescripcion()));
+        lblId.setText(String.valueOf(User.getIdUsuario()));
+        lblNombre.setText(User.getNombre());
+        lblStock.setText(String.valueOf(User.getEmail()));
+        lblCategoria.setText(String.valueOf(User.getKeyUser()));
 
         return convertView;
     }

@@ -27,13 +27,10 @@ public class ListadoUsuarios extends Fragment {
 
     ListView listUsuarios;
 
-    public ListadoUsuarios() {
-        // Required empty public constructor
-    }
-
     public static final String TITLE = "ListadoUsuario";
-    // TODO: Rename and change types and number of parameters
+
     public static ListadoUsuarios newInstance() {
+
         return new ListadoUsuarios();
     }
 
@@ -49,10 +46,11 @@ public class ListadoUsuarios extends Fragment {
         ((Main_bml_usuario)getActivity()).setFragmentRefreshListener(new Main_bml_usuario.FragmentRefreshListener() {
             @Override
             public void onRefresh() {
+                //carga la lista de usuarios
                 obtenerInfo();
             }
         });
-
+        //carga la lista de usuarios
         obtenerInfo();
         return v;
     }
@@ -88,12 +86,11 @@ public class ListadoUsuarios extends Fragment {
         String[] filas, datos;
 
         //Crea objetos de Articulo y Categoria
-        //Articulo art = new Articulo();
-        //Categoria cat = new Categoria();
+        Usuario User = new Usuario();
 
         //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null&&!Resultado.isEmpty()) {
-           /* res = Resultado.substring(0, Resultado.length() - 1);
+        if(Resultado!=null && !Resultado.isEmpty()) {
+            res = Resultado.substring(0, Resultado.length() - 1);
 
             //Con el metodo split divide
             filas = Resultado.split("\\|");
@@ -102,18 +99,14 @@ public class ListadoUsuarios extends Fragment {
 
                 datos = filas[i].split(";");
 
-                cat.setDescripcion(datos[3]);
+                User.setEmail(datos[1]);
+                User.setNombre(datos[1]);
+                User.setNameUser(datos[1]);
 
-                art.setId(Integer.parseInt(datos[0]));
-                art.setNombre(datos[1]);
-                art.setStock(Integer.parseInt(datos[2]));
-                art.setCat(cat);
+                lstUser.add(User);
 
-                lstArt.add(art);
-
-                art = new Articulo();
-                cat = new Categoria();
-            }*/
+                User= new Usuario();
+            }
         }
         else{
             lstUser = null;
