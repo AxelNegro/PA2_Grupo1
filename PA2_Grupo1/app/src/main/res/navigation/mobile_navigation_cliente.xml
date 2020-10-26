@@ -7,6 +7,16 @@
     app:startDestination="@id/nav_ca">
 
     <fragment
+        android:id="@+id/nav_mapa"
+        android:name="com.example.tp_integrador.ui.cliente.Mapa.fragMapa"
+        android:label="@string/menu_mapa"
+        tools:layout="@layout/fragment_mapa">
+        <action
+            android:id="@+id/action_nav_mapa_to_nav_listadosenas"
+            app:destination="@id/nav_listadosenas" />
+    </fragment>
+
+    <fragment
         android:id="@+id/nav_listadosenas"
         android:name="com.example.tp_integrador.ui.cliente.ListadoSenas.fragListadoSenas"
         android:label="@string/menu_listadosenas"
@@ -27,19 +37,11 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_mapa"
-        android:name="com.example.tp_integrador.ui.cliente.Mapa.fragMapa"
-        android:label="@string/menu_mapa"
-        tools:layout="@layout/fragment_mapa">
-        <action
-            android:id="@+id/action_nav_mapa_to_nav_listadosenas"
-            app:destination="@id/nav_listadosenas" />
-    </fragment>
-
-    <fragment
         android:id="@+id/nav_perfil"
         android:name="com.example.tp_integrador.ui.cliente.Perfil.fragPerfil"
         android:label="@string/menu_perfil"
         tools:layout="@layout/fragment_perfil">
     </fragment>
+
+
 </navigation>

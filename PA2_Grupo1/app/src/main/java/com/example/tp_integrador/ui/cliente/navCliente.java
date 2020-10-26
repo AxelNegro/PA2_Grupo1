@@ -23,17 +23,22 @@ public class navCliente extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_navigation_cliente);
+
         Toolbar toolbar = findViewById(R.id.toolbar_cli);
         setSupportActionBar(toolbar);
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout_cli);
         NavigationView navigationView = findViewById(R.id.nav_view_cli);
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_listadosenas, R.id.nav_ca, R.id.nav_mapa,R.id.nav_perfil)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = findNavController(this, R.id.nav_host_fragment_cli);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);

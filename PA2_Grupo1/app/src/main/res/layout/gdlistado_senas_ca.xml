@@ -18,7 +18,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:id="@+id/imageViewSenaMiniatura"
+            android:id="@+id/imageViewSenaCAMiniatura"
             android:layout_width="137dp"
             android:layout_height="66dp"
             android:layout_gravity="center_vertical"
@@ -26,7 +26,7 @@
             app:srcCompat="@drawable/ic_signs" />
 
         <TextView
-            android:id="@+id/textViewSenaMiniatura"
+            android:id="@+id/textViewSenaCAMiniatura"
             android:layout_width="184dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -35,93 +35,4 @@
             android:textColor="#333" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/lnItem2"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="400dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imageViewSenaMiniatura2"
-            android:layout_width="137dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="25dp"
-            app:srcCompat="@drawable/ic_opciones" />
-
-        <TextView
-            android:id="@+id/textViewSenaMiniatura2"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Consigna"
-            android:textColor="#333" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lnItem3"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="576dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imageViewSenaMiniatura3"
-            android:layout_width="137dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="25dp"
-            app:srcCompat="@drawable/ic_signs" />
-
-        <TextView
-            android:id="@+id/textViewSenaMiniatura3"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Gato"
-            android:textColor="#333" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/lnItem4"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="488dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <ImageView
-            android:id="@+id/imageViewSenaMiniatura4"
-            android:layout_width="137dp"
-            android:layout_height="66dp"
-            android:layout_gravity="center_vertical"
-            android:layout_margin="25dp"
-            app:srcCompat="@drawable/ic_signs" />
-
-        <TextView
-            android:id="@+id/textViewSenaMiniatura4"
-            android:layout_width="184dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Loro"
-            android:textColor="#333" />
-    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

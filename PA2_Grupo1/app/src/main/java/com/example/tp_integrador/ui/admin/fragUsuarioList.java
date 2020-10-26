@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.entidad.dao.UsuarioDao;
+import com.example.tp_integrador.entidad.Dao.UsuarioDao;
 import com.example.tp_integrador.entidad.adapters.UsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Usuario;
 

@@ -1,6 +1,7 @@
 package com.example.tp_integrador.entidad.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,12 +10,15 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.ui.actRegistrarse;
+import com.example.tp_integrador.ui.admin.navAdmin;
+import com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA.actListadoSenasCA;
+import com.example.tp_integrador.ui.actLogin;
 
 import java.util.List;
 
@@ -22,6 +26,7 @@ public class NivelAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     Context context;
     List<Nivel> items;
+
     public NivelAdapter(Context _context, List<Nivel> _items) {
         this.context = _context;
         this.items = _items;
@@ -70,10 +75,12 @@ public class NivelAdapter extends BaseAdapter {
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
-                Toast.makeText(context,String.valueOf(lvl.getIdNivel()),Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(context, actListadoSenasCA.class);
+                context.startActivity(intent);
+
             }
         });
-
 
         return convertView;
     }
@@ -93,4 +100,5 @@ public class NivelAdapter extends BaseAdapter {
     public boolean isEnabled(int position) {
         return true;
     }
+
 }

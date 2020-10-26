@@ -25,9 +25,6 @@ public class fragCA extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Parking Control");
-        //((AppCompatActivity) getActivity()).getSupportActionBar().setSubtitle("Parqueos");
-
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
