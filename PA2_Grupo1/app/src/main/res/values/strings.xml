@@ -75,6 +75,10 @@
     <string name="imgSena">Seña</string>
     <string name="lblNombreSena">Seña</string>
     <string name="lblDescripcionSena">Seña</string>
+    <string name="lblTituloUsersList">Baja y Listado de Usuarios</string>
+    <string name="EstadoUsuario">Estado Usuario</string>
+    <string name="btnBuscarUser">Buscar</string>
+
 
 
 </resources>

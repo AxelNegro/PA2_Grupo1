@@ -20,60 +20,17 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.adapters.ViewPagerAdapterUsuarios;
 import com.google.android.material.tabs.TabLayout;
 
-public class fragUsuarioMod extends AppCompatActivity{
-
-    private ViewPager mViewPager;
-    private Toolbar mToolbar;
-    private ViewPagerAdapterUsuarios mViewPagerAdapter;
-    private TabLayout mTabLayout;
-
-    private ListView lvUsuarios;
-
-    public fragUsuarioMod.FragmentRefreshListener getFragmentRefreshListener() {
-
-        return fragmentRefreshListener;
-    }
-
-    public void setFragmentRefreshListener(fragUsuarioMod.FragmentRefreshListener fragmentRefreshListener) {
-        this.fragmentRefreshListener = fragmentRefreshListener;
-    }
-
-    private fragUsuarioMod.FragmentRefreshListener fragmentRefreshListener;
+public class fragUsuarioMod extends Fragment{
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_adm_usuarios);
-        mToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(mToolbar);
-
-        setViewPager();
-
-    }
-
-    private void setViewPager() {
-
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPagerAdapter = new ViewPagerAdapterUsuarios(getSupportFragmentManager());
-        mViewPager.setAdapter(mViewPagerAdapter);
-
-        mTabLayout = (TabLayout) findViewById(R.id.tab);
-        mTabLayout.setupWithViewPager(mViewPager);
-
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
-    }
-
-    //Actualiza los fragments
-    public interface FragmentRefreshListener{
-        void onRefresh();
-    }
-
-    public void Actualizar(){
-
-        getFragmentRefreshListener().onRefresh();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_mod_baja_usuario, container, false);
     }
 }

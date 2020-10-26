@@ -1,124 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.admin.ModBajaUsuario">
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TableLayout
-        android:id="@+id/TableLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="16dp"
-        android:background="#A6A6A6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_horizontal|center_vertical"
-                android:paddingStart="20dp"
-                android:paddingEnd="20dp"
-                android:text=""
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/txtid"
-                android:layout_width="266dp"
-                android:layout_height="match_parent"
-                android:background="#FFFFFF"
-                android:ems="10"
-                android:inputType="number" />
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <Button
-                android:id="@+id/btnBuscar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_gravity="end"
-                android:text="" />
-        </TableRow>
-
-    </TableLayout>
-
-    <LinearLayout
-        android:layout_width="403dp"
-        android:layout_height="435dp"
-        android:layout_marginTop="64dp"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TableLayout">
 
         <TextView
-            android:id="@+id/lblNombre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/TxtNombreMod"
-            android:text=""
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/TxtNombreMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-            android:ems="10"
-            android:inputType="textPersonName" />
-
-        <TextView
-            android:id="@+id/lblStock"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/TxtStockMod"
-            android:text=""
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-        <EditText
-            android:id="@+id/TxtStockMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="number" />
-
-        <TextView
-            android:id="@+id/lblCategoria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:labelFor="@+id/ddlCategoriaMod"
-            android:text=""
-            android:textAllCaps="true"
-            android:textStyle="bold" />
-
-        <Spinner
-            android:id="@+id/ddlCategoriaMod"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/btnAgregar"
+            android:id="@+id/txtTitModBaja"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="" />
+            android:text="@string/lblBajaOMod"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/txtUsuario3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.551"
+            tools:text="@string/lblBajaOMod" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="408dp"
+            android:layout_height="723dp"
+            android:layout_marginBottom="4dp"
+            android:contentDescription="@string/btnregistrarse"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/backregistrarse" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/txtUsuario"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="24dp"
+            android:autofillHints="Ingrese su nombre"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtNombre"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/txtApellido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txtUsuario2"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="Ingrese su nombre"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtUsuario"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/txtUsuario"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txtUsuario3"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="612dp"
+            android:autofillHints="Ingrese su nombre"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtNombre"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="28dp"
+            android:autofillHints="Ingrese su correo electronico"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtEmail"
+            android:inputType="textEmailAddress"
+            app:layout_constraintBottom_toTopOf="@+id/txtKey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txtApellido"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="28dp"
+            android:autofillHints="Ingrese su apellido"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtApellido"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/txtEmail"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <EditText
+            android:id="@+id/txtKey"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="16dp"
+            android:autofillHints="Confirme su contrasenia"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtKey"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/txtConfirmKey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/txtConfirmKey"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="40dp"
+            android:autofillHints="Ingrese su contraseña"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtConfirmKey"
+            android:inputType="textPassword"
+            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/btnModificarUsuario"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/btn_dos"
+            android:ems="10"
+            android:onClick="RedirecLogin"
+            android:text="@string/btnModificar"
+            android:textColor="@drawable/txt_btn_dos"
+            android:textSize="30sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnBuscarUsuario"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/btn_dos"
+            android:ems="10"
+            android:onClick="RedirecLogin"
+            android:text="@string/btnBuscarUser"
+            android:textColor="@drawable/txt_btn_dos"
+            android:textSize="30sp"
+            android:typeface="normal"
+            app:layout_constraintBottom_toTopOf="@+id/txtUsuario2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtUsuario3" />
+
+        <Switch
+            android:id="@+id/switchEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:shadowColor="@color/colorPrimaryDark"
+            android:text="@string/EstadoUsuario"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

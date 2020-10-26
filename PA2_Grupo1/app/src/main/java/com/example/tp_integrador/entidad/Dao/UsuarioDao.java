@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.entidad.clases.Usuario;
-import com.example.tp_integrador.ui.admin.ListadoUsuarios;
 import com.example.tp_integrador.ui.admin.ModBajaUsuario;
 import com.example.tp_integrador.ui.admin.fragUsuarioMod;
 
@@ -25,7 +24,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private ModBajaUsuario mod;
-    private ListadoUsuarios list;
+    private fragUsuarioMod list;
     private fragUsuarioMod main;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
@@ -37,7 +36,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    public UsuarioDao(Context context, int accion, ListadoUsuarios list) {
+    public UsuarioDao(Context context, int accion, fragUsuarioMod  list) {
         this.context = context;
         this.accion = accion;
         this.list = list;
@@ -164,14 +163,14 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            if(accion == 2) main.Actualizar();
+            //if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
             String[] datos = resultado.split(";");
             mod.setearDatos(datos);
         }
         else if(accion == 4){
-            list.llenarGD(resultado);
+            //list.llenarGD(resultado);
         }
     }
 }

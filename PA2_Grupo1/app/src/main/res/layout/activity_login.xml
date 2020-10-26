@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
 
     <Button
-        android:id="@+id/btniniciarsession"
+        android:id="@+id/btnModificarUsuario"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="355dp"
         android:layout_height="50dp"
@@ -86,7 +86,7 @@
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btniniciarsession" />
+        app:layout_constraintTop_toBottomOf="@+id/btnModificarUsuario" />
 
     <Button
         android:id="@+id/btnRegistrarse"

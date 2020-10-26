@@ -49,7 +49,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_usuarios"
-        android:name="com.example.tp_integrador.fragUsuarios"
+        android:name="com.example.tp_integrador.ui.admin.fragUsuarios"
         android:label="@string/menu_usuarios"
         tools:layout="@layout/fragment_adm_usuarios" >
         <action
