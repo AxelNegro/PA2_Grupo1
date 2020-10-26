@@ -18,7 +18,7 @@ public class fragUsuarios extends Fragment {
     private TabLayout tabLayout;
 
     private fragUsuarioList fragUsrList;
-    private fragUsuarioMod fragUsrMod;
+    private fragUsuarioMyB fragUsrMod;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,12 +29,12 @@ public class fragUsuarios extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_bml_usuario, container, false);
+        View v = inflater.inflate(R.layout.fragment_adm_usuarios, container, false);
 
         viewPager = v.findViewById(R.id.vpUsuarios);
         tabLayout = v.findViewById(R.id.tbUsuarios);
 
-        fragUsrMod = new fragUsuarioMod();
+        fragUsrMod = new fragUsuarioMyB();
         fragUsrList = new fragUsuarioList();
 
         tabLayout.setupWithViewPager(viewPager);

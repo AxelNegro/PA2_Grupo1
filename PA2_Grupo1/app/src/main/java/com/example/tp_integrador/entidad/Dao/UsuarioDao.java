@@ -1,4 +1,4 @@
-package com.example.tp_integrador.entidad.Dao;
+package com.example.tp_integrador.entidad.dao;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -9,8 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.entidad.clases.Usuario;
-import com.example.tp_integrador.ui.admin.ModBajaUsuario;
-import com.example.tp_integrador.ui.admin.fragUsuarioMod;
+import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -23,27 +22,23 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private Usuario User;
     private String urlAux, data;
     private int accion;
-    private ModBajaUsuario mod;
-    private fragUsuarioMod list;
-    private fragUsuarioMod main;
+    private fragUsuarioMyB mod;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
-    public UsuarioDao(Context context,Usuario user, int accion, fragUsuarioMod main) {
+    public UsuarioDao(Context context,Usuario user, int accion) {
         this.context = context;
         this.User = user;
         this.accion = accion;
-        this.main = main;
         preparaVariables();
     }
 
-    public UsuarioDao(Context context, int accion, fragUsuarioMod  list) {
+    public UsuarioDao(Context context, int accion) {
         this.context = context;
         this.accion = accion;
-        this.list = list;
         preparaVariables();
     }
 
-    public UsuarioDao(Context context, Usuario user, int accion, ModBajaUsuario mod) {
+    public UsuarioDao(Context context, Usuario user, int accion, fragUsuarioMyB mod) {
         this.context = context;
         this.User= user;
         this.accion = accion;
@@ -56,7 +51,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         this.context = context;
         this.User = User;
         this.accion = accion;
-        this.main = main;
         preparaVariables();
     }
 

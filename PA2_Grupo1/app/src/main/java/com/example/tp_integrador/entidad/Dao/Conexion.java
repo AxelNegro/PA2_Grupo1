@@ -1,4 +1,4 @@
-package com.example.tp_integrador.entidad.Dao;
+package com.example.tp_integrador.entidad.dao;
 
 import java.io.BufferedWriter;
 import java.io.InputStream;

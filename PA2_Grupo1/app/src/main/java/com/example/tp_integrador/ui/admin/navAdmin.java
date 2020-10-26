@@ -46,7 +46,9 @@ public class navAdmin extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration_adm = new AppBarConfiguration.Builder(
-                R.id.nav_usuarios, R.id.nav_usuarios_mod, R.id.nav_consignas, R.id.nav_consignas_alta, R.id.nav_opciones, R.id.nav_opciones_alta, R.id.nav_opciones_mod, R.id.nav_opciones_list)
+                R.id.nav_usuarios, R.id.nav_usuarios_mod, R.id.nav_usuarios_list,
+                R.id.nav_consignas, R.id.nav_consignas_alta,
+                R.id.nav_opciones, R.id.nav_opciones_alta, R.id.nav_opciones_mod, R.id.nav_opciones_list)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = findNavController(this,R.id.nav_host_fragment_adm);

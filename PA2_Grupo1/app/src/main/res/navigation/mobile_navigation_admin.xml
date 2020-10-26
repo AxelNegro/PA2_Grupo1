@@ -9,9 +9,8 @@
 
     <fragment
         android:id="@+id/nav_usuarios_mod"
-        android:name="com.example.tp_integrador.ui.admin.fragUsuarioMod"
-        android:label="@string/menu_usuarios"
-        tools:layout="@layout/fragment_adm_usuarios_mod"/>
+        android:name="com.example.tp_integrador.ui.admin.fragUsuarioMyB"
+        android:label="@string/menu_usuarios" />
     <fragment
         android:id="@+id/nav_consignas_alta"
         android:name="com.example.tp_integrador.ui.admin.fragConsignasAlta"
@@ -51,17 +50,20 @@
         android:id="@+id/nav_usuarios"
         android:name="com.example.tp_integrador.ui.admin.fragUsuarios"
         android:label="@string/menu_usuarios"
-        tools:layout="@layout/fragment_adm_usuarios" >
+        tools:layout="@layout/fragment_adm_usuarios">
         <action
             android:id="@+id/action_nav_usuarios_to_nav_usuarios_mod"
             app:destination="@id/nav_usuarios_mod" />
         <action
             android:id="@+id/action_nav_usuarios_to_nav_consignas"
             app:destination="@id/nav_consignas" />
+        <action
+            android:id="@+id/action_nav_usuarios_to_fragUsuarioList"
+            app:destination="@id/nav_usuarios_list" />
     </fragment>
     <fragment
         android:id="@+id/nav_consignas"
-        android:name="com.example.tp_integrador.fragConsignas"
+        android:name="com.example.tp_integrador.ui.admin.fragConsignas"
         android:label="@string/menu_consignas"
         tools:layout="@layout/fragment_adm_consignas" >
         <action
@@ -71,4 +73,9 @@
             android:id="@+id/action_nav_consignas_to_nav_opciones"
             app:destination="@id/nav_opciones" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_usuarios_list"
+        android:name="com.example.tp_integrador.ui.admin.fragUsuarioList"
+        android:label="fragment_adm_usuario_list"
+        tools:layout="@layout/fragment_adm_usuario_list" />
 </navigation>
