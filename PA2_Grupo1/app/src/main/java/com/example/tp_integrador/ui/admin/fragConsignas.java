@@ -3,64 +3,51 @@ package com.example.tp_integrador.ui.admin;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.entidad.adapters.ViewPagerAdapter;
+import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragConsignas#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class fragConsignas extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragConsignas() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment nav_consignas.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragConsignas newInstance(String param1, String param2) {
-        fragConsignas fragment = new fragConsignas();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private fragConsignasAlta fragConAlta;
+    private fragConsignasMod fragConMod;
+    private fragConsignasList fragConList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_adm_consignas, container, false);
+        View v = inflater.inflate(R.layout.fragment_adm_consignas, container, false);
+
+        viewPager = v.findViewById(R.id.vpConsignas);
+        tabLayout = v.findViewById(R.id.tbConsignas);
+
+        fragConAlta = new fragConsignasAlta();
+        fragConMod = new fragConsignasMod();
+        fragConList = new fragConsignasList();
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),0);
+        vpAdapter.addFragment(fragConAlta,"Alta");
+        vpAdapter.addFragment(fragConMod,"Modificación");
+        vpAdapter.addFragment(fragConList,"Listado");
+        viewPager.setAdapter(vpAdapter);
+
+        return v;
     }
 }

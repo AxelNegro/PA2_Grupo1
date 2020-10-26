@@ -60,9 +60,16 @@
     <string name="btnEliminar">Eliminar</string>
     <string name="lblBajaOMod">¿Desea dar de baja o modificar?</string>
 
+    <string name="lblTituloConAlta">Alta de Consignas</string>
+    <string name="IdNivel">Id del nivel</string>
+    <string name="DescCon">Descripción de nivel</string>
+    <string name="DescSena">Descripción de la seña</string>
+
+
     <string name="Alta">Alta</string>
     <string name="Modificacion">Modificación</string>
     <string name="BajayList">Baja y Listado</string>
+    <string name="Listado">Listado</string>
     <string name="lblConsigna">¿A que animal correspondería esta seña?</string>
 
     <string name="lblTituloOpcList">Baja y Listado de Opciones</string>
@@ -78,7 +85,6 @@
     <string name="lblTituloUsersList">Baja y Listado de Usuarios</string>
     <string name="EstadoUsuario">Estado Usuario</string>
     <string name="btnBuscarUser">Buscar</string>
-
 
 
 </resources>

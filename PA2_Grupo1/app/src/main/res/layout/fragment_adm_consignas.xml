@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.admin.fragConsignas">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2271b3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tbConsignas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:tabIndicatorColor="@color/ic_launcher_background"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#F6F4F4"
+            app:tabTextColor="#CAC1C1">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbConAlta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Alta" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbConMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Modificacion" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbConList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Listado" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpConsignas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        />
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
