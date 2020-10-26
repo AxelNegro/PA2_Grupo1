@@ -42,7 +42,7 @@ public class fragConsignas extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),0);
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getChildFragmentManager(),0);
         vpAdapter.addFragment(fragConAlta,"Alta");
         vpAdapter.addFragment(fragConMod,"Modificación");
         vpAdapter.addFragment(fragConList,"Listado");
