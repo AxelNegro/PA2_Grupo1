@@ -8,6 +8,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.adapters.ViewPagerAdapter;
@@ -39,8 +40,8 @@ public class fragUsuarios extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),0);
-        vpAdapter.addFragment(fragUsrMod,"Modificacion");
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getChildFragmentManager(),0);
+        vpAdapter.addFragment(fragUsrMod,"Baja y Modificación");
         vpAdapter.addFragment(fragUsrList,"Listado");
         viewPager.setAdapter(vpAdapter);
 

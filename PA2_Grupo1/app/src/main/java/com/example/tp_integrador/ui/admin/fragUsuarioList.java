@@ -18,32 +18,23 @@ import com.example.tp_integrador.entidad.clases.Usuario;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragUsuarioList#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class fragUsuarioList extends Fragment {
 
-    GridView gdUsuarios;
+    private GridView gdUsuarios;
 
-    public static final String TITLE = "ListadoUsuario";
-
-    public static fragUsuarioList newInstance() {
-
-        return new fragUsuarioList();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     //Trae el listView de la vista
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_adm_usuario_list, container, false);
+        final View v = inflater.inflate(R.layout.fragment_adm_usuarios_list, container, false);
 
         gdUsuarios = (GridView) v.findViewById(R.id.gdUsuarios);
 
-        //carga la lista de usuarios
-        obtenerInfo();
         return v;
     }
 

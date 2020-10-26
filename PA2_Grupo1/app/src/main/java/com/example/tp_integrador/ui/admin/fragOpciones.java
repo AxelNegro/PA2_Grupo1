@@ -44,7 +44,7 @@ public class fragOpciones extends Fragment {
 
         tabLayout.setupWithViewPager(viewPager);
 
-        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(),0);
+        ViewPagerAdapter vpAdapter = new ViewPagerAdapter(getChildFragmentManager(),0);
         vpAdapter.addFragment(fragOpcAlta,"Alta");
         vpAdapter.addFragment(fragOpcMod,"Modificación");
         vpAdapter.addFragment(fragOpcList,"Baja y Listado");

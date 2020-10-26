@@ -10,7 +10,8 @@
     <fragment
         android:id="@+id/nav_usuarios_mod"
         android:name="com.example.tp_integrador.ui.admin.fragUsuarioMyB"
-        android:label="@string/menu_usuarios" />
+        android:label="@string/menu_usuarios"
+        tools:layout="@layout/fragment_adm_usuarios_mb"/>
     <fragment
         android:id="@+id/nav_consignas_alta"
         android:name="com.example.tp_integrador.ui.admin.fragConsignasAlta"
@@ -77,5 +78,5 @@
         android:id="@+id/nav_usuarios_list"
         android:name="com.example.tp_integrador.ui.admin.fragUsuarioList"
         android:label="fragment_adm_usuario_list"
-        tools:layout="@layout/fragment_adm_usuario_list" />
+        tools:layout="@layout/fragment_adm_usuarios_list" />
 </navigation>

@@ -64,7 +64,7 @@ public class actLogin extends AppCompatActivity {
 
         }
 
-        Intent Sig=new Intent(this, navCliente.class);
+        Intent Sig=new Intent(this, navAdmin.class);
         startActivity(Sig);
     }
 }

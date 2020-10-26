@@ -16,29 +16,22 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragUsuarioMyB#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class fragUsuarioMyB extends Fragment {
 
     private EditText txtsearchId, txtNombre, txtStock;
     private Spinner spCategorias;
-    Usuario User;
+    private Usuario User;
 
-    public static final String TITLE = "ModificacionUsuario";
-
-    public static fragUsuarioMyB newInstance() {
-
-        return new fragUsuarioMyB();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
 
-        final View view = inflater.inflate(R.layout.fragment_adm_usuario_mb,container,false);
+        final View view = inflater.inflate(R.layout.fragment_adm_usuarios_mb,container,false);
 
         return view;
     }
@@ -48,7 +41,7 @@ public class fragUsuarioMyB extends Fragment {
         UsuarioDao x = new UsuarioDao(getContext(),User,3,this);
         x.execute();
     }
-    
+
     public void limpiar(){
         txtsearchId.setText("");
         txtNombre.setText("");

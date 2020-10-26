@@ -28,8 +28,6 @@ public class fragOpcionesAlta extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_adm_opciones_alta, container, false);
 
-
-
         return v;
     }
 
