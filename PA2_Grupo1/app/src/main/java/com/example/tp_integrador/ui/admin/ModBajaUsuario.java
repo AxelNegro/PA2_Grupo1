@@ -124,7 +124,7 @@ public class ModBajaUsuario extends Fragment {
             art = null;
         }
             */
-        return User;
+        return new Usuario();
     }
 
     public void limpiar(){
@@ -135,7 +135,7 @@ public class ModBajaUsuario extends Fragment {
     }
 
     public void setearDatos(String[] datos) {
-       /* if(datos.length != 0) {
+        if(datos.length != 0) {
             txtNombre.setText(datos[0]);
             txtStock.setText(datos[1]);
             spCategorias.setSelection(Integer.parseInt(datos[2]) - 1);
@@ -143,6 +143,6 @@ public class ModBajaUsuario extends Fragment {
         else{
             Toast.makeText(getContext(),"No existe un articulo con el ID ingresado.",Toast.LENGTH_LONG).show();
             limpiar();
-        }*/
+        }
     }
 }

@@ -8,12 +8,13 @@
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:layout_editor_absoluteY="104dp"
-        tools:showIn="@layout/act_main_abmusuario">
+        tools:showIn="@layout/fragment_adm_usuarios">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

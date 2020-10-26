@@ -10,13 +10,12 @@ import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.ListadoUsuarios;
-import com.example.tp_integrador.ui.admin.Main_bml_usuario;
 import com.example.tp_integrador.ui.admin.ModBajaUsuario;
+import com.example.tp_integrador.ui.admin.fragUsuarioMod;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class UsuarioDao extends AsyncTask<String, Void, String> {
@@ -27,10 +26,10 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private int accion;
     private ModBajaUsuario mod;
     private ListadoUsuarios list;
-    private Main_bml_usuario main;
+    private fragUsuarioMod main;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
-    public UsuarioDao(Context context,Usuario user, int accion, Main_bml_usuario main) {
+    public UsuarioDao(Context context,Usuario user, int accion, fragUsuarioMod main) {
         this.context = context;
         this.User = user;
         this.accion = accion;

@@ -38,7 +38,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
 
     <EditText
-        android:id="@+id/txtNombre"
+        android:id="@+id/txtUsuario"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="70dp"
@@ -63,7 +63,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
+        app:layout_constraintTop_toBottomOf="@+id/txtUsuario" />
 
     <Button
         android:id="@+id/btnEliminar"

@@ -1,7 +1,13 @@
 package com.example.tp_integrador.ui.admin;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,6 +24,7 @@ import static androidx.navigation.Navigation.findNavController;
 public class navAdmin extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration_adm;
+    private TextView lblUsuario=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +34,15 @@ public class navAdmin extends AppCompatActivity {
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout_adm);
         NavigationView navigationView = findViewById(R.id.nav_view_adm);
+        //recupero header navadmin
+        View headerLayout = navigationView.getHeaderView(0);
+        //cargo lblusuario
+        TextView lblUsuario= headerLayout.findViewById(R.id.LblUsuario);
+        //datos de session
+        SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        String username = prefs.getString("username", "");
+        String key = prefs.getString("key", "");
+        lblUsuario.setText(username);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration_adm = new AppBarConfiguration.Builder(

@@ -2,6 +2,7 @@
     <string name="app_name">EnseñarteLSA</string>
     <string name="bienvenido">¡Bienvenido!</string>
     <string name="bvn2">Esta aplicación te ayudará a aprender los conceptos básicos del lenguaje de señas argentina.</string>
+    <string name="TxtUsuario">Usuario</string>
     <string name="TxtNombre">Nombre</string>
     <string name="TxtApellido">Apellido</string>
     <string name="TxtKey">Contraseña</string>

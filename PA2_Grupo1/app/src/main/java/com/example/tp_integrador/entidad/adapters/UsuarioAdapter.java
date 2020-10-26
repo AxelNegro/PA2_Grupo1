@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.clases.Usuario;
-import com.example.tp_integrador.ui.admin.Main_bml_usuario;
+import com.example.tp_integrador.ui.admin.fragUsuarioMod;
 
 import java.util.List;
 
@@ -17,10 +17,10 @@ public class UsuarioAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     Context context;
     List<Usuario> items;
-     Main_bml_usuario main;
+    fragUsuarioMod main;
 
     //Trae el contexto, la lista de articulos, e instancia un objeto de mainActivity
-    public UsuarioAdapter(Context _context, List<Usuario> _items, Main_bml_usuario main) {
+    public UsuarioAdapter(Context _context, List<Usuario> _items, fragUsuarioMod main) {
         this.context = _context;
         this.items = _items;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

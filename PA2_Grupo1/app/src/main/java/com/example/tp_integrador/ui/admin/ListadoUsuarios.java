@@ -43,7 +43,7 @@ public class ListadoUsuarios extends Fragment {
         listUsuarios = (ListView) v.findViewById(R.id.listUsuarios);
 
         //Instancia la actividad main
-        ((Main_bml_usuario)getActivity()).setFragmentRefreshListener(new Main_bml_usuario.FragmentRefreshListener() {
+        ((fragUsuarioMod)getActivity()).setFragmentRefreshListener(new fragUsuarioMod.FragmentRefreshListener() {
             @Override
             public void onRefresh() {
                 //carga la lista de usuarios
@@ -64,7 +64,7 @@ public class ListadoUsuarios extends Fragment {
     //Llena el listView
     public void llenarGD(String Resultado){
 
-        Main_bml_usuario main = ((Main_bml_usuario)getActivity());
+        fragUsuarioMod main = ((fragUsuarioMod)getActivity());
 
         //Carga la lista con articulos
         List<Usuario> lstUser = obtenerTodos(Resultado);
