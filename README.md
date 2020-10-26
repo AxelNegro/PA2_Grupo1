@@ -86,17 +86,14 @@ Fecha límite de entrega: Lunes 16/11/2020.
 	- Niveles:
 		- Listado de niveles. **(Hecha)**
 		
-	- Consignas:
-		- Listado de consignas.
-		
 	- Instituto:
-		- Búsqueda de institutos.
+		- Búsqueda de institutos. **(Hecha)**
 		
 - Tipo Usuario – Administrador:
 
 	- Usuario:
-		- Modificación de usuarios.
-		- Baja y Listado de usuarios
+		- Baja y Modificación de usuarios. **(Hecha)**
+		- Listado de usuarios **(Hecha)**
 		
 	- Consignas:
 		- Alta de consignas.
@@ -104,9 +101,9 @@ Fecha límite de entrega: Lunes 16/11/2020.
 		- Baja y Listado de consignas.
 		
 	- Opciones:
-		- Alta de opciones.
-		- Modificación de opciones.
-		- Baja y Listado de opciones.
+		- Alta de opciones. **(Hecha)**
+		- Modificación de opciones. **(Hecha)**
+		- Baja y Listado de opciones. **(Hecha)**
 
 
 ## Tablas:
