@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:2.0.2'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
     implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation 'androidx.gridlayout:gridlayout:1.0.0'
     def appcompat_version = "1.2.0"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     // For loading and tinting drawables on older versions of the platform

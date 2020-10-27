@@ -37,6 +37,7 @@
             android:name=".ui.cliente.navCliente"
             android:label="@string/title_activity_navigation"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".ui.actBienvenido"
             android:theme="@style/AppTheme2">
@@ -46,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.actRegistrarse"
             android:theme="@style/AppTheme2">
@@ -53,6 +55,7 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.actLogin"
             android:theme="@style/AppTheme2">
@@ -60,12 +63,10 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.cliente.CA.ListadoSenasCA.actListadoSenasCA"
             android:theme="@style/AppTheme2">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
         </activity>
     </application>
 
