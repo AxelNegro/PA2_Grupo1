@@ -11,7 +11,13 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
+import com.example.tp_integrador.entidad.clases.Consigna;
+import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.Opcion;
 import com.example.tp_integrador.entidad.Dao.UsuarioDao;
+import com.example.tp_integrador.entidad.Dao.UsuarioDao;
+
 import com.example.tp_integrador.entidad.adapters.UsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
@@ -31,39 +37,28 @@ public class fragUsuarioList extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View v = inflater.inflate(R.layout.fragment_adm_usuarios_list, container, false);
+        // Inflate the layout for this fragment
+        View v = inflater.inflate(R.layout.fragment_adm_usuarios_list, container, false);
 
-        gdUsuarios = (GridView) v.findViewById(R.id.gdUsuarios);
+        LlenarGD(v);
 
         return v;
     }
 
-    //Trae la informacion de la base
-    public void obtenerInfo(){
-        UsuarioDao UserDao = new UsuarioDao(getContext(),4);
-        UserDao.execute();
-    }
+    public void LlenarGD(View v){
+        gdUsuarios = (GridView)v.findViewById(R.id.gdUsuarios);
+        List<Usuario> lstUsrs = armarLista();
 
-    //Llena el GridView
-    public void llenarGD(String Resultado){
-
-        //Carga la lista con articulos
-        List<Usuario> lstUser = obtenerTodos(Resultado);
-
-        //Carga el adapter
-        if(lstUser!=null) {
-            UsuarioAdapter adapter = new UsuarioAdapter(getContext(), lstUser);
-            //Setea el adapter al gridView
-            gdUsuarios.setAdapter(adapter);
-        }
+        UsuarioAdapter adapter = new UsuarioAdapter(v.getContext(),lstUsrs);
+        gdUsuarios.setAdapter(adapter);
     }
 
     //Carga los articulos a una lista
-    public List<Usuario> obtenerTodos(String Resultado){
+    public List<Usuario> armarLista(){
 
         List<Usuario> lstUser = new ArrayList<Usuario>();
 
-        String res;
+        /*String res;
         String[] filas, datos;
 
         //Crea objetos de Articulo y Categoria
@@ -92,6 +87,32 @@ public class fragUsuarioList extends Fragment {
         else{
             lstUser = null;
         }
+
+        return lstUser;*/
+
+        Usuario user = new Usuario();
+        lstUser.add(user);
+
+        user = new Usuario();
+        lstUser.add(user);
+
+        user = new Usuario();
+        lstUser.add(user);
+
+        user= new Usuario();
+        lstUser.add(user);
+
+        user = new Usuario();
+        lstUser.add(user);
+
+        user= new Usuario();
+        lstUser.add(user);
+
+        user = new Usuario();
+        lstUser.add(user);
+
+        user = new Usuario();
+        lstUser.add(user);
 
         return lstUser;
     }

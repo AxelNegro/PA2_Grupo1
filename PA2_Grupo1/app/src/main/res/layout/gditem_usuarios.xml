@@ -16,6 +16,27 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/lblIdConsigna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <TextView
+            android:id="@+id/lblIdOpcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <TextView
+            android:id="@+id/lblDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <TextView
             android:id="@+id/lblResultado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
