@@ -122,7 +122,7 @@ Fecha límite de entrega: Lunes 16/11/2020.
 - Señas:
   - IdSeña.
   - Seña.
-  - Imagen.
+  - URL_Imagen.
   - Descripción.
   
 - Niveles:
