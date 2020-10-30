@@ -109,7 +109,6 @@ Fecha límite de entrega: Lunes 16/11/2020.
 ## Tablas:
 
 - Usuarios:
-  - IdUsuario.
   - Usuario.
   - Contraseña.
   - Nombre.
@@ -135,16 +134,16 @@ Fecha límite de entrega: Lunes 16/11/2020.
   
 - Orden_Nivel:
   - IdNivel.
-  - Tipo.
-  - Id.
+  - IdSena.
+  - IdNivel.
   - Orden.
   
 - Niveles x Usuario:
-  - IdUsuario.
+  - Usuario.
   - IdNivel.
   
 - Consignas x Usuario:
-  - IdUsuario.
+  - Usuario.
   - IdConsigna.
   
 - Opciones x Consignas:
