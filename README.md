@@ -1,5 +1,13 @@
 # Programación avanzada  II - Grupo 1
 
+## Enlaces externos:
+
+- Panel: https://newserv.freewha.com/freewha.cpanel
+
+- Cliente: http://pagrupo1.freeoda.com/ftp/
+
+- PHPMyAdmin: http://pagrupo1.freeoda.com/pma/index.php
+
 ## Información útil:
 
 - Diccionario de señas: http://manosquehablan.com.ar/diccionario/
@@ -53,17 +61,9 @@
 
 - Entrega 1: Documentación | **Hecha.**
 
-- Entrega 2: Pantallas. | **Actual.**
+- Entrega 2: Pantallas. | **Hecha.**
 
-Se deberá subir al aula virtual:
-
-A.   Un archivo que contenga: las impresiones de pantallas de cada layout del TP integrador junto con la explicación de la funcionalidad que se realiza en dicha pantalla.
-
-B.   El proyecto realizado en Android Studio, por favor aclarar para que dispositivo realizaron la aplicación.
-
-Fecha de entrega: lunes 26/10/2020 23:55 hs.
-
-- Entrega 3: Final.
+- Entrega 3: Final. | **Actual.**
 
 Se deberá entregar el proyecto completo y funcionando. La entrega se realizará vía zoom, a cada grupo se le asignará un horario. Se deberá presentar el grupo completo, durante la presentación los integrantes del grupo serán evaluados de manera individual. En caso de que decidan presentarse en el recuperatorio por favor avisar, así no se les asigna horario. Tener en cuenta que si se presentar en la última fecha de recuperatorio, ya no habrá otra instancia para poder evaluarlos en caso de que desaprueben por ende desaprobarán la materia.
 
@@ -80,8 +80,8 @@ Fecha límite de entrega: Lunes 16/11/2020.
 		- Listado de datos de usuario. **(Hecha)**
 		
 	- Señas:
-		- Listado de señas.
-		- Búsqueda de señas.
+		- Listado de señas. **(Hecha)**
+		- Búsqueda de señas. **(Hecha)**
 		
 	- Niveles:
 		- Listado de niveles. **(Hecha)**
@@ -96,9 +96,9 @@ Fecha límite de entrega: Lunes 16/11/2020.
 		- Listado de usuarios **(Hecha)**
 		
 	- Consignas:
-		- Alta de consignas.
-		- Modificación de consignas.
-		- Baja y Listado de consignas.
+		- Alta de consignas. **(Hecha)**
+		- Modificación de consignas. **(Hecha)**
+		- Baja y Listado de consignas. **(Hecha)**
 		
 	- Opciones:
 		- Alta de opciones. **(Hecha)**
@@ -122,17 +122,23 @@ Fecha límite de entrega: Lunes 16/11/2020.
 - Señas:
   - IdSeña.
   - Seña.
+  - Imagen.
   - Descripción.
   
 - Niveles:
   - IdNivel.
   - Nivel.
-  - Estado
   
 - Consignas:
   - IdConsigna.
   - Descripción.
   - Estado.
+  
+- Orden_Nivel:
+  - IdNivel.
+  - Tipo.
+  - Id.
+  - Orden.
   
 - Niveles x Usuario:
   - IdUsuario.
@@ -140,14 +146,6 @@ Fecha límite de entrega: Lunes 16/11/2020.
   
 - Consignas x Usuario:
   - IdUsuario.
-  - IdConsigna.
-  
-- Señas x Nivel:
-  - IdSeña.
-  - IdNivel.
-  
-- Consignas x Niveles:
-  - IdNivel.
   - IdConsigna.
   
 - Opciones x Consignas:
