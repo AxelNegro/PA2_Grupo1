@@ -115,7 +115,6 @@ Fecha límite de entrega: Lunes 16/11/2020.
   - Nombre.
   - Apellido.
   - Email.
-  - Ubicación.
   - Estado.
   - Tipo.
   
