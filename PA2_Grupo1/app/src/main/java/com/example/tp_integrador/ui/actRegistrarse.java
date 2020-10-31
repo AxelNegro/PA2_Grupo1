@@ -19,6 +19,7 @@ public class actRegistrarse extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
+        etUsuario=(EditText) findViewById(R.id.txtUserName);
         etEmail=(EditText) findViewById(R.id.txtEmail);
         etNombre=(EditText) findViewById(R.id.txtNombre);
         etApellido=(EditText) findViewById(R.id.txtApellido);
@@ -26,7 +27,7 @@ public class actRegistrarse extends AppCompatActivity {
         etConfirmkey=(EditText) findViewById(R.id.txtConfirmKey);
     }
 
-    public void registrarUsuario(){
+    public void registrarUsuario(View v){
         //Instancia el Dao de Usuario
         UsuarioDao userDao;
         //Instancia un Objeto de Usuario y trae los datos a guardar con el metodo obtenerDatos();
@@ -55,12 +56,14 @@ public class actRegistrarse extends AppCompatActivity {
         String ck = etConfirmkey.getText().toString();
 
         if (!(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || usuario.isEmpty() || key.isEmpty() || ck.isEmpty())){
-            if(validarKey(key,ck) == true) {
+            if(validarKey(key,ck)) {
                 user.setNombre(nombre);
                 user.setApellido(apellido);
                 user.setEmail(email);
                 user.setNameUser(usuario);
                 user.setKeyUser(key);
+                user.setTipo_Cuenta(1);
+                user.setEstado(true);
             }else {
                 Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                 user = null;

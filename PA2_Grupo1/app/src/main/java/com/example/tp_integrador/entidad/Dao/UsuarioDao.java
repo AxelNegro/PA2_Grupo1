@@ -87,14 +87,12 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 String email = user.getEmail();
                 String key = user.getKeyUser();
                 String tipo_cuenta = String.valueOf(user.getTipo_Cuenta());
-                String estado = String.valueOf(user.isEstado());
 
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8")
-                        + "&" + URLEncoder.encode("Contraseña", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
+                        + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
                         + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
                         + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(apellido, "UTF-8")
                         + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8")
-                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(estado, "UTF-8")
                         + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(tipo_cuenta, "UTF-8");
             }
             else if (accion == 3){
