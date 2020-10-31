@@ -15,8 +15,8 @@ import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Opcion;
-import com.example.tp_integrador.entidad.Dao.UsuarioDao;
-import com.example.tp_integrador.entidad.Dao.UsuarioDao;
+import com.example.tp_integrador.dao.UsuarioDao;
+import com.example.tp_integrador.dao.UsuarioDao;
 
 import com.example.tp_integrador.entidad.adapters.UsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Usuario;

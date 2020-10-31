@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.entidad.Dao.UsuarioDao;
+import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
 public class fragUsuarioMyB extends Fragment {
