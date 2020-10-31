@@ -133,10 +133,12 @@ Fecha límite de entrega: Lunes 16/11/2020.
   - Estado.
   
 - Orden_Nivel:
+  - IdOrden.
   - IdNivel.
   - IdSena.
   - IdNivel.
   - Orden.
+  - Estado.
   
 - Niveles x Usuario:
   - Usuario.
