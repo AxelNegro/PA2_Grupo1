@@ -14,13 +14,14 @@ import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.entidad.Dao.Conexion;
 
 public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     private Context context;
-    private Usuario User;
+    private Usuario user;
     private String urlAux, data;
     private int accion;
     private fragUsuarioMyB mod;
@@ -28,7 +29,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public UsuarioDao(Context context,Usuario user, int accion) {
         this.context = context;
-        this.User = user;
+        this.user = user;
         this.accion = accion;
         preparaVariables();
     }
@@ -41,7 +42,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public UsuarioDao(Context context, Usuario user, int accion, fragUsuarioMyB mod) {
         this.context = context;
-        this.User= user;
+        this.user= user;
         this.accion = accion;
         this.mod = mod;
         preparaVariables();
@@ -50,7 +51,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public void UsuarioDAO(Context context, Usuario User, int accion){
         this.context = context;
-        this.User = User;
+        this.user = user;
         this.accion = accion;
         preparaVariables();
     }
@@ -79,22 +80,27 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public void llenarData(){
         try {
-            if(accion == 1 || accion == 2) { //Alta-Modificación de productos
-               // String id = String.valueOf(articulo.getId());
-               //String nombre = articulo.getNombre();
-               // String stock = String.valueOf(articulo.getStock());
-               // String idCategoria = String.valueOf(articulo.getCat().getId());
+            if(accion == 1 || accion == 2) { //Alta-Modificación de usuario
+                String usuario = user.getNameUser();
+                String nombre = user.getNombre();
+                String apellido = user.getApellido();
+                String email = user.getEmail();
+                String key = user.getKeyUser();
+                String tipo_cuenta = String.valueOf(user.getTipo_Cuenta());
+                String estado = String.valueOf(user.isEstado());
 
-                /*data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8")
-                        + "&" + URLEncoder.encode("nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
-                        + "&" + URLEncoder.encode("stock", "UTF-8") + "=" + URLEncoder.encode(stock, "UTF-8")
-                        + "&" + URLEncoder.encode("idCategoria", "UTF-8") + "=" + URLEncoder.encode(idCategoria, "UTF-8");
-            */}
-            else if (accion == 3){
-           //     String id = String.valueOf(articulo.getId());
-               // data = URLEncoder.encode("id", "UTF-8") + "=" + URLEncoder.encode(id, "UTF-8");
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8")
+                        + "&" + URLEncoder.encode("Contraseña", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
+                        + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
+                        + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(apellido, "UTF-8")
+                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8")
+                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(estado, "UTF-8")
+                        + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(tipo_cuenta, "UTF-8");
             }
-
+            else if (accion == 3){
+                String usuario = user.getNameUser();
+            data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8");
+            }
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -131,7 +137,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    //se ejecuta primero despues de execute()
+    //se ejecuta primero antes de execute()
     protected String doInBackground(String... strings) {
         String resultado = "";
         Conexion conn = new Conexion();

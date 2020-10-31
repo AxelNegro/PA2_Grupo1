@@ -8,7 +8,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:selectAllOnFocus="false">
 
         <ImageView
@@ -21,13 +21,14 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/backregistrarse" />
 
         <EditText
             android:id="@+id/txtNombre"
             android:layout_width="355dp"
             android:layout_height="50dp"
-            android:layout_marginTop="192dp"
+            android:layout_marginTop="124dp"
             android:autofillHints="Ingrese su nombre"
             android:ems="10"
             android:gravity="center"
@@ -36,48 +37,49 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:digits= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
         <EditText
-            android:id="@+id/txtUsuario4"
+            android:id="@+id/txtApellido"
             android:layout_width="355dp"
             android:layout_height="50dp"
-            android:layout_marginTop="124dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="24dp"
             android:autofillHints="Ingrese su nombre"
             android:ems="10"
             android:gravity="center"
-            android:hint="@string/TxtUsuario"
+            android:hint="@string/TxtApellido"
             android:inputType="textPersonName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombre"
+            android:digits = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"/>
 
         <EditText
             android:id="@+id/txtEmail"
+            android:layout_width="355dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="32dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/TxtEmail"
+            android:inputType="textEmailAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtApellido" />
+
+        <EditText
+            android:id="@+id/txtUserName"
             android:layout_width="355dp"
             android:layout_height="50dp"
             android:layout_marginBottom="32dp"
             android:autofillHints="Ingrese su correo electronico"
             android:ems="10"
             android:gravity="center"
-            android:hint="@string/TxtEmail"
+            android:hint="@string/TxtUsuario"
             android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/txtKey"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/txtApellido"
-            android:layout_width="355dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="32dp"
-            android:autofillHints="Ingrese su apellido"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="@string/TxtApellido"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/txtEmail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 

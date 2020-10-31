@@ -1,23 +1,17 @@
 package com.example.tp_integrador.entidad.clases;
 
 public class Usuario {
-
-    private int IdUsuario;
     private String NameUser;
     private String KeyUser;
     private String Nombre;
     private String Apellido;
     private String Email;
-    private String Ubicacion;
+    private int Tipo_Cuenta;
     private boolean Estado;
 
-    public int getIdUsuario() {
-        return IdUsuario;
-    }
+    public int getTipo_Cuenta() {return Tipo_Cuenta; }
 
-    public void setIdUsuario(int idUsuario) {
-        IdUsuario = idUsuario;
-    }
+    public void setTipo_Cuenta(int tipo_Cuenta) { Tipo_Cuenta = tipo_Cuenta;}
 
     public String getNameUser() {
         return NameUser;
@@ -59,14 +53,6 @@ public class Usuario {
         Email = email;
     }
 
-    public String getUbicacion() {
-        return Ubicacion;
-    }
-
-    public void setUbicacion(String ubicacion) {
-        Ubicacion = ubicacion;
-    }
-
     public boolean isEstado() {
         return Estado;
     }
@@ -81,31 +67,29 @@ public class Usuario {
         Nombre="Default";
         Apellido="Default";
         Email="default@gmail.com";
-        Ubicacion="default";
+        Tipo_Cuenta=0;
         Estado=true;
     }
 
-    public Usuario(int idUsuario, String nameUser, String keyUser, String nombre, String apellido, String email, String ubicacion, boolean estado) {
-        IdUsuario = idUsuario;
+    public Usuario(String nameUser, String keyUser, String nombre, String apellido, String email, String ubicacion, boolean estado, int tc) {
         NameUser = nameUser;
         KeyUser = keyUser;
         Nombre = nombre;
         Apellido = apellido;
         Email = email;
-        Ubicacion = ubicacion;
         Estado = estado;
+        Tipo_Cuenta=tc;
     }
 
     @Override
     public String toString() {
         return "Usuario{" +
-                "IdUsuario=" + IdUsuario +
-                ", NameUser='" + NameUser + '\'' +
+                "NameUser='" + NameUser + '\'' +
                 ", KeyUser='" + KeyUser + '\'' +
                 ", Nombre='" + Nombre + '\'' +
                 ", Apellido='" + Apellido + '\'' +
                 ", Email='" + Email + '\'' +
-                ", Ubicacion='" + Ubicacion + '\'' +
+                ", Tipo_Cuenta=" + Tipo_Cuenta +
                 ", Estado=" + Estado +
                 '}';
     }
