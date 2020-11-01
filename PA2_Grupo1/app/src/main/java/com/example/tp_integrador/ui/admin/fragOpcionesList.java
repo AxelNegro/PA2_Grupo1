@@ -50,7 +50,7 @@ public class fragOpcionesList extends Fragment {
     public List<Opcion> armarLista(){
         List<Opcion> lstOpc = new ArrayList<Opcion>();
 
-        Consigna cons = new Consigna(new Nivel(),1,"",true);
+        Consigna cons = new Consigna(new Nivel(),1,"","",true);
         Opcion opc = new Opcion(cons,1,"Perro",true,true);
         lstOpc.add(opc);
 
@@ -63,7 +63,7 @@ public class fragOpcionesList extends Fragment {
         opc = new Opcion(cons,4,"Pez",false,true);
         lstOpc.add(opc);
 
-        cons = new Consigna(new Nivel(),2,"",true);
+        cons = new Consigna(new Nivel(),2,"","",true);
         opc = new Opcion(cons,5,"Rojo",false,true);
         lstOpc.add(opc);
 

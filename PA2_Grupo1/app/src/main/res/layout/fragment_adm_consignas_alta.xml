@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:visibility="visible"
     tools:context=".ui.admin.fragConsignasAlta">
 
 
@@ -25,12 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="28dp"
-        android:text="@string/IdNivel"
+        android:text="@string/Nivel"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblTituloConAlta" />
 
-    <EditText
+    <Spinner
         android:id="@+id/txtIdNivel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +41,7 @@
         android:hint="@string/IdNivel"
         android:inputType="number"
         android:textSize="18sp"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblIdNivel"
         tools:ignore="Autofill" />
@@ -80,7 +82,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDescOpc" />
 
-    <EditText
+    <Spinner
         android:id="@+id/txtIdSena"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

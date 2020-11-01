@@ -62,6 +62,7 @@
 
     <string name="lblTituloConAlta">Alta de Consignas</string>
     <string name="IdNivel">Id del nivel</string>
+    <string name="Nivel">Nivel</string>
     <string name="DescCon">Descripción de nivel</string>
     <string name="DescSena">Descripción de la seña</string>
 
