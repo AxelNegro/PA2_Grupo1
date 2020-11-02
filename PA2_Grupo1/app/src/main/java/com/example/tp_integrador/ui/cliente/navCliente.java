@@ -1,8 +1,12 @@
 package com.example.tp_integrador.ui.cliente;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,6 +23,7 @@ import static androidx.navigation.Navigation.findNavController;
 public class navCliente extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private TextView lblUsuario=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,15 @@ public class navCliente extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout_cli);
         NavigationView navigationView = findViewById(R.id.nav_view_cli);
-
+        //recupero header navadmin
+        View headerLayout = navigationView.getHeaderView(0);
+        //cargo lblusuario
+        TextView lblUsuario= headerLayout.findViewById(R.id.LblUsuario);
+        //datos de session
+        SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        String username = prefs.getString("username", "");
+        String key = prefs.getString("key", "");
+        lblUsuario.setText(username);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(

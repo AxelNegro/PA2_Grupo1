@@ -48,6 +48,9 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public UsuarioDao() {
+
+    }
 
     public void UsuarioDAO(Context context, Usuario User, int accion){
         this.context = context;
@@ -74,7 +77,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 break;
             case 4: // Obtener todos los articulos
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosUsuarios.php";
-                break;
         }
     }
 
@@ -86,16 +88,14 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 String apellido = user.getApellido();
                 String email = user.getEmail();
                 String key = user.getKeyUser();
-                String tipo_cuenta = String.valueOf(user.getTipo_Cuenta());
 
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8")
                         + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
                         + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
                         + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(apellido, "UTF-8")
-                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8")
-                        + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(tipo_cuenta, "UTF-8");
+                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
             }
-            else if (accion == 3){
+            if (accion == 3){
                 String usuario = user.getNameUser();
             data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8");
             }
@@ -155,13 +155,12 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         else{
             Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
         }
-
         return resultado;
     }
 //resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
-            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+           Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
             //if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){

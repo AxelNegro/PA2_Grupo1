@@ -3,7 +3,6 @@ package com.example.tp_integrador.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,21 +12,25 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
+import java.util.concurrent.ExecutionException;
+
+
 public class actRegistrarse extends AppCompatActivity {
     private EditText etNombre,etApellido,etUsuario,etKey,etEmail,etConfirmkey;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registrarse);
         etUsuario=(EditText) findViewById(R.id.txtUserName);
         etEmail=(EditText) findViewById(R.id.txtEmail);
-        etNombre=(EditText) findViewById(R.id.txtNombre);
+        etNombre=(EditText) findViewById(R.id.txtNameUser);
         etApellido=(EditText) findViewById(R.id.txtApellido);
         etKey=(EditText) findViewById(R.id.txtKey);
         etConfirmkey=(EditText) findViewById(R.id.txtConfirmKey);
     }
 
-    public void registrarUsuario(View v){
+    public void registrarUsuario(View v) throws ExecutionException, InterruptedException {
         //Instancia el Dao de Usuario
         UsuarioDao userDao;
         //Instancia un Objeto de Usuario y trae los datos a guardar con el metodo obtenerDatos();
@@ -36,15 +39,11 @@ public class actRegistrarse extends AppCompatActivity {
         //Envia a UsuarioDao el contexto, el objeto a guardar y un int que indica la accion que se debe ejecutar
         if(user != null){
             userDao = new UsuarioDao(this,user,1);
-            userDao.execute();
-            limpiar();
-        }
-        else{
-            Toast.makeText(this,"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
+            if (userDao.execute().get().equals("Usuario registrado correctamente.")) limpiar();
         }
     }
 
-    public Usuario obtenerDatos() {
+    public Usuario obtenerDatos() throws ExecutionException, InterruptedException {
         //Trae los datos de los txt que carga el usuario por pantalla
         Usuario user = new Usuario();
 
@@ -57,19 +56,20 @@ public class actRegistrarse extends AppCompatActivity {
 
         if (!(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || usuario.isEmpty() || key.isEmpty() || ck.isEmpty())){
             if(validarKey(key,ck)) {
-                user.setNombre(nombre);
-                user.setApellido(apellido);
-                user.setEmail(email);
-                user.setNameUser(usuario);
-                user.setKeyUser(key);
-                user.setTipo_Cuenta(1);
-                user.setEstado(true);
+                    user.setNameUser(usuario);
+                    user.setNombre(nombre);
+                    user.setApellido(apellido);
+                    user.setEmail(email);
+                    user.setKeyUser(key);
+                    user.setTipo_Cuenta(1);
+                    user.setEstado(true);
             }else {
                 Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                 user = null;
             }
         }
         else{
+            Toast.makeText(this,"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
             user = null;
         }
         return user;
