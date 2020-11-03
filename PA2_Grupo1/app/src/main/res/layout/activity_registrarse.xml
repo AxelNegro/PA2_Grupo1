@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    tools:visibility="visible">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -20,8 +21,10 @@
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/backregistrarse" />
 
         <EditText
@@ -30,6 +33,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="124dp"
             android:autofillHints="Ingrese su nombre"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtNombre"
@@ -37,8 +41,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:digits= "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/txtApellido"
@@ -47,13 +50,13 @@
             android:layout_marginStart="28dp"
             android:layout_marginTop="24dp"
             android:autofillHints="Ingrese su nombre"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtApellido"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNameUser"
-            android:digits = "abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "/>
+            app:layout_constraintTop_toBottomOf="@+id/txtNameUser" />
 
         <EditText
             android:id="@+id/txtEmail"
@@ -117,7 +120,7 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="355dp"
             android:layout_height="50dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="60dp"
             android:background="@drawable/btn_dos"
             android:ems="10"
             android:onClick="registrarUsuario"
@@ -126,7 +129,6 @@
             android:textSize="30sp"
             android:typeface="normal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey" />
 
@@ -171,6 +173,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/user" />
+
+        <CheckBox
+            android:id="@+id/chkbViewKeys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:onClick="ShowPassword"
+            android:text="@string/ViewKeys"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey"
+            app:layout_constraintVertical_bias="0.607" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

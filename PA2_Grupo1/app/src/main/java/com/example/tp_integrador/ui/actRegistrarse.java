@@ -2,7 +2,12 @@ package com.example.tp_integrador.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Patterns;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,10 +18,12 @@ import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
 import java.util.concurrent.ExecutionException;
+import java.util.regex.Pattern;
 
 
 public class actRegistrarse extends AppCompatActivity {
     private EditText etNombre,etApellido,etUsuario,etKey,etEmail,etConfirmkey;
+    private CheckBox chkViewKeys;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +35,7 @@ public class actRegistrarse extends AppCompatActivity {
         etApellido=(EditText) findViewById(R.id.txtApellido);
         etKey=(EditText) findViewById(R.id.txtKey);
         etConfirmkey=(EditText) findViewById(R.id.txtConfirmKey);
+        chkViewKeys=(CheckBox) findViewById(R.id.chkbViewKeys);
     }
 
     public void registrarUsuario(View v) throws ExecutionException, InterruptedException {
@@ -55,7 +63,8 @@ public class actRegistrarse extends AppCompatActivity {
         String ck = etConfirmkey.getText().toString();
 
         if (!(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || usuario.isEmpty() || key.isEmpty() || ck.isEmpty())){
-            if(validarKey(key,ck)) {
+            if(validarEmail(email)) {
+                if(validarKey(key,ck)) {
                     user.setNameUser(usuario);
                     user.setNombre(nombre);
                     user.setApellido(apellido);
@@ -63,8 +72,15 @@ public class actRegistrarse extends AppCompatActivity {
                     user.setKeyUser(key);
                     user.setTipo_Cuenta(1);
                     user.setEstado(true);
+                }else{
+                    Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
+                    etKey.setError("Las claves no coinciden.");
+                    etConfirmkey.setError("Las claves no coinciden.");
+                    user = null;
+                }
             }else {
-                Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Email invalido",Toast.LENGTH_LONG).show();
+                etEmail.setError("verifique el email ingresado");
                 user = null;
             }
         }
@@ -93,4 +109,20 @@ public class actRegistrarse extends AppCompatActivity {
         Intent Sig=new Intent(this, actLogin.class);
         startActivity(Sig);
     }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
+    }
+    public void ShowPassword(View v) {
+        if(!chkViewKeys.isChecked()){
+            etKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            etConfirmkey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        }else{
+            etKey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            etConfirmkey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+        }
+    }
+
 }
