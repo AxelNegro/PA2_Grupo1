@@ -6,77 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.admin.fragConsignasList">
 
-    <TextView
-        android:id="@+id/textView8"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="21dp"
-        android:text="Nivel 1 - Consigna 1"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView9"
+    <GridView
+        android:id="@+id/gdConsignas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="25dp"
+        android:background="@drawable/cb_normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="11dp"
-        android:text="Nivel 1 - Consigna 2"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="7dp"
-        android:text="Nivel 1 - Consigna 3"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView11"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="15dp"
-        android:text="Nivel 2 - Consigna 1"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="223dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="182dp"
-        android:text="Nivel 2 - Consigna 2"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView13"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="295dp"
-        android:text="(Al hacer click salta un popup con la consigna)"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12" />
-
-
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/gditem_consignas" />
 </androidx.constraintlayout.widget.ConstraintLayout>

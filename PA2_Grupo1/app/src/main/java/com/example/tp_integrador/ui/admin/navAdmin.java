@@ -24,6 +24,17 @@ public class navAdmin extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration_adm;
     private TextView lblUsuario=null;
 
+    public FragmentRefreshListener getFragmentRefreshListener() {
+        return fragmentRefreshListener;
+    }
+
+    public void setFragmentRefreshListener(FragmentRefreshListener fragmentRefreshListener) {
+        this.fragmentRefreshListener = fragmentRefreshListener;
+    }
+
+    private FragmentRefreshListener fragmentRefreshListener;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,5 +77,14 @@ public class navAdmin extends AppCompatActivity {
         NavController navController = findNavController(this, R.id.nav_host_fragment_adm);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration_adm)
                 || super.onSupportNavigateUp();
+    }
+
+    //Actualiza los fragments
+    public interface FragmentRefreshListener{
+        void onRefresh();
+    }
+
+    public void Actualizar(){
+        getFragmentRefreshListener().onRefresh();
     }
 }

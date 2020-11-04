@@ -8,9 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
-import com.example.tp_integrador.entidad.clases.Consigna;
+import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Usuario;
-import com.example.tp_integrador.ui.admin.fragConsignasList;
+import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 
 import java.io.BufferedReader;
@@ -20,41 +20,43 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.dao.Conexion;
 
-public class ConsignaDao extends AsyncTask<String, Void, String> {
+public class NivelDao extends AsyncTask<String, Void, String> {
 
     private Context context;
-    private Consigna consigna;
+    private Nivel nivel;
     private String urlAux, data;
     private int accion;
-    private fragConsignasList list;
+    private fragConsignasAlta alta;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
-    //Alta de consigna
-    public ConsignaDao(Context context,Consigna consigna, int accion) {
+    public NivelDao(Context context,Nivel nivel, int accion) {
         this.context = context;
-        this.consigna = consigna;
+        this.nivel = nivel;
         this.accion = accion;
         preparaVariables();
     }
 
-    public ConsignaDao(Context context, int accion) {
+    public NivelDao(Context context, int accion) {
         this.context = context;
         this.accion = accion;
         preparaVariables();
     }
 
-    //Listado de consignas
-    public ConsignaDao(Context context, int accion, fragConsignasList list) {
+    //Listado de niveles
+    public NivelDao(Context context, int accion, fragConsignasAlta alta) {
         this.context = context;
         this.accion = accion;
-        this.list = list;
+        this.alta = alta;
         preparaVariables();
     }
 
+    public NivelDao() {
 
-    public void ConsignaDao(Context context, Consigna consigna, int accion){
+    }
+
+    public void UsuarioDAO(Context context, Nivel nivel, int accion){
         this.context = context;
-        this.consigna = consigna;
+        this.nivel = nivel;
         this.accion = accion;
         preparaVariables();
     }
@@ -63,33 +65,28 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
 
     public void preparaVariables(){
         switch(accion){
-            case 1: // Alta de consigna
-                urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
+            case 1: // Alta de nivel
+                //urlAux = "https://pagrupo1.000webhostapp.com/altaNivel.php";
                 llenarData();
                 break;
-            case 2: // Modificación de consigna
-                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+            case 2: // Modificación de nivel
+                //urlAux = "https://pagrupo1.000webhostapp.com/modificarNivel.php";
                 llenarData();
                 break;
-            case 3: // Obtener una consigna
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+            case 3: // Obtener un nivel
+                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerNivel.php";
                 llenarData();
                 break;
-            case 4: // Obtener todos las consignas
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
-                break;
+            case 4: // Obtener todos los niveles
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosNiveles.php";
         }
     }
 
     public void llenarData(){
         try {
-            if(accion == 1 || accion == 2) { //Alta-Modificación de consigna
-
-                data = URLEncoder.encode("URL_Imagen", "UTF-8") + "=" + URLEncoder.encode(consigna.getURLImagen(), "UTF-8")
-                        + "&" + URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(consigna.getDesc(), "UTF-8");
+            if(accion == 1 || accion == 2) { //Alta-Modificación de nivel
             }
-            else if (accion == 3){
-                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(consigna.getDesc(), "UTF-8");
+            if (accion == 3){
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -147,7 +144,6 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         else{
             Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
         }
-
         return resultado;
     }
     //resultado despues del doInBackground()
@@ -157,10 +153,11 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
             //if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
-            String[] datos = resultado.split(";");
+            /*String[] datos = resultado.split(";");
+            mod.setearDatos(datos);*/
         }
         else if(accion == 4){
-            list.llenarGD(resultado);
+            alta.llenarSpinnerNivel(resultado);
         }
     }
 }
