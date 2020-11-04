@@ -63,19 +63,19 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public void preparaVariables(){
         switch(accion){
-            case 1: // Alta de articulo
+            case 1: // Alta de usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/altaUsuario.php";
                 llenarData();
                 break;
-            case 2: // Modificación de articulo
+            case 2: // Modificación de usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuario.php";
                 llenarData();
                 break;
-            case 3: // Obtener un articulo
+            case 3: // Obtener un usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerUsuario.php";
                 llenarData();
                 break;
-            case 4: // Obtener todos los articulos
+            case 4: // Obtener todos los usuarios
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosUsuarios.php";
         }
     }
