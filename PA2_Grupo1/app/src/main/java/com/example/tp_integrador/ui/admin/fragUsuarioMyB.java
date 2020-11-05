@@ -3,6 +3,7 @@ package com.example.tp_integrador.ui.admin;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ public class fragUsuarioMyB extends Fragment {
 
     private EditText etsearchusername, etNombre, etApellido,etEmail,etKey,etConfirmKey;
     private Usuario User;
+    private SwitchCompat switchEstado;
 
 
     public static fragUsuarioMyB newInstance() {
@@ -46,6 +49,9 @@ public class fragUsuarioMyB extends Fragment {
         etKey = (EditText)view.findViewById(R.id.txtKey);
         etConfirmKey = (EditText)view.findViewById(R.id.txtConfirmKey);
 
+        switchEstado = (SwitchCompat) view.findViewById(R.id.switchEstado);
+
+
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) view.findViewById(R.id.btnBuscarUsuario);
         botonBuscar.setOnClickListener(new View.OnClickListener() {
@@ -64,14 +70,28 @@ public class fragUsuarioMyB extends Fragment {
             }
         });
 
+        /**chk show passwords**/
+        CheckBox chkViewKeys2 = (CheckBox) view.findViewById(R.id.chkbViewKeys2);
+        chkViewKeys2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { ShowPasswordMod(v);
+            }
+        });
+
+
         return view;
     }
 
     private void CargarDatos(EditText txtsearchNameUser, View view) {
-        User=new Usuario();
-        User.setNameUser(txtsearchNameUser.getText().toString());
-        UsuarioDao x = new UsuarioDao(getContext(),User,3,this);
-        x.execute();
+        if(!txtsearchNameUser.toString().isEmpty()){
+            User=new Usuario();
+            User.setNameUser(txtsearchNameUser.getText().toString());
+            UsuarioDao x = new UsuarioDao(getContext(),User,3,this);
+            x.execute();
+        }else{
+            Toast.makeText(getContext(),"Verifique el usuario",Toast.LENGTH_LONG).show();
+            etsearchusername.setError("Coloque un usuario");
+        }
     }
     /*private void ModificarUsuario() {
         UsuarioDao UserDao;
@@ -149,27 +169,29 @@ public class fragUsuarioMyB extends Fragment {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
-    /*public void ShowPassword(View v) {
-        if(!chkViewKeys.isChecked()){
+    public void ShowPasswordMod(View v) {
+        CheckBox c=(CheckBox)v.findViewById(R.id.chkbViewKeys2);
+        if(!c.isChecked()){
             etKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            etConfirmkey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            etConfirmKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         }else{
             etKey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
-            etConfirmkey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            etConfirmKey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
         }
-    }*/
+    }
 
     public void setearDatos(String[] datos) {
-        if(datos.length != 0) {
+        if(datos.length > 1) {
             etNombre.setText(datos[0]);
             etApellido.setText(datos[1]);
             etEmail.setText(datos[2]);
             etKey.setText(datos[3]);
             etConfirmKey.setText(datos[3]);
-        }
-        else{
-            Toast.makeText(getContext(),"No existe un usuario con el USERNAME ingresado.",Toast.LENGTH_LONG).show();
+            if(Integer.valueOf(datos[5]) == 1)switchEstado.setChecked(true);
+            else switchEstado.setChecked(false);
+        }else {
+            etsearchusername.setError("El usuario ingresado no existe");
             limpiar();
         }
     }

@@ -3,8 +3,6 @@ package com.example.tp_integrador.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
-import android.text.method.HideReturnsTransformationMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
@@ -31,7 +29,7 @@ public class actRegistrarse extends AppCompatActivity {
         setContentView(R.layout.activity_registrarse);
         etUsuario=(EditText) findViewById(R.id.txtUserName);
         etEmail=(EditText) findViewById(R.id.txtEmail);
-        etNombre=(EditText) findViewById(R.id.txtNameUser);
+        etNombre=(EditText) findViewById(R.id.txtNombreAlta);
         etApellido=(EditText) findViewById(R.id.txtApellido);
         etKey=(EditText) findViewById(R.id.txtKey);
         etConfirmkey=(EditText) findViewById(R.id.txtConfirmKey);

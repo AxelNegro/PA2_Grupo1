@@ -86,7 +86,7 @@
     <string name="lblTituloUsersList">Baja y Listado de Usuarios</string>
     <string name="EstadoUsuario">Estado Usuario</string>
     <string name="btnBuscarUser">Buscar</string>
-    <string name="ViewKeys">Visualizar claves</string>
+    <string name="ViewKeys">Ver claves</string>
 
 
 </resources>

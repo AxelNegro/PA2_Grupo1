@@ -166,6 +166,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         else if(accion == 3){
             String[] datos = resultado.split(";");
             mod.setearDatos(datos);
+
         }
         else if(accion == 4){
             //list.llenarGD(resultado);

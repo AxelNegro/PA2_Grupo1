@@ -34,6 +34,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtNombre"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -77,6 +78,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtApellido"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
@@ -144,17 +146,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtSearchUserName" />
 
-        <Switch
+        <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchEstado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginTop="24dp"
+            android:layout_width="227dp"
+            android:layout_height="37dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="16dp"
             android:shadowColor="@color/colorPrimaryDark"
             android:text="@string/EstadoUsuario"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey" />
+
+        <CheckBox
+            android:id="@+id/chkbViewKeys2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ViewKeys"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
+            app:layout_constraintEnd_toStartOf="@+id/switchEstado"
+            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey"
+            app:layout_constraintVertical_bias="0.531" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

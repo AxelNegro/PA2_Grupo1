@@ -28,7 +28,7 @@
             app:srcCompat="@drawable/backregistrarse" />
 
         <EditText
-            android:id="@+id/txtNameUser"
+            android:id="@+id/txtNombreAlta"
             android:layout_width="355dp"
             android:layout_height="50dp"
             android:layout_marginTop="124dp"
@@ -56,7 +56,7 @@
             android:hint="@string/TxtApellido"
             android:inputType="textPersonName"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtNameUser" />
+            app:layout_constraintTop_toBottomOf="@+id/txtNombreAlta" />
 
         <EditText
             android:id="@+id/txtEmail"

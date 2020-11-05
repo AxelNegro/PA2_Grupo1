@@ -22,7 +22,7 @@ public class actLogin extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        txtNameUser = (EditText)this.findViewById(R.id.txtNameUser);
+        txtNameUser = (EditText)this.findViewById(R.id.txtNombreAlta);
         txtKeyUser = (EditText)this.findViewById(R.id.txtKey);
 
     }
