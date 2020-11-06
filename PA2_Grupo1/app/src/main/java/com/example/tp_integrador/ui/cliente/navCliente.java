@@ -16,6 +16,7 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.ui.admin.navAdmin;
 import com.google.android.material.navigation.NavigationView;
 
 import static androidx.navigation.Navigation.findNavController;
@@ -24,6 +25,16 @@ public class navCliente extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private TextView lblUsuario=null;
+
+    public navCliente.FragmentRefreshListener getFragmentRefreshListener() {
+        return fragmentRefreshListener;
+    }
+
+    public void setFragmentRefreshListener(navCliente.FragmentRefreshListener fragmentRefreshListener) {
+        this.fragmentRefreshListener = fragmentRefreshListener;
+    }
+
+    private navCliente.FragmentRefreshListener fragmentRefreshListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,5 +80,14 @@ public class navCliente extends AppCompatActivity {
         NavController navController = findNavController(this, R.id.nav_host_fragment_cli);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //Actualiza los fragments
+    public interface FragmentRefreshListener{
+        void onRefresh();
+    }
+
+    public void Actualizar(){
+        getFragmentRefreshListener().onRefresh();
     }
 }

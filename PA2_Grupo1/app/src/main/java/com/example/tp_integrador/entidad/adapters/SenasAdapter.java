@@ -8,14 +8,16 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.entidad.clases.Sena;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SenasAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private ArrayList<String> senas;
-    public SenasAdapter(Context context, int layout, ArrayList<String> senas){
+    private List<Sena> senas;
+    public SenasAdapter(Context context, int layout, List<Sena> senas){
         this.context = context;
         this.layout = layout;
         this.senas = senas;
@@ -43,7 +45,7 @@ public class SenasAdapter extends BaseAdapter {
         LayoutInflater layoutInflater = LayoutInflater.from(this.context);
 
         v = layoutInflater.inflate(R.layout.gdlistado_senas, null);
-        String currentName = senas.get(position);
+        String currentName = senas.get(position).getDescripcion();
 
         TextView textView = (TextView) v.findViewById(R.id.textViewSenaMiniatura);
         textView.setText(currentName);
