@@ -17,6 +17,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.dao.Conexion;
+import com.example.tp_integrador.ui.admin.navAdmin;
 
 public class UsuarioDao extends AsyncTask<String, Void, String> {
 
@@ -25,12 +26,14 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private fragUsuarioMyB mod;
+    private navAdmin main;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public UsuarioDao(Context context,Usuario user, int accion) {
         this.context = context;
         this.user = user;
         this.accion = accion;
+        this.main = main;
         preparaVariables();
     }
 
@@ -45,6 +48,14 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         this.user= user;
         this.accion = accion;
         this.mod = mod;
+        preparaVariables();
+    }
+
+    public UsuarioDao(Context context, Usuario user, int accion, navAdmin main) {
+        this.context = context;
+        this.user= user;
+        this.accion = accion;
+        this.main = main;
         preparaVariables();
     }
 
@@ -88,12 +99,16 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 String apellido = user.getApellido();
                 String email = user.getEmail();
                 String key = user.getKeyUser();
+                String Tipo =  String.valueOf(user.getTipo_Cuenta());
+                String estado =  user.isEstado() ? "1" : "0";
 
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8")
                         + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
                         + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
                         + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(apellido, "UTF-8")
-                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8");
+                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8")
+                        + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(Tipo, "UTF-8")
+                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(estado, "UTF-8");
             }
             if (accion == 3){
                 String usuario = user.getNameUser();
@@ -120,7 +135,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
                 resultado = stringBuilder.toString();
                 conn.cerrar_2();
             } else {
@@ -161,12 +175,11 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            //if(accion == 2) main.Actualizar();
+         //   if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
             String[] datos = resultado.split(";");
             mod.setearDatos(datos);
-
         }
         else if(accion == 4){
             //list.llenarGD(resultado);

@@ -31,7 +31,6 @@ public class fragUsuarioMyB extends Fragment {
 
 
     public static fragUsuarioMyB newInstance() {
-
         return new fragUsuarioMyB();
     }
 
@@ -48,9 +47,7 @@ public class fragUsuarioMyB extends Fragment {
         etEmail=(EditText)view.findViewById(R.id.txtEmail);
         etKey = (EditText)view.findViewById(R.id.txtKey);
         etConfirmKey = (EditText)view.findViewById(R.id.txtConfirmKey);
-
         switchEstado = (SwitchCompat) view.findViewById(R.id.switchEstado);
-
 
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) view.findViewById(R.id.btnBuscarUsuario);
@@ -66,7 +63,7 @@ public class fragUsuarioMyB extends Fragment {
         botonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //ModificarUsuario();
+                ModificarUsuario();
             }
         });
 
@@ -77,7 +74,6 @@ public class fragUsuarioMyB extends Fragment {
             public void onClick(View v) { ShowPasswordMod(v);
             }
         });
-
 
         return view;
     }
@@ -93,23 +89,20 @@ public class fragUsuarioMyB extends Fragment {
             etsearchusername.setError("Coloque un usuario");
         }
     }
-    /*private void ModificarUsuario() {
+
+    private void ModificarUsuario() {
         UsuarioDao UserDao;
         Usuario user = obtenerDatos();
 
         if(user != null){
-            if(user.getId() != Integer.parseInt(txtsearchId.getText().toString())){
-                Toast.makeText(getContext(),"Se modificó el id del artículo",Toast.LENGTH_SHORT).show();
-                return;
-            }
-            UserDao = new UsuarioDao(getContext(),user,2, (MainActivity)getActivity());
+            UserDao = new UsuarioDao(getContext(),user,2, (navAdmin) getActivity());
             UserDao.execute();
             limpiar();
         }
         else{
             Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
         }
-    }*/
+    }
 
     public Usuario obtenerDatos() {
         //Trae los datos de los txt que carga el usuario por pantalla
@@ -131,7 +124,8 @@ public class fragUsuarioMyB extends Fragment {
                     user.setEmail(email);
                     user.setKeyUser(key);
                     user.setTipo_Cuenta(1);
-                    user.setEstado(true);
+                    if (switchEstado.isChecked())user.setEstado(true);
+                    else user.setEstado(false);
                 }else{
                     Toast.makeText(getContext(),"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                     etKey.setError("Las claves no coinciden.");
@@ -163,6 +157,7 @@ public class fragUsuarioMyB extends Fragment {
         etsearchusername.setText("");
         etKey.setText("");
         etConfirmKey.setText("");
+        switchEstado.setChecked(false);
     }
 
     private boolean validarEmail(String email) {
