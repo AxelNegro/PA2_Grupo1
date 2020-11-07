@@ -52,10 +52,7 @@ public class fragUsuarioMyB extends Fragment {
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) view.findViewById(R.id.btnBuscarUsuario);
         botonBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                CargarDatos(etsearchusername,view);
-            }
+            @Override public void onClick(View v) { CargarDatos(etsearchusername,view); }
         });
 
         /**------Boton Modificar-----**/
@@ -86,7 +83,7 @@ public class fragUsuarioMyB extends Fragment {
             x.execute();
         }else{
             Toast.makeText(getContext(),"Verifique el usuario",Toast.LENGTH_LONG).show();
-            etsearchusername.setError("Coloque un usuario");
+            etsearchusername.setError("Ingrese un usuario un usuario");
         }
     }
 
@@ -99,30 +96,24 @@ public class fragUsuarioMyB extends Fragment {
             UserDao.execute();
             limpiar();
         }
-        else{
-            Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
-        }
+        else Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
     }
 
     public Usuario obtenerDatos() {
         //Trae los datos de los txt que carga el usuario por pantalla
-        Usuario user = new Usuario();
+        Usuario user = null;
 
-        String nombre = etNombre.getText().toString();
-        String apellido = etApellido.getText().toString();
-        String email = etEmail.getText().toString();
-        String usuario = etsearchusername.getText().toString();
-        String key = etKey.getText().toString();
-        String ck = etConfirmKey.getText().toString();
-
-        if (!(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || usuario.isEmpty() || key.isEmpty() || ck.isEmpty())){
-            if(validarEmail(email)) {
-                if(validarKey(key,ck)) {
-                    user.setNameUser(usuario);
-                    user.setNombre(nombre);
-                    user.setApellido(apellido);
-                    user.setEmail(email);
-                    user.setKeyUser(key);
+        if (!(etNombre.getText().toString().isEmpty() || etApellido.getText().toString().isEmpty() ||
+                etEmail.getText().toString().isEmpty() || etsearchusername.getText().toString().isEmpty() ||
+                etKey.getText().toString().isEmpty() || etConfirmKey.getText().toString().isEmpty())){
+            user=new Usuario();
+            if(validarEmail(etEmail.getText().toString())) {
+                if(validarKey(etKey.getText().toString(),etConfirmKey.getText().toString())) {
+                    user.setNameUser(etsearchusername.getText().toString());
+                    user.setNombre(etNombre.getText().toString());
+                    user.setApellido(etApellido.getText().toString());
+                    user.setEmail(etEmail.getText().toString());
+                    user.setKeyUser(etKey.getText().toString());
                     user.setTipo_Cuenta(1);
                     if (switchEstado.isChecked())user.setEstado(true);
                     else user.setEstado(false);
@@ -130,18 +121,14 @@ public class fragUsuarioMyB extends Fragment {
                     Toast.makeText(getContext(),"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                     etKey.setError("Las claves no coinciden.");
                     etConfirmKey.setError("Las claves no coinciden.");
-                    user = null;
                 }
             }else {
                 Toast.makeText(getContext(),"Email invalido",Toast.LENGTH_LONG).show();
                 etEmail.setError("verifique el email ingresado");
-                user = null;
             }
         }
-        else{
-            Toast.makeText(getContext(),"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
-            user = null;
-        }
+        else Toast.makeText(getContext(),"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
+
         return user;
     }
 

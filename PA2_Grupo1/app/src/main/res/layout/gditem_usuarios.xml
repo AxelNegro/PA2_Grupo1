@@ -16,35 +16,35 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/lblIdConsigna"
+            android:id="@+id/lblUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/empty" />
 
         <TextView
-            android:id="@+id/lblIdOpcion"
+            android:id="@+id/lblKey"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/empty" />
 
         <TextView
-            android:id="@+id/lblDesc"
+            android:id="@+id/lblNomApe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/empty" />
 
         <TextView
-            android:id="@+id/lblResultado"
+            android:id="@+id/lblEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:text="@string/empty" />
 
         <TextView
-            android:id="@+id/lblEstado"
+            android:id="@+id/lblTipoCuenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

@@ -25,7 +25,7 @@ public class UsuarioAdapter extends BaseAdapter {
     List<Usuario> items;
     private AlertDialog dialog;
 
-    //Trae el contexto, la lista de articulos, e instancia un objeto de mainActivity
+    //Trae el contexto, la lista de usuarios, e instancia un objeto de mainActivity
     public UsuarioAdapter(Context _context, List<Usuario> _items) {
         this.context = _context;
         this.items = _items;
@@ -48,65 +48,23 @@ public class UsuarioAdapter extends BaseAdapter {
     {
         String res = "", est = "";
 
-        if (convertView == null) {
-            convertView = mInflater.inflate(R.layout.gditem_usuarios, parent, false);
-        }
+        if (convertView == null) convertView = mInflater.inflate(R.layout.gditem_usuarios, parent, false);
+
         final Usuario Usr = items.get(position);
 
         LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
-        TextView lblIdConsigna = (TextView)convertView.findViewById(R.id.lblIdConsigna);
-        TextView lblIdOpcion = (TextView)convertView.findViewById(R.id.lblIdOpcion);
-        TextView lblDesc = (TextView)convertView.findViewById(R.id.lblDesc);
-        TextView lblResultado = (TextView)convertView.findViewById(R.id.lblResultado);
-        TextView lblEstado = (TextView)convertView.findViewById(R.id.lblEstado);
+        TextView lblUsuario = (TextView)convertView.findViewById(R.id.lblUsuario);
+        TextView lblKey = (TextView)convertView.findViewById(R.id.lblKey);
+        TextView lblNomApe = (TextView)convertView.findViewById(R.id.lblNomApe);
+        TextView lblEmail = (TextView)convertView.findViewById(R.id.lblEmail);
+        TextView lblTc = (TextView)convertView.findViewById(R.id.lblTipoCuenta);
 
-        lblIdConsigna.setText("Usuario: "+ Usr.getNameUser() );
-        lblIdOpcion.setText("Contrasenia: "+ Usr.getKeyUser());
-        lblDesc.setText("Email: " +Usr.getEmail());
-        lblEstado.setText("Estado: " + Usr.isEstado() + ".");
-
-
-        lnItem.setOnClickListener(new AdapterView.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-                final View PopUp = mInflater.inflate(R.layout.popup_usuario,null);
-
-                Button btnVolver = (Button) PopUp.findViewById(R.id.btnModificar);
-                TextView descripcion = (TextView) PopUp.findViewById(R.id.txtDescripcionOpcion);
-                descripcion.setText("¿Desea dar de baja o modificar el usuario: "+ Usr.getNameUser() +"?");
-
-                dialogBuilder.setView(PopUp);
-                dialog = dialogBuilder.create();
-                dialog.show();
-
-                btnVolver.setOnClickListener(new View.OnClickListener(){
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-
-                /*AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿Desea eliminar la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
-                dialogo1.setCancelable(false);
-
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        dialogo1.cancel();
-                    }
-                });
-                dialogo1.show();*/
-            }
-        });
-
+        lblUsuario.setText("Usuario: "+ Usr.getNameUser() );
+        lblKey.setText("Contrasenia: "+ Usr.getKeyUser());
+        lblNomApe.setText("Nombre y apellido: " +Usr.getNombre() +", "+Usr.getApellido() );
+        lblEmail.setText("Email: " +Usr.getEmail());
+        lblTc.setText("Tipo de cuenta: " + Usr.getTipo_Cuenta() + ".");
 
         return convertView;
     }

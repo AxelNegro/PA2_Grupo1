@@ -83,14 +83,6 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{" +
-                "NameUser='" + NameUser + '\'' +
-                ", KeyUser='" + KeyUser + '\'' +
-                ", Nombre='" + Nombre + '\'' +
-                ", Apellido='" + Apellido + '\'' +
-                ", Email='" + Email + '\'' +
-                ", Tipo_Cuenta=" + Tipo_Cuenta +
-                ", Estado=" + Estado +
-                '}';
+        return NameUser + ';' + KeyUser + ';' + Nombre + ';' + Apellido + ';' + Email + ';' + Estado +';'+ Tipo_Cuenta+'|' ;
     }
 }

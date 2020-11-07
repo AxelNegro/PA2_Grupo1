@@ -94,26 +94,15 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     public void llenarData(){
         try {
             if(accion == 1 || accion == 2) { //Alta-Modificación de usuario
-                String usuario = user.getNameUser();
-                String nombre = user.getNombre();
-                String apellido = user.getApellido();
-                String email = user.getEmail();
-                String key = user.getKeyUser();
-                String Tipo =  String.valueOf(user.getTipo_Cuenta());
-                String estado =  user.isEstado() ? "1" : "0";
-
-                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8")
-                        + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(key, "UTF-8")
-                        + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(nombre, "UTF-8")
-                        + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(apellido, "UTF-8")
-                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8")
-                        + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(Tipo, "UTF-8")
-                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(estado, "UTF-8");
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
+                        + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8")
+                        + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(user.getNombre(), "UTF-8")
+                        + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(user.getApellido(), "UTF-8")
+                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8")
+                        + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(user.getTipo_Cuenta()), "UTF-8")
+                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(user.isEstado() ? "1" : "0", "UTF-8");
             }
-            if (accion == 3){
-                String usuario = user.getNameUser();
-            data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario, "UTF-8");
-            }
+            if (accion == 3) data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -127,7 +116,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
             if (inputStream != null) {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                 StringBuilder stringBuilder = new StringBuilder();
-
                 try {
                     while ((line = bufferedReader.readLine()) != null) {
                         stringBuilder.append(line);
@@ -137,12 +125,9 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 }
                 resultado = stringBuilder.toString();
                 conn.cerrar_2();
-            } else {
-                Log.d("BBDD", "Hubo un error al conectarse con la base de datos.");
-            }
-        } else {
-            Log.d("BBDD", "Hubo un error al cerrar la conexión con la base de datos.");
-        }
+            } else Log.d("BBDD", "Hubo un error al conectarse con la base de datos.");
+
+        } else Log.d("BBDD", "Hubo un error al cerrar la conexión con la base de datos.");
 
         return resultado;
     }
@@ -155,19 +140,14 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         Conexion conn = new Conexion();
 
         if(conn.conectar(urlAux)){
-            if(accion == 1 || accion == 2 || accion == 3) { //Acciones que realizan escritura (Alta/Modificación)
-                if (conn.mandarInfo(data)) {
-                    resultado = obtenerInfo(conn);
-                } else {
-                    Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
-                }
+            //Acciones que realizan escritura (Alta/Modificación)
+            if(accion == 1 || accion == 2 || accion == 3) {
+                if (conn.mandarInfo(data)) resultado = obtenerInfo(conn);
+                else Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
             }
-            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno/Todos)
-                resultado = obtenerInfo(conn);
-            }
-        }
-        else{
-            Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
+            //Acciones que realizan lectura (Obtener uno/Todos)
+            else if(accion == 4) resultado = obtenerInfo(conn);
+                 else Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
         }
         return resultado;
     }
@@ -175,14 +155,11 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-         //   if(accion == 2) main.Actualizar();
+           if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
             String[] datos = resultado.split(";");
             mod.setearDatos(datos);
-        }
-        else if(accion == 4){
-            //list.llenarGD(resultado);
         }
     }
 }

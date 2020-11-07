@@ -50,42 +50,33 @@ public class actRegistrarse extends AppCompatActivity {
     }
 
     public Usuario obtenerDatos() throws ExecutionException, InterruptedException {
-        //Trae los datos de los txt que carga el usuario por pantalla
-        Usuario user = new Usuario();
-
-        String nombre = etNombre.getText().toString();
-        String apellido = etApellido.getText().toString();
-        String email = etEmail.getText().toString();
-        String usuario = etUsuario.getText().toString();
-        String key = etKey.getText().toString();
-        String ck = etConfirmkey.getText().toString();
-
-        if (!(nombre.isEmpty() || apellido.isEmpty() || email.isEmpty() || usuario.isEmpty() || key.isEmpty() || ck.isEmpty())){
-            if(validarEmail(email)) {
-                if(validarKey(key,ck)) {
-                    user.setNameUser(usuario);
-                    user.setNombre(nombre);
-                    user.setApellido(apellido);
-                    user.setEmail(email);
-                    user.setKeyUser(key);
+        Usuario user = null;
+        if ( !(etNombre.getText().toString().isEmpty() || etApellido.getText().toString().isEmpty() ||
+                etEmail.getText().toString().isEmpty() || etUsuario.getText().toString().isEmpty() ||
+                etKey.getText().toString().isEmpty() || etConfirmkey.getText().toString().isEmpty()) ){
+            //Trae los datos de los txt que carga el usuario por pantalla
+            user = new Usuario();
+            if(validarEmail(etEmail.getText().toString())) {
+                if(validarKey(etKey.getText().toString(),etConfirmkey.getText().toString())) {
+                    user.setNameUser(etUsuario.getText().toString());
+                    user.setNombre(etNombre.getText().toString());
+                    user.setApellido(etApellido.getText().toString());
+                    user.setEmail(etEmail.getText().toString());
+                    user.setKeyUser(etKey.getText().toString());
                     user.setTipo_Cuenta(1);
                     user.setEstado(true);
                 }else{
                     Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                     etKey.setError("Las claves no coinciden.");
                     etConfirmkey.setError("Las claves no coinciden.");
-                    user = null;
                 }
             }else {
                 Toast.makeText(this,"Email invalido",Toast.LENGTH_LONG).show();
                 etEmail.setError("verifique el email ingresado");
-                user = null;
             }
         }
-        else{
-            Toast.makeText(this,"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
-            user = null;
-        }
+        else Toast.makeText(this,"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
+
         return user;
     }
 
@@ -122,5 +113,4 @@ public class actRegistrarse extends AppCompatActivity {
             etConfirmkey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
         }
     }
-
 }
