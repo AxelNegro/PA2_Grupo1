@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.clases.Sena;
 
@@ -55,8 +56,8 @@ public class SenasAdapter extends BaseAdapter {
         TextView textView = (TextView) v.findViewById(R.id.textViewSenaMiniatura);
         textView.setText(currentName);
 
-        ImageView imageView = (ImageView) v.findViewById(R.id.imageViewSenaMiniatura);
-        imageView.setImageBitmap(BitmapFactory.decodeFile(urlSena));
+        ImageView imageView1 = (ImageView) v.findViewById(R.id.imageViewSenaMiniatura);
+        Glide.with(v.getContext()).load(urlSena).into(imageView1);
 
         return v;
     }
