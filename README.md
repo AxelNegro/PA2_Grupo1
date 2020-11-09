@@ -2,10 +2,13 @@
 
 ## Enlaces externos:
 
+Nuevo:
+- El enlace es: https://www.000webhost.com/
+- El email de ingreso es: axelnperez@hotmail.com
+
+Viejo:
 - Panel: https://newserv.freewha.com/freewha.cpanel
-
 - Cliente: http://pagrupo1.freeoda.com/ftp/
-
 - PHPMyAdmin: http://pagrupo1.freeoda.com/pma/index.php
 
 ## Información útil:
