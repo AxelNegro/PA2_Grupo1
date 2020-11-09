@@ -5,6 +5,7 @@ import java.sql.Blob;
 public class Sena {
 
     private int idSena;
+    private String nombreSena;
     private String imagen;
     private String descripcion;
 
@@ -32,8 +33,13 @@ public class Sena {
         this.descripcion = descripcion;
     }
 
-    public Sena(int idSena, String imagen, String descripcion) {
+    public String getNombreSena() { return nombreSena; }
+
+    public void setNombreSena(String nombreSena) { this.nombreSena = nombreSena; }
+
+    public Sena(int idSena, String nombreSena, String imagen, String descripcion) {
         this.idSena = idSena;
+        this.nombreSena = nombreSena;
         this.imagen = imagen;
         this.descripcion = descripcion;
     }

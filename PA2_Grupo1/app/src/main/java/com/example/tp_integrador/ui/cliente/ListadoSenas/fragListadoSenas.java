@@ -84,8 +84,9 @@ public class fragListadoSenas extends Fragment {
                 datos = filas[i].split(";");
 
                 con.setIdSena(Integer.parseInt(datos[0]));
-                con.setDescripcion(datos[1]);
+                con.setNombreSena(datos[1]);
                 con.setImagen(datos[2]);
+                con.setDescripcion(datos[3]);
 
 
 

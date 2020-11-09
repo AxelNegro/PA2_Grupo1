@@ -36,19 +36,19 @@ public class SenasDao extends AsyncTask<String, Void, String> {
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
+                //urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
                 //llenarData();
                 break;
             case 2: // Modificación de Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                //urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
                 //llenarData();
                 break;
             case 3: // Obtener una Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
                 //llenarData();
                 break;
             case 4: // Obtener todos las Senas
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasSenas.php";
                 break;
         }
     }
