@@ -96,7 +96,7 @@
         tools:ignore="Autofill" />
 
     <Button
-        android:id="@+id/btnAlta"
+        android:id="@+id/btnModificar"
         android:layout_width="375dp"
         android:layout_height="44dp"
         android:layout_marginStart="20dp"

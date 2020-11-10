@@ -57,7 +57,8 @@ public class navAdmin extends AppCompatActivity {
         mAppBarConfiguration_adm = new AppBarConfiguration.Builder(
                 R.id.nav_usuarios, R.id.nav_usuarios_mod, R.id.nav_usuarios_list,
                 R.id.nav_consignas, R.id.nav_consignas_alta,
-                R.id.nav_opciones, R.id.nav_opciones_alta, R.id.nav_opciones_mod, R.id.nav_opciones_list)
+                R.id.nav_opciones, R.id.nav_opciones_alta, R.id.nav_opciones_mod, R.id.nav_opciones_list,
+                R.id.nav_orden, R.id.nav_orden_alta, R.id.nav_orden_mod, R.id.nav_orden_list)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = findNavController(this,R.id.nav_host_fragment_adm);

@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_nav_opciones_to_nav_opciones_mod"
             app:destination="@id/nav_opciones_mod" />
+        <action
+            android:id="@+id/action_nav_opciones_to_orden"
+            app:destination="@id/nav_orden" />
     </fragment>
     <fragment
         android:id="@+id/nav_usuarios"
@@ -79,4 +82,34 @@
         android:name="com.example.tp_integrador.ui.admin.fragUsuarioList"
         android:label="fragment_adm_usuario_list"
         tools:layout="@layout/fragment_adm_usuarios_list" />
+    <fragment
+        android:id="@+id/nav_orden"
+        android:name="com.example.tp_integrador.ui.admin.fragOrden"
+        android:label="@string/menu_orden"
+        tools:layout="@layout/fragment_adm_orden" >
+        <action
+            android:id="@+id/action_nav_orden_to_nav_orden_list"
+            app:destination="@id/nav_orden_list" />
+        <action
+            android:id="@+id/action_nav_orden_to_nav_orden_alta"
+            app:destination="@id/nav_orden_alta" />
+        <action
+            android:id="@+id/action_nav_orden_to_nav_orden_mod"
+            app:destination="@id/nav_orden_mod" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_orden_alta"
+        android:name="com.example.tp_integrador.ui.admin.fragOrdenAlta"
+        android:label="@string/menu_orden"
+        tools:layout="@layout/fragment_adm_orden_alta" />
+    <fragment
+        android:id="@+id/nav_orden_mod"
+        android:name="com.example.tp_integrador.ui.admin.fragOrdenMod"
+        android:label="@string/menu_orden"
+        tools:layout="@layout/fragment_adm_orden_mod" />
+    <fragment
+        android:id="@+id/nav_orden_list"
+        android:name="com.example.tp_integrador.ui.admin.fragOrdenList"
+        android:label="@string/menu_orden"
+        tools:layout="@layout/fragment_adm_orden_list" />
 </navigation>

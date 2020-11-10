@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -64,7 +65,7 @@ public class actLogin extends AppCompatActivity {
 
 
                     }else{
-                        Toast.makeText(this,"contraseña invalida",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,"Contraseña invalida",Toast.LENGTH_SHORT).show();
                         etKeyUser.setError("Contraseña invalida");
                         return;
                     }
@@ -79,7 +80,7 @@ public class actLogin extends AppCompatActivity {
             }
             startActivity(Sig);
         }catch (Exception e){
-            e.printStackTrace();
+             e.printStackTrace();
         }
     }
 }

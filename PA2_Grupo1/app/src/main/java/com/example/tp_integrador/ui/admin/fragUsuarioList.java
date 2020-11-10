@@ -12,15 +12,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
-import com.example.tp_integrador.entidad.clases.Consigna;
-import com.example.tp_integrador.entidad.clases.Nivel;
-import com.example.tp_integrador.entidad.clases.Opcion;
-import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.dao.UsuarioDao;
 
 import com.example.tp_integrador.entidad.adapters.UsuarioAdapter;

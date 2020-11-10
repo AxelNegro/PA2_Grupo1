@@ -44,6 +44,7 @@
     <string name="menu_usuarios">Usuarios</string>
     <string name="menu_consignas">Consignas</string>
     <string name="menu_opciones">Opciones</string>
+    <string name="menu_orden">Ordenes</string>
     <string name="title_activity_navigation_admin">navAdmin</string>
     <string name="title_activity_fragment_mapa">Map</string>
 
@@ -88,5 +89,10 @@
     <string name="btnBuscarUser">Buscar</string>
     <string name="ViewKeys">Ver claves</string>
 
+    <string name="lblNivel">Nivel</string>
+    <string name="lblTipo">¿Es consigna o seña?</string>
+    <string name="lblId">Id de la consigna/seña</string>
+    <string name="lblOrden">Orden de aparición</string>
+    <string name="lblIdOrden">Id del orden de aparición</string>
 
 </resources>

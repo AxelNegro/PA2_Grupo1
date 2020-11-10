@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.admin.fragOrden">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#2271b3"
+        android:gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tbOrden"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            app:tabIndicatorColor="@color/ic_launcher_background"
+            app:tabMode="scrollable"
+            app:tabSelectedTextColor="#F6F4F4"
+            app:tabTextColor="#CAC1C1">
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbOrdenAlta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Alta" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbOrdenMod"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/Modificacion" />
+
+            <com.google.android.material.tabs.TabItem
+                android:id="@+id/tbBajayListOrden"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/BajayList" />
+        </com.google.android.material.tabs.TabLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpOrden"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

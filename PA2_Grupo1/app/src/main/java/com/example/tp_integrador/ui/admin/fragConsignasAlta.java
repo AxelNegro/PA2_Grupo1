@@ -17,8 +17,6 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.ConsignaDao;
 import com.example.tp_integrador.dao.NivelDao;
 import com.example.tp_integrador.dao.SenasDao;
-import com.example.tp_integrador.entidad.adapters.ConsignaAdapter;
-import com.example.tp_integrador.entidad.adapters.NivelAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Sena;
@@ -51,7 +49,7 @@ public class fragConsignasAlta extends Fragment {
         spnNivel = (Spinner) rootView.findViewById(R.id.spnIdNivel);
         descripcion = (TextView) rootView.findViewById(R.id.txtDescOpc);
         spnSena = (Spinner) rootView.findViewById(R.id.txtIdSena);
-        alta = (Button) rootView.findViewById(R.id.btnAlta);
+        alta = (Button) rootView.findViewById(R.id.btnModificar);
         fragConsignasAlta= this;
 
         alta.setOnClickListener(new View.OnClickListener() {
