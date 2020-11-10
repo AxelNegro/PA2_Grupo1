@@ -4,11 +4,13 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.entidad.clases.Usuario;
+import com.example.tp_integrador.ui.actLogin;
 import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 
 import java.io.BufferedReader;
@@ -61,6 +63,13 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public UsuarioDao() {
 
+    }
+
+    public UsuarioDao(View v, Usuario user, int i) {
+        this.context = v.getContext();
+        this.user= user;
+        this.accion = i;
+        preparaVariables();
     }
 
     public void UsuarioDAO(Context context, Usuario User, int accion){
@@ -156,10 +165,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         if(accion == 1 || accion == 2) {
            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
            if(accion == 2) main.Actualizar();
-        }
-        else if(accion == 3){
-            String[] datos = resultado.split(";");
-            mod.setearDatos(datos);
         }
     }
 }

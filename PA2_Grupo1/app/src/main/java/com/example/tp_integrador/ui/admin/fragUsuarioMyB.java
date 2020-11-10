@@ -21,6 +21,7 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
+import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 public class fragUsuarioMyB extends Fragment {
@@ -52,7 +53,15 @@ public class fragUsuarioMyB extends Fragment {
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) view.findViewById(R.id.btnBuscarUsuario);
         botonBuscar.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { CargarDatos(etsearchusername,view); }
+            @Override public void onClick(View v) {
+                try {
+                    CargarDatos(etsearchusername,view);
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         });
 
         /**------Boton Modificar-----**/
@@ -75,15 +84,20 @@ public class fragUsuarioMyB extends Fragment {
         return view;
     }
 
-    private void CargarDatos(EditText txtsearchNameUser, View view) {
-        if(!txtsearchNameUser.toString().isEmpty()){
-            User=new Usuario();
-            User.setNameUser(txtsearchNameUser.getText().toString());
-            UsuarioDao x = new UsuarioDao(getContext(),User,3,this);
-            x.execute();
-        }else{
-            Toast.makeText(getContext(),"Verifique el usuario",Toast.LENGTH_LONG).show();
-            etsearchusername.setError("Ingrese un usuario un usuario");
+    private void CargarDatos(EditText txtsearchNameUser, View view) throws ExecutionException, InterruptedException {
+        try{
+            if(!txtsearchNameUser.toString().isEmpty()){
+                User=new Usuario();
+                User.setNameUser(txtsearchNameUser.getText().toString());
+                UsuarioDao x = new UsuarioDao(getContext(),User,3,this);
+                setearDatos(x.execute().get().split(";"));
+            }else{
+                Toast.makeText(getContext(),"Verifique el usuario",Toast.LENGTH_LONG).show();
+                etsearchusername.setError("Ingrese un usuario un usuario");
+            }
+        }
+        catch (Exception e){
+
         }
     }
 
