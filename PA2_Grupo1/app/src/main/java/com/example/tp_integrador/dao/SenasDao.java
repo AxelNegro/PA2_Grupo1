@@ -8,7 +8,10 @@ import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Sena;
+import com.example.tp_integrador.ui.admin.fragConsignasAlta;
+import com.example.tp_integrador.ui.admin.fragConsignasMod;
 import com.example.tp_integrador.ui.cliente.ListadoSenas.fragListadoSenas;
 
 import java.io.BufferedReader;
@@ -21,10 +24,14 @@ public class SenasDao extends AsyncTask<String, Void, String> {
 
     private Context context;
     private Sena sena;
+    private Nivel nivel;
     private String urlAux, data;
     private int accion;
     private fragListadoSenas fragList;
+    private fragConsignasAlta alta;
+    private fragConsignasMod mod;
 
+    //Listado de señas
     public SenasDao(Context context, int accion, fragListadoSenas fragList)
     {
         this.context = context;
@@ -33,23 +40,58 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    //Listado de señas por nivel
+    public SenasDao(Context context, int accion, fragConsignasAlta alta, Nivel nivel) {
+        this.context = context;
+        this.accion = accion;
+        this.alta = alta;
+        this.nivel = nivel;
+        preparaVariables();
+    }
+
+    //Listado de señas por nivel
+    public SenasDao(Context context, int accion, fragConsignasMod mod, Nivel nivel) {
+        this.context = context;
+        this.accion = accion;
+        this.mod = mod;
+        this.nivel = nivel;
+        preparaVariables();
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de Sena
-                //urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
                 //llenarData();
                 break;
             case 2: // Modificación de Sena
-                //urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
                 //llenarData();
                 break;
             case 3: // Obtener una Sena
-                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
                 //llenarData();
                 break;
             case 4: // Obtener todos las Senas
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasSenas.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
                 break;
+            case 5: // Obtener señas por nivel en frag alta
+            case 6: // Obtener señas por nivel en frag mod
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerSenasxNivel.php";
+                llenarData();
+                break;
+        }
+    }
+
+    public void llenarData(){
+        try {
+            if(accion >= 5){//Obtener señas por nivel
+                int idNivel = nivel.getIdNivel();
+
+                data = URLEncoder.encode("IdNivel", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idNivel), "UTF-8");
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -90,7 +132,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         Conexion conn = new Conexion();
 
         if(conn.conectar(urlAux)){
-            if(accion == 1 || accion == 2 || accion == 3) { //Acciones que realizan escritura (Alta/Modificación)
+            if(accion != 4) { //Acciones que realizan escritura (Alta/Modificación)
                 if (conn.mandarInfo(data)) {
                     resultado = obtenerInfo(conn);
                 } else {
@@ -119,6 +161,12 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 4){
             fragList.LlenarGD(resultado);
+        }
+        else if(accion == 5){
+            alta.llenarSpinnerSena(resultado);
+        }
+        else if(accion == 6){
+            mod.llenarSpinnerSena(resultado);
         }
     }
 }

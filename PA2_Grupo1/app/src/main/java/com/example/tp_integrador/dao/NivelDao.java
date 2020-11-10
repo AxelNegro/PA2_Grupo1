@@ -11,6 +11,8 @@ import androidx.annotation.RequiresApi;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
+import com.example.tp_integrador.ui.admin.fragConsignasList;
+import com.example.tp_integrador.ui.admin.fragConsignasMod;
 import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 
 import java.io.BufferedReader;
@@ -27,6 +29,8 @@ public class NivelDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private fragConsignasAlta alta;
+    private fragConsignasMod mod;
+    private fragConsignasList list;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public NivelDao(Context context,Nivel nivel, int accion) {
@@ -42,11 +46,27 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    //Listado de niveles
+    //Listado de niveles en fragmento alta
     public NivelDao(Context context, int accion, fragConsignasAlta alta) {
         this.context = context;
         this.accion = accion;
         this.alta = alta;
+        preparaVariables();
+    }
+
+    //Listado de niveles en fragmento modificación
+    public NivelDao(Context context, int accion, fragConsignasMod mod) {
+        this.context = context;
+        this.accion = accion;
+        this.mod = mod;
+        preparaVariables();
+    }
+
+    //Listado de niveles en fragmento modificación
+    public NivelDao(Context context, int accion, fragConsignasList list) {
+        this.context = context;
+        this.accion = accion;
+        this.list = list;
         preparaVariables();
     }
 
@@ -78,7 +98,10 @@ public class NivelDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 4: // Obtener todos los niveles
+            case 5: // Obtener todos los niveles
+            case 6: // Obtener todos los niveles
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosNiveles.php";
+                break;
         }
     }
 
@@ -137,7 +160,7 @@ public class NivelDao extends AsyncTask<String, Void, String> {
                     Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
                 }
             }
-            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno/Todos)
+            else{ //Acciones que realizan lectura (Obtener uno/Todos)
                 resultado = obtenerInfo(conn);
             }
         }
@@ -158,6 +181,12 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 4){
             alta.llenarSpinnerNivel(resultado);
+        }
+        else if(accion == 5){
+            mod.llenarSpinnerNivel(resultado);
+        }
+        else if(accion == 6){
+            list.llenarSpinnerNivel(resultado);
         }
     }
 }

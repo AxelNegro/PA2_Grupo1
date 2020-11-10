@@ -11,12 +11,15 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.ConsignaDao;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Usuario;
+import com.example.tp_integrador.ui.admin.fragConsignasList;
 
 import java.util.List;
 
@@ -25,9 +28,18 @@ public class ConsignaAdapter extends BaseAdapter {
     Context context;
     List<Consigna> items;
     private AlertDialog dialog;
+    fragConsignasList fragConsignasList;
 
     //Trae el contexto, la lista de articulos, e instancia un objeto de mainActivity
     public ConsignaAdapter(Context _context, List<Consigna> _items) {
+        this.context = _context;
+        this.items = _items;
+        mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    //Trae el contexto, la lista de articulos, e instancia un objeto de mainActivity
+    public ConsignaAdapter(Context _context, List<Consigna> _items,fragConsignasList fragConsignasList) {
+        this.fragConsignasList = fragConsignasList;
         this.context = _context;
         this.items = _items;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -71,12 +83,22 @@ public class ConsignaAdapter extends BaseAdapter {
                 final View PopUp = mInflater.inflate(R.layout.popup_consigna_list,null);
 
                 Button btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
+                Button btnBaja = (Button) PopUp.findViewById(R.id.btnConfirmar);
                 TextView descripcion = (TextView) PopUp.findViewById(R.id.txtDescripcion);
-                descripcion.setText("¿Desea dar de baja o modificar la consigna: "+ con.getDesc() +"?");
+                descripcion.setText("¿Desea dar de baja la consigna: "+ con.getDesc() +"?");
 
                 dialogBuilder.setView(PopUp);
                 dialog = dialogBuilder.create();
                 dialog.show();
+
+                btnBaja.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ConsignaDao consignaDao = new ConsignaDao(7,con.getIdConsigna(),fragConsignasList);
+                        consignaDao.execute();
+                        dialog.dismiss();
+                    }
+                });
 
                 btnVolver.setOnClickListener(new View.OnClickListener(){
                     @Override
