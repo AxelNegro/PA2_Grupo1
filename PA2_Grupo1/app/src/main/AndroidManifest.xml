@@ -27,7 +27,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB0qiZ4DTqcL259SvSg6SHHVkqWTtrT58A" />
+            android:value="AIzaSyC4l_ij2LLUyjuU3wQAAaSn6RXUsjaKTHo" />
 
         <activity
             android:name=".ui.admin.navAdmin"
