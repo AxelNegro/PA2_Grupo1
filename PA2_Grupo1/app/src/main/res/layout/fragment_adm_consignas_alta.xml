@@ -9,102 +9,65 @@
 
 
     <TextView
-        android:id="@+id/lblTituloConAlta"
+        android:id="@+id/lblDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/lblTituloConAlta"
-        android:textColor="#000000"
-        android:textSize="24sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="72dp"
+        android:text="@string/lblDesc"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/lblIdNivel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/Nivel"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblTituloConAlta" />
-
-    <Spinner
-        android:id="@+id/spnIdNivel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/IdNivel"
-        android:inputType="number"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblIdNivel"
-        tools:ignore="Autofill" />
-
-    <TextView
-        android:id="@+id/lblDescCon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/DescCon"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spnIdNivel" />
-
     <EditText
-        android:id="@+id/txtDescOpc"
+        android:id="@+id/txtDesc"
         android:layout_width="376dp"
         android:layout_height="111dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="@string/DescCon"
+        android:hint="@string/lblDesc"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblDescCon"
+        app:layout_constraintTop_toBottomOf="@+id/lblDesc"
         tools:ignore="Autofill" />
 
     <TextView
-        android:id="@+id/lblIdSena"
+        android:id="@+id/lblImagen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/DescSena"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/lblImagen"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtDescOpc" />
-
-    <Spinner
-        android:id="@+id/txtIdSena"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/lblDescripcionSena"
-        android:inputType="number"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblIdSena"
-        tools:ignore="Autofill" />
+        app:layout_constraintTop_toBottomOf="@+id/txtDesc" />
 
     <Button
-        android:id="@+id/btnModificar"
+        android:id="@+id/btnAlta"
         android:layout_width="375dp"
         android:layout_height="44dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="16dp"
         android:text="@string/btnAlta"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtIdSena" />
+        app:layout_constraintTop_toBottomOf="@+id/txtImagen" />
+
+    <EditText
+        android:id="@+id/txtImagen"
+        android:layout_width="376dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="@string/lblImagen"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblImagen"
+        tools:ignore="Autofill" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

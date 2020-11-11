@@ -48,7 +48,7 @@
     <string name="title_activity_navigation_admin">navAdmin</string>
     <string name="title_activity_fragment_mapa">Map</string>
 
-    <string name="lblIdConsigna">Id de la consigna:</string>
+    <string name="lblIdConsigna">Id de la consigna</string>
     <string name="lblDescOpc">Descripción de la opción:</string>
     <string name="lblTituloOpcAlta">Alta de Opciones</string>
     <string name="lblTituloOpcMod">Modificación de Opciones</string>
@@ -58,14 +58,14 @@
     <string name="lblImportante">Importante</string>
     <string name="btnAlta">Dar de alta</string>
     <string name="btnModificar">Modificar</string>
-    <string name="btnEliminar">Eliminar</string>
+    <string name="btnBaja">Dar de baja</string>
     <string name="lblBajaOMod">¿Desea dar de baja o modificar?</string>
 
     <string name="lblTituloConAlta">Alta de Consignas</string>
     <string name="IdNivel">Id del nivel</string>
     <string name="Nivel">Nivel</string>
-    <string name="DescCon">Descripción de nivel</string>
-    <string name="DescSena">Descripción de la seña</string>
+    <string name="lblDesc">Descripción de la consigna</string>
+    <string name="lblImagen">URL de la imagen (Si es que necesita una)</string>
 
 
     <string name="Alta">Alta</string>

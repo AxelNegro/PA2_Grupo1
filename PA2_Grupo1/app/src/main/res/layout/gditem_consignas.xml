@@ -16,13 +16,6 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/lblIdNivel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/empty" />
-
-        <TextView
             android:id="@+id/lblIdConsigna"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,6 +24,20 @@
 
         <TextView
             android:id="@+id/lblDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <TextView
+            android:id="@+id/lblImagen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/empty" />
+
+        <TextView
+            android:id="@+id/lblEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"

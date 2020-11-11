@@ -3,16 +3,15 @@ error_reporting(0);
 
 $conexion = mysqli_connect("localhost","id15283371_pagrupo1","Prog-Avanza2","id15283371_ensenartelsa");
 
-if(!$conexion)
-{
-exit("Error al intentar conectarse a la base de datos.");
-}
+if(!$conexion) exit("Error al intentar conectarse a la base de datos.");
 
 $Usuario = $_POST['Usuario'];
 $Contrasena = $_POST['Contrasena'];
 $Nombre = $_POST['Nombre'];
 $Apellido = $_POST['Apellido'];
 $Email = $_POST['Email'];
+$Tipo = $_POST['Tipo'];
+$Estado = $_POST['Estado'];
 
 
 if(empty($Usuario)||empty($Contrasena)||empty($Nombre)||empty($Apellido)||empty($Email))
@@ -26,7 +25,8 @@ mysqli_query($conexion,$consulta);
 $num = mysqli_affected_rows($conexion);
 
 if($num==0){
-	$consulta = "INSERT INTO usuarios(Usuario, Contrasena, Nombre, Apellido, Email, Estado, Tipo) VALUES ('$Usuario', '$Contrasena', '$Nombre', '$Apellido', '$Email', 1, 0)";
+	$consulta = "INSERT INTO usuarios(Usuario, Contrasena, Nombre, Apellido, Email, Estado, Tipo) 
+	VALUES ('$Usuario', '$Contrasena', '$Nombre', '$Apellido', '$Email', '$Tipo', '$Estado')";
 	mysqli_query($conexion,$consulta);
 
 	$num = mysqli_affected_rows($conexion);

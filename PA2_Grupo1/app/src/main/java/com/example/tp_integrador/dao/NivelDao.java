@@ -28,9 +28,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
     private Nivel nivel;
     private String urlAux, data;
     private int accion;
-    private fragConsignasAlta alta;
-    private fragConsignasMod mod;
-    private fragConsignasList list;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public NivelDao(Context context,Nivel nivel, int accion) {
@@ -46,30 +43,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    //Listado de niveles en fragmento alta
-    public NivelDao(Context context, int accion, fragConsignasAlta alta) {
-        this.context = context;
-        this.accion = accion;
-        this.alta = alta;
-        preparaVariables();
-    }
-
-    //Listado de niveles en fragmento modificación
-    public NivelDao(Context context, int accion, fragConsignasMod mod) {
-        this.context = context;
-        this.accion = accion;
-        this.mod = mod;
-        preparaVariables();
-    }
-
-    //Listado de niveles en fragmento modificación
-    public NivelDao(Context context, int accion, fragConsignasList list) {
-        this.context = context;
-        this.accion = accion;
-        this.list = list;
-        preparaVariables();
-    }
-
     public NivelDao() {
 
     }
@@ -80,8 +53,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         this.accion = accion;
         preparaVariables();
     }
-
-
 
     public void preparaVariables(){
         switch(accion){
@@ -96,11 +67,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
             case 3: // Obtener un nivel
                 //urlAux = "https://pagrupo1.000webhostapp.com/obtenerNivel.php";
                 llenarData();
-                break;
-            case 4: // Obtener todos los niveles
-            case 5: // Obtener todos los niveles
-            case 6: // Obtener todos los niveles
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosNiveles.php";
                 break;
         }
     }
@@ -178,15 +144,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         else if(accion == 3){
             /*String[] datos = resultado.split(";");
             mod.setearDatos(datos);*/
-        }
-        else if(accion == 4){
-            alta.llenarSpinnerNivel(resultado);
-        }
-        else if(accion == 5){
-            mod.llenarSpinnerNivel(resultado);
-        }
-        else if(accion == 6){
-            list.llenarSpinnerNivel(resultado);
         }
     }
 }

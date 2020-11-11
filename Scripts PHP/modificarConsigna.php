@@ -23,7 +23,7 @@ mysqli_query($conexion,$consulta);
 $num = mysqli_affected_rows($conexion);
 
 if($num>0){
-	$consulta = "UPDATE consignas SET URL_Imagen='URL_Imagen',Descripcion='Descripcion' WHERE IdConsigna = '$IdConsigna'";
+	$consulta = "UPDATE consignas SET URLImagen='$URL_Imagen',Descripcion='$Descripcion' WHERE IdConsigna = '$IdConsigna'";
 	mysqli_query($conexion,$consulta);
 
 	$num = mysqli_affected_rows($conexion);

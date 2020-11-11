@@ -15,10 +15,11 @@ if(empty($IdConsigna))
 exit("Complete los datos.");
 }
 
-$consulta = "SELECT URLImagen, Descripcion, Estado FROM consignas WHERE IdConsigna = '$IdConsigna'";
+$consulta = "SELECT IdConsigna, URLImagen, Descripcion, Estado FROM consignas WHERE IdConsigna = '$IdConsigna'";
 $resultado = mysqli_query($conexion,$consulta);
 
 while($mostrar=mysqli_fetch_array($resultado)){
+	echo $mostrar['IdConsigna'] . ";";
 	echo $mostrar['URLImagen'] . ";";
 	echo $mostrar['Descripcion'] . ";";
 	echo $mostrar['Estado'] . "|";

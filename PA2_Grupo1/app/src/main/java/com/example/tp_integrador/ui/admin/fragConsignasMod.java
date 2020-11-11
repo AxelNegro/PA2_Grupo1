@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.ConsignaDao;
@@ -25,16 +27,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class fragConsignasMod extends Fragment {
-    private TextView descripcion;
-    private Spinner spnNivel, spnConsigna, spnSena;
-    private Button modificar;
-    private List<Nivel> niveles;
-    private List<Sena> senas;
-    private List<Consigna> consignas;
-    private fragConsignasMod fragConsignasMod;
-
+    private TextView txtIdConsigna, txtDescripcion, txtImagen;
+    private Button btnBuscar, btnModificar;
     private Consigna consigna;
-    private Sena sena;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,42 +42,25 @@ public class fragConsignasMod extends Fragment {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_adm_consignas_mod, container, false);
 
-        spnNivel = (Spinner) rootView.findViewById(R.id.spnNivel);
-        spnConsigna = (Spinner) rootView.findViewById(R.id.spnConsigna);
-        descripcion = (TextView) rootView.findViewById(R.id.txtDescripcion);
-        spnSena = (Spinner) rootView.findViewById(R.id.spnIdSena);
-        modificar = (Button) rootView.findViewById(R.id.btnEditar);
-        fragConsignasMod = this;
+        txtIdConsigna = (TextView) rootView.findViewById(R.id.txtIdConsigna);
+        txtDescripcion = (TextView) rootView.findViewById(R.id.txtDesc);
+        txtImagen = (TextView) rootView.findViewById(R.id.txtImagen);
+        btnBuscar = (Button) rootView.findViewById(R.id.btnBuscar);
+        btnModificar = (Button) rootView.findViewById(R.id.btnModificar);
 
-        modificar.setOnClickListener(new View.OnClickListener() {
+        consigna = new Consigna();
+
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                modificarConsigna();
+                buscarConsigna();
             }
         });
 
-        //Llena el spinner de niveles
-        NivelDao nivelDao = new NivelDao(getContext(),5,this);
-        nivelDao.execute();
-
-        spnNivel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        btnModificar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                //Llena el spinner de señas con el nivel seleccionado
-                SenasDao senasDao = new SenasDao(getContext(),6,fragConsignasMod, niveles.get(i));
-                senasDao.execute();
-
-                //llena el spinner de consignas con el nivel seleccionado
-                ConsignaDao consignaDao = new ConsignaDao(getContext(),6,niveles.get(i).getIdNivel(),fragConsignasMod);
-                consignaDao.execute();
-
-                descripcion.setText("");
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
+            public void onClick(View view) {
+                modificarConsigna();
             }
         });
 
@@ -90,182 +68,50 @@ public class fragConsignasMod extends Fragment {
     }
 
     private void modificarConsigna(){
-        obtenerDatos();
+        if(!(txtIdConsigna.getText().toString().isEmpty()||txtDescripcion.getText().toString().isEmpty()||txtImagen.toString().isEmpty())) {
+            try{
+                consigna.setIdConsigna(Integer.valueOf(txtIdConsigna.getText().toString()));
+                consigna.setDesc(txtDescripcion.getText().toString());
+                consigna.setURLImagen(txtImagen.getText().toString());
 
-        ConsignaDao consignaDao = new ConsignaDao(getContext(),consigna,2,sena.getIdSena(), this);
-        consignaDao.execute();
-
-    }
-
-
-
-    private void obtenerDatos(){
-        Nivel nivel = new Nivel();
-        consigna.setNivel(nivel);
-        consigna.setDesc(descripcion.getText().toString());
-        consigna.setURLImagen(sena.getImagen());
-    }
-
-    public void limpiar() {
-        descripcion.setText("");
-    }
-
-    public void llenarSpinnerNivel(String resultado) {
-        armarListaNivel(resultado);
-
-        int i=0;
-        String[] res = new String[niveles.size()];
-        for (Nivel n:niveles) {
-            res[i] = n.getNivel();
-            i++;
-        }
-
-        spnNivel.setAdapter(new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,res));
-    }
-
-    private void armarListaNivel(String Resultado) {
-        niveles= new ArrayList<>();
-
-        String[] filas, datos;
-
-        Nivel nivel;
-
-        //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null && !Resultado.isEmpty()) {
-
-            //Con el metodo split divide
-            filas = Resultado.split("\\|");
-
-            for (int i = 0; i < filas.length; i++) {
-                nivel = new Nivel();
-
-                datos = filas[i].split(";");
-
-                nivel.setIdNivel(Integer.parseInt(datos[0]));
-                nivel.setNivel(datos[1]);
-
-                niveles.add(nivel);
+                ConsignaDao consDao = new ConsignaDao(getContext(), consigna, 2, (navAdmin)getActivity());
+                consDao.execute();
             }
+            catch(Exception e){
+                Toast.makeText(getActivity(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(getActivity(),"Complete los datos.",Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void buscarConsigna(){
+        if(!txtIdConsigna.getText().toString().isEmpty()){
+            try {
+                consigna.setIdConsigna(Integer.valueOf(txtIdConsigna.getText().toString()));
+
+                ConsignaDao consDao = new ConsignaDao(getContext(), consigna, 3, this);
+                consDao.execute();
+            }
+            catch(Exception e){
+                Toast.makeText(getActivity(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
+            }
+        }
+        else{
+            Toast.makeText(getActivity(),"Complete los datos.",Toast.LENGTH_LONG).show();
         }
 
     }
 
-    public void llenarSpinnerSena(String resultado) {
-        armarListaSenas(resultado);
+    public void obtenerDatos(String resultado){
+        resultado = resultado.substring(0,resultado.length() - 1);
 
-        int i=0;
-        String[] res = new String[senas.size()];
-        for (Sena s:senas) {
-            res[i] = s.getDescripcion();
-            i++;
-        }
+        String[] datos = resultado.split(";");
 
-        spnSena.setAdapter(new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,res));
-
-        spnSena.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                sena = senas.get(i);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    private void armarListaSenas(String Resultado) {
-        senas= new ArrayList<>();
-
-        String[] filas, datos;
-
-        Sena sena;
-
-        //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null && !Resultado.isEmpty()) {
-
-            //Con el metodo split divide
-            filas = Resultado.split("\\|");
-
-            for (int i = 0; i < filas.length; i++) {
-                sena = new Sena();
-
-                datos = filas[i].split(";");
-
-                sena.setIdSena(Integer.parseInt(datos[0]));
-                sena.setDescripcion(datos[3]);
-                sena.setImagen(datos[2]);
-
-                senas.add(sena);
-            }
-        }
+        txtDescripcion.setText(datos[2]);
+        txtImagen.setText(datos[1]);
 
     }
 
-    public void llenarSpinnerConsignas(String Resultado) {
-        armarListaConsignas(Resultado);
-
-        int i=0;
-        String[] res = new String[consignas.size()];
-        for (Consigna c : consignas) {
-            res[i] = c.getDesc();;
-            i++;
-        }
-
-        spnConsigna.setAdapter(new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item,res));
-
-        spnConsigna.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                descripcion.setText(consignas.get(i).getDesc());
-                consigna = consignas.get(i);
-                int j=0;
-                for (Sena s: senas) {
-                    if (s.getImagen().equals(consignas.get(i).getURLImagen())){
-                        spnSena.setSelection(j);
-                    }
-                    j++;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    private void armarListaConsignas(String Resultado){
-        consignas= new ArrayList<>();
-
-        String[] filas, datos;
-
-        Consigna consigna;
-        Nivel nivel;
-
-        //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null && !Resultado.isEmpty()) {
-
-            //Con el metodo split divide
-            filas = Resultado.split("\\|");
-
-            for (int i = 0; i < filas.length; i++) {
-                consigna = new Consigna();
-                nivel = new Nivel();
-
-
-                datos = filas[i].split(";");
-
-                consigna.setNivel(nivel);
-                consigna.setIdConsigna(Integer.parseInt(datos[0]));
-                consigna.setURLImagen(datos[1]);
-                consigna.setDesc(datos[2]);
-
-                consignas.add(consigna);
-            }
-        }
-
-
-    }
 }

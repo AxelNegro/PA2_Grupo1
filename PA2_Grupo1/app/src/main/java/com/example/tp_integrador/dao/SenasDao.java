@@ -28,8 +28,6 @@ public class SenasDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private fragListadoSenas fragList;
-    private fragConsignasAlta alta;
-    private fragConsignasMod mod;
 
     //Listado de señas
     public SenasDao(Context context, int accion, fragListadoSenas fragList)
@@ -37,24 +35,6 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         this.context = context;
         this.accion = accion;
         this.fragList = fragList;
-        preparaVariables();
-    }
-
-    //Listado de señas por nivel
-    public SenasDao(Context context, int accion, fragConsignasAlta alta, Nivel nivel) {
-        this.context = context;
-        this.accion = accion;
-        this.alta = alta;
-        this.nivel = nivel;
-        preparaVariables();
-    }
-
-    //Listado de señas por nivel
-    public SenasDao(Context context, int accion, fragConsignasMod mod, Nivel nivel) {
-        this.context = context;
-        this.accion = accion;
-        this.mod = mod;
-        this.nivel = nivel;
         preparaVariables();
     }
 
@@ -74,11 +54,6 @@ public class SenasDao extends AsyncTask<String, Void, String> {
                 break;
             case 4: // Obtener todos las Senas
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
-                break;
-            case 5: // Obtener señas por nivel en frag alta
-            case 6: // Obtener señas por nivel en frag mod
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerSenasxNivel.php";
-                llenarData();
                 break;
         }
     }
@@ -161,12 +136,6 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 4){
             fragList.LlenarGD(resultado);
-        }
-        else if(accion == 5){
-            alta.llenarSpinnerSena(resultado);
-        }
-        else if(accion == 6){
-            mod.llenarSpinnerSena(resultado);
         }
     }
 }

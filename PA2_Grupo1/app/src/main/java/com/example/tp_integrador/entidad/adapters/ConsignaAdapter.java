@@ -21,6 +21,8 @@ import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class ConsignaAdapter extends BaseAdapter {
@@ -68,13 +70,20 @@ public class ConsignaAdapter extends BaseAdapter {
 
         LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
-        TextView lblNivel = (TextView)convertView.findViewById(R.id.lblIdNivel);
         TextView lblConsigna = (TextView)convertView.findViewById(R.id.lblIdConsigna);
         TextView lblDesc = (TextView)convertView.findViewById(R.id.lblDescripcion);
+        TextView lblImagen = (TextView)convertView.findViewById(R.id.lblImagen);
+        TextView lblEstado = (TextView)convertView.findViewById(R.id.lblEstado);
 
-        lblNivel.setText("Id Consigna: "+ con.getIdConsigna() );
-        lblConsigna.setText("Consigna: "+ con.getDesc());;
+        lblConsigna.setText("Id de la consigna: " + String.valueOf(con.getIdConsigna()));
+        lblDesc.setText(con.getDesc());
+        lblImagen.setText("URL de la imagen: " + con.getURLImagen());
 
+        if(con.isEstado()){
+            lblEstado.setText("Activo");
+        }else{
+            lblEstado.setText("Inactivo");
+        }
 
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
@@ -85,7 +94,13 @@ public class ConsignaAdapter extends BaseAdapter {
                 Button btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
                 Button btnBaja = (Button) PopUp.findViewById(R.id.btnConfirmar);
                 TextView descripcion = (TextView) PopUp.findViewById(R.id.txtDescripcion);
-                descripcion.setText("¿Desea dar de baja la consigna: "+ con.getDesc() +"?");
+
+                if(con.isEstado()) {
+                    descripcion.setText("¿Desea dar de baja la consigna de ID " + String.valueOf(con.getIdConsigna()) + "?");
+                }else{
+                    btnBaja.setText("Dar de alta");
+                    descripcion.setText("¿Desea dar de alta la consigna de ID " + String.valueOf(con.getIdConsigna()) + "?");
+                }
 
                 dialogBuilder.setView(PopUp);
                 dialog = dialogBuilder.create();
@@ -94,7 +109,7 @@ public class ConsignaAdapter extends BaseAdapter {
                 btnBaja.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ConsignaDao consignaDao = new ConsignaDao(7,con.getIdConsigna(),fragConsignasList);
+                        ConsignaDao consignaDao = new ConsignaDao(5,con,fragConsignasList);
                         consignaDao.execute();
                         dialog.dismiss();
                     }
@@ -107,22 +122,6 @@ public class ConsignaAdapter extends BaseAdapter {
                     }
                 });
 
-                /*AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
-                dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿Desea eliminar la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
-                dialogo1.setCancelable(false);
-
-                dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-
-                    }
-                });
-                dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialogo1, int id) {
-                        dialogo1.cancel();
-                    }
-                });
-                dialogo1.show();*/
             }
         });
 

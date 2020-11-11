@@ -3,10 +3,7 @@ error_reporting(0);
 
 $conexion = mysqli_connect("localhost","id15283371_pagrupo1","Prog-Avanza2","id15283371_ensenartelsa");
 
-if(!$conexion)
-{
-exit("Error al intentar conectarse a la base de datos.");
-}
+if(!$conexion) exit("Error al intentar conectarse a la base de datos.");
 
 $Usuario = $_POST['Usuario'];
 $Contrasena = $_POST['Contrasena'];
@@ -16,25 +13,20 @@ $Email = $_POST['Email'];
 $Tipo = $_POST['Tipo'];
 $Estado = $_POST['Estado'];
 
-
-if(empty($Usuario)||empty($Contrasena)||empty($Nombre)||empty($Apellido)||empty($Email)||empty($Tipo)||empty($Estado))
-{
-exit("Complete los datos.");
-}
-
 $consulta = "select Usuario from usuarios where Usuario = '$Usuario'";
 mysqli_query($conexion,$consulta);
 
 $num = mysqli_affected_rows($conexion);
 
-if($num>0){
-	$consulta = "UPDATE usuarios SET Contrasena='$Contrasena',Nombre='$Nombre',Apellido='$Apellido',Email='Email',Estado='$Estado',Tipo='$Tipo' WHERE Usuario='$Usuario'";
+if($num > 0){
+	$consulta = "UPDATE usuarios SET Contrasena='$Contrasena',Nombre='$Nombre',Apellido='$Apellido',Email='$Email',Estado='$Estado',Tipo='$Tipo' WHERE Usuario = '$Usuario'";
+	
 	mysqli_query($conexion,$consulta);
 
 	$num = mysqli_affected_rows($conexion);
-	if($num>0)
+	if($num > 0)
 	{
-		echo "Usuario modificado correctamente.";
+	    echo "Usuario modificado correctamente.";
 	}
 	else
 	{
