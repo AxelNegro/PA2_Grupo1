@@ -135,7 +135,7 @@ public class fragOrdenMod extends Fragment {
         if(!(ddlNivel.getSelectedItem().toString().isEmpty()||ddlTipo.getSelectedItem().toString().isEmpty()
                 ||(ddlSena.getSelectedItem().toString().isEmpty()&&txtId.getText().toString().isEmpty())||
                 txtOrden.getText().toString().isEmpty())){
-            
+
         }
     }
 

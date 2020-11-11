@@ -18,11 +18,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class fragMapa extends Fragment {
+public class fragMapa extends Fragment implements OnMapReadyCallback{
 
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
+      private GoogleMap mMap;
+/*    private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
+
          * Manipulates the map once available.
          * This callback is triggered when the map is ready to be used.
          * This is where we can add markers or lines, add listeners or move the camera.
@@ -30,7 +31,7 @@ public class fragMapa extends Fragment {
          * If Google Play services is not installed on the device, the user will be prompted to
          * install it inside the SupportMapFragment. This method will only be triggered once the
          * user has installed Google Play services and returned to the app.
-         */
+
         @Override
         public void onMapReady(GoogleMap googleMap) {
             LatLng capital = new LatLng(-34.6075682, -58.4370894);
@@ -38,6 +39,7 @@ public class fragMapa extends Fragment {
             googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(capital, 13));
         }
     };
+*/
 
     @Nullable
     @Override
@@ -52,8 +54,15 @@ public class fragMapa extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
-        }
+            mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        LatLng sydney = new LatLng(-34, 151);
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Sydney"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

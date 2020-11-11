@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.dao.Conexion;
 import com.example.tp_integrador.ui.admin.navAdmin;
+import com.example.tp_integrador.ui.cliente.navCliente;
 
 public class UsuarioDao extends AsyncTask<String, Void, String> {
 

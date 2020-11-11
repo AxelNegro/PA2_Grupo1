@@ -1,12 +1,15 @@
 package com.example.tp_integrador.ui.cliente;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -16,6 +19,9 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.UsuarioDao;
+import com.example.tp_integrador.entidad.clases.Usuario;
+import com.example.tp_integrador.ui.actLogin;
 import com.example.tp_integrador.ui.admin.navAdmin;
 import com.google.android.material.navigation.NavigationView;
 
@@ -24,7 +30,6 @@ import static androidx.navigation.Navigation.findNavController;
 public class navCliente extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    private TextView lblUsuario=null;
 
     public navCliente.FragmentRefreshListener getFragmentRefreshListener() {
         return fragmentRefreshListener;
@@ -47,15 +52,32 @@ public class navCliente extends AppCompatActivity {
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout_cli);
         NavigationView navigationView = findViewById(R.id.nav_view_cli);
+
         //recupero header navadmin
         View headerLayout = navigationView.getHeaderView(0);
-        //cargo lblusuario
+
+        //Recupero los TextView
         TextView lblUsuario= headerLayout.findViewById(R.id.LblUsuario);
+        TextView lblEmail= headerLayout.findViewById(R.id.LblEmailUsuario);
+
         //datos de session
         SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
         String username = prefs.getString("username", "");
         String key = prefs.getString("key", "");
-        lblUsuario.setText(username);
+
+        //Cargo los TextView
+        try {
+            lblUsuario.setText(username);
+            Usuario User = new Usuario();
+            User.setNameUser(username);
+            UsuarioDao x = new UsuarioDao(this,User,3);
+            String[] split = x.execute().get().split(";");
+            lblEmail.setText(split[2]);
+        }catch (Exception e){
+            Toast.makeText(this,"ERROR: "+e.getMessage(),Toast.LENGTH_LONG).show();
+        }
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
@@ -80,6 +102,13 @@ public class navCliente extends AppCompatActivity {
         NavController navController = findNavController(this, R.id.nav_host_fragment_cli);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    //cerrar session
+    public void RedirecLogin(MenuItem v){
+        finish();
+        Intent Reg=new Intent(this, actLogin.class);
+        startActivity(Reg);
     }
 
     //Actualiza los fragments
