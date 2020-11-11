@@ -15,10 +15,7 @@ import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.clases.Nivel;
-import com.example.tp_integrador.ui.actRegistrarse;
-import com.example.tp_integrador.ui.admin.navAdmin;
 import com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA.actListadoSenasCA;
-import com.example.tp_integrador.ui.actLogin;
 
 import java.util.List;
 

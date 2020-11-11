@@ -2,7 +2,6 @@ package com.example.tp_integrador.entidad.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,17 +10,11 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.ConsignaDao;
 import com.example.tp_integrador.entidad.clases.Consigna;
-import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
-
-import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -57,7 +50,6 @@ public class ConsignaAdapter extends BaseAdapter {
         return items.get(position);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public View getView(int position, View convertView, ViewGroup parent)
     {
@@ -89,7 +81,7 @@ public class ConsignaAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
-                final View PopUp = mInflater.inflate(R.layout.popup_consigna_list,null);
+                final View PopUp = mInflater.inflate(R.layout.popup_baja_list,null);
 
                 Button btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
                 Button btnBaja = (Button) PopUp.findViewById(R.id.btnConfirmar);

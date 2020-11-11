@@ -10,6 +10,7 @@ import com.example.tp_integrador.entidad.clases.Orden;
 import com.example.tp_integrador.ui.admin.fragOrdenAlta;
 import com.example.tp_integrador.ui.admin.fragOrdenList;
 import com.example.tp_integrador.ui.admin.fragOrdenMod;
+import com.example.tp_integrador.ui.admin.navAdmin;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -25,6 +26,7 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
     private int accion;
     private fragOrdenMod fragOrdMod;
     private fragOrdenList fragOrdList;
+    private navAdmin main;
 
     public OrdenDao() {
     }
@@ -36,11 +38,34 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public OrdenDao(Context context, Orden orden, int accion, navAdmin main) {
+        this.context = context;
+        this.orden = orden;
+        this.accion = accion;
+        this.main = main;
+        preparaVariables();
+    }
+
     public OrdenDao(Context context, Orden orden, int accion, fragOrdenMod fragOrdMod) {
         this.context = context;
         this.orden = orden;
         this.accion = accion;
         this.fragOrdMod = fragOrdMod;
+        preparaVariables();
+    }
+
+    public OrdenDao(Context context, int accion, fragOrdenList fragOrdList) {
+        this.context = context;
+        this.orden = orden;
+        this.accion = accion;
+        this.fragOrdList = fragOrdList;
+        preparaVariables();
+    }
+
+    public OrdenDao(int accion, Orden ord, fragOrdenList fragOrdList) {
+        this.accion = accion;
+        this.orden = ord;
+        this.fragOrdList = fragOrdList;
         preparaVariables();
     }
 
@@ -77,11 +102,22 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
                         + "&" + URLEncoder.encode("Orden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getOrden()), "UTF-8");
             }
             else if(accion == 2){//Modificación de Orden
-
+                data = URLEncoder.encode("IdOrden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getIdOrden()), "UTF-8")
+                        + "&" + URLEncoder.encode("IdNivel", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getNivel().getIdNivel()), "UTF-8")
+                        + "&" + URLEncoder.encode("IdSena", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getSena().getIdSena()), "UTF-8")
+                        + "&" + URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getConsigna().getIdConsigna()), "UTF-8")
+                        + "&" + URLEncoder.encode("Orden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getOrden()), "UTF-8");
             }
             else if (accion == 3){
+                if(orden.isEstado()) {
+                    data = URLEncoder.encode("IdOrden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getIdOrden()), "UTF-8")
+                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
+                }else{
+                    data = URLEncoder.encode("IdOrden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getIdOrden()), "UTF-8")
+                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
+                }
             }
-            else if(accion == 4){
+            else if(accion == 4){//Obtener una orden
                 data = URLEncoder.encode("IdOrden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(orden.getIdOrden()), "UTF-8");
             }
         }catch (Exception e){
@@ -146,12 +182,16 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            //if(accion == 2) main.Actualizar();
+            if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
+            fragOrdList.mostrarBaja(resultado);
         }
         else if(accion == 4){
-            fragOrdMod.obtenerDatos(resultado);
+            fragOrdMod.setearDatos(resultado);
+        }
+        else if(accion == 5){
+            fragOrdList.llenarGD(resultado);
         }
     }
 

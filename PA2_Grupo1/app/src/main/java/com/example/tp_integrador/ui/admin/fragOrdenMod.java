@@ -128,14 +128,11 @@ public class fragOrdenMod extends Fragment {
     }
 
     private void modificarOrden(){
-        Nivel niv = new Nivel();
-        Sena sena = new Sena();
-        Consigna con = new Consigna();
-        Orden ord = new Orden();
-        if(!(ddlNivel.getSelectedItem().toString().isEmpty()||ddlTipo.getSelectedItem().toString().isEmpty()
-                ||(ddlSena.getSelectedItem().toString().isEmpty()&&txtId.getText().toString().isEmpty())||
-                txtOrden.getText().toString().isEmpty())){
+        Orden ord = obtenerDatos();
 
+        if(ord!=null){
+            OrdenDao ordDao = new OrdenDao(getContext(),ord,2, (navAdmin)getActivity());
+            ordDao.execute();
         }
     }
 
@@ -151,7 +148,43 @@ public class fragOrdenMod extends Fragment {
         }
     }
 
-    public void obtenerDatos(String resultado){
+    private Orden obtenerDatos(){
+        Nivel niv = new Nivel();
+        Sena sena = new Sena();
+        Consigna con = new Consigna();
+        Orden ord = new Orden();
+
+        if(!(ddlNivel.getSelectedItem().toString().isEmpty()||ddlTipo.getSelectedItem().toString().isEmpty()
+                ||(ddlSena.getSelectedItem().toString().isEmpty()&&txtId.getText().toString().isEmpty())||
+                txtOrden.getText().toString().isEmpty()||txtIdOrden.getText().toString().isEmpty())){
+            try {
+                niv.setIdNivel(((int) ddlNivel.getSelectedItemId())+1);
+
+                if (ddlTipo.getSelectedItem().toString().equals("Consigna")) {
+                    con.setIdConsigna(Integer.parseInt(txtId.getText().toString()));
+                } else {
+                    sena.setIdSena(((int) ddlSena.getSelectedItemId())+1);
+                }
+
+                ord.setIdOrden(Integer.parseInt(txtIdOrden.getText().toString()));
+                ord.setNivel(niv);
+                ord.setSena(sena);
+                ord.setConsigna(con);
+                ord.setOrden(Integer.parseInt(txtOrden.getText().toString()));
+
+            }catch(Exception e){
+                ord = null;
+                Toast.makeText(getActivity(),"Complete los datos correctamente.", Toast.LENGTH_LONG).show();
+            }
+        }else{
+            ord = null;
+            Toast.makeText(getActivity(),"Complete los datos.", Toast.LENGTH_LONG).show();
+        }
+
+        return ord;
+    }
+
+    public void setearDatos(String resultado){
         Log.d("BBDD",resultado);
         resultado = resultado.substring(0,resultado.length() - 1);
 

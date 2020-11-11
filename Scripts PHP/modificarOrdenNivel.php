@@ -30,8 +30,13 @@ if($num>0){
 
 	$num = mysqli_affected_rows($conexion);
 	
-	if($num==0({
-		$consulta = "UPDATE ordennivel SET IdNivel='$IdNivel',IdSena='$IdSena',IdConsigna='$IdConsigna',Orden='$Orden' WHERE IdOrden = '$IdOrden'";
+	if($num==0){
+	    if(empty($IdSena)){
+		$consulta = "UPDATE ordennivel SET IdNivel='$IdNivel',IdSena=null,IdConsigna='$IdConsigna',Orden='$Orden' WHERE IdOrden = '$IdOrden'";
+	    }
+	    else{
+	        $consulta = "UPDATE ordennivel SET IdNivel='$IdNivel',IdSena='$IdSena',IdConsigna=null,Orden='$Orden' WHERE IdOrden = '$IdOrden'";
+	    }
 		mysqli_query($conexion,$consulta);
 
 		$num = mysqli_affected_rows($conexion);

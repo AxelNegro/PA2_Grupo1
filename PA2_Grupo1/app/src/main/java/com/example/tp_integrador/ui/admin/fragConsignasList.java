@@ -75,7 +75,6 @@ public class fragConsignasList extends Fragment {
 
         String[] filas, datos;
 
-        //Crea objetos de Articulo y Categoria
         Consigna con = new Consigna();
 
         //Utiliza el metodo substring para separar los datos

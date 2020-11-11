@@ -7,6 +7,15 @@
 
     <GridView
         android:id="@+id/gdOrden"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_width="fill_parent"
+        android:layout_height="494dp"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/cb_normal"
+        android:columnWidth="400dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="1"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="5dp"
+        tools:listitem="@layout/gditem_ordenes" />
 </FrameLayout>

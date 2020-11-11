@@ -11,7 +11,7 @@ exit("Error al intentar conectarse a la base de datos.");
 $IdOrden = $_POST['IdOrden'];
 $Estado = $_POST['Estado'];
 
-if(empty($IdOrden)||(empty($Estado))
+if(empty($IdOrden))
 {
 exit("Complete los datos.");
 }
