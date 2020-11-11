@@ -73,7 +73,6 @@ public class fragConsignasList extends Fragment {
     public List<Consigna> armarLista(String Resultado){
         List<Consigna> lstConsignas = new ArrayList<Consigna>();
 
-        String res;
         String[] filas, datos;
 
         //Crea objetos de Articulo y Categoria
@@ -81,7 +80,6 @@ public class fragConsignasList extends Fragment {
 
         //Utiliza el metodo substring para separar los datos
         if(Resultado!=null && !Resultado.isEmpty()) {
-            res = Resultado.substring(0, Resultado.length() - 1);
 
             //Con el metodo split divide
             filas = Resultado.split("\\|");

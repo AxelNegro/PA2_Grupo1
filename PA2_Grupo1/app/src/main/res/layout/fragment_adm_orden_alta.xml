@@ -29,7 +29,7 @@
     <Spinner
         android:id="@+id/ddlTipo"
         android:layout_width="367dp"
-        android:layout_height="24dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -59,11 +59,11 @@
         android:id="@+id/lblOrden"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="88dp"
         android:text="@string/lblOrden"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtId" />
+        app:layout_constraintTop_toBottomOf="@+id/lblId" />
 
     <EditText
         android:id="@+id/txtOrden"
@@ -92,7 +92,7 @@
         tools:ignore="Autofill"/>
 
     <Button
-        android:id="@+id/btnModificar"
+        android:id="@+id/btnAlta"
         android:layout_width="373dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -100,4 +100,13 @@
         android:text="@string/btnAlta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtOrden" />
+
+    <Spinner
+        android:id="@+id/ddlSena"
+        android:layout_width="367dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblId" />
 </androidx.constraintlayout.widget.ConstraintLayout>

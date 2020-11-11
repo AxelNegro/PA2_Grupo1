@@ -27,10 +27,6 @@ import java.util.List;
 public class fragConsignasAlta extends Fragment {
     private TextView txtImagen, txtDescripcion;
     private Button alta;
-    private List<Nivel> niveles;
-    private List<Sena> senas;
-    private fragConsignasAlta fragConsignasAlta;
-    private int lastId;
 
     private Consigna consigna;
 
@@ -47,7 +43,6 @@ public class fragConsignasAlta extends Fragment {
         txtDescripcion = (TextView) rootView.findViewById(R.id.txtDesc);
         txtImagen = (TextView) rootView.findViewById(R.id.txtImagen);
         alta = (Button) rootView.findViewById(R.id.btnAlta);
-        fragConsignasAlta= this;
 
         alta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,87 +71,5 @@ public class fragConsignasAlta extends Fragment {
     private void limpiar() {
         txtDescripcion.setText("");
         txtImagen.setText("");
-    }
-
-    public void llenarSpinnerNivel(String resultado){
-        armarListaNivel(resultado);
-
-        int i=0;
-        String[] res = new String[niveles.size()];
-        for (Nivel n:niveles) {
-            res[i] = n.getNivel();
-            i++;
-        }
-
-    }
-
-    private void armarListaNivel(String Resultado) {
-        niveles= new ArrayList<>();
-
-        String[] filas, datos;
-
-        Nivel nivel;
-
-        //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null && !Resultado.isEmpty()) {
-
-            //Con el metodo split divide
-            filas = Resultado.split("\\|");
-
-            for (int i = 0; i < filas.length; i++) {
-                nivel = new Nivel();
-
-                datos = filas[i].split(";");
-
-                nivel.setIdNivel(Integer.parseInt(datos[0]));
-                nivel.setNivel(datos[1]);
-
-                niveles.add(nivel);
-            }
-        }
-
-    }
-
-    public void llenarSpinnerSena(String resultado) {
-        armarListaSenas(resultado);
-
-        int i=0;
-        String[] res = new String[senas.size()];
-        for (Sena s:senas) {
-            res[i] = s.getDescripcion();
-            i++;
-        }
-    }
-
-    private void armarListaSenas(String Resultado) {
-        senas= new ArrayList<>();
-
-        String[] filas, datos;
-
-        Sena sena;
-
-        //Utiliza el metodo substring para separar los datos
-        if(Resultado!=null && !Resultado.isEmpty()) {
-
-            //Con el metodo split divide
-            filas = Resultado.split("\\|");
-
-            for (int i = 0; i < filas.length; i++) {
-                sena = new Sena();
-
-                datos = filas[i].split(";");
-
-                sena.setIdSena(Integer.parseInt(datos[0]));
-                sena.setDescripcion(datos[1]);
-                sena.setImagen(datos[2]);
-
-                senas.add(sena);
-            }
-        }
-
-    }
-
-    public void setLastId(int lastId) {
-        this.lastId = lastId;
     }
 }

@@ -24,7 +24,13 @@ mysqli_query($conexion,$consulta);
 $num = mysqli_affected_rows($conexion);
 
 if($num==0){
-	$consulta = "INSERT INTO ordennivel(IdNivel, IdSena, IdConsigna, Orden, Estado) VALUES ('$IdNivel', '$IdSena', '$IdConsigna', '$Orden', 1)";
+    if(empty($IdSena)){
+		$consulta = "INSERT INTO ordennivel(IdNivel, IdSena, IdConsigna, Orden, Estado) VALUES ('$IdNivel', null, '$IdConsigna', '$Orden', 1)";
+	}
+	else{
+		$consulta = "INSERT INTO ordennivel(IdNivel, IdSena, IdConsigna, Orden, Estado) VALUES ('$IdNivel', '$IdSena', null, '$Orden', 1)";
+	}
+	
 	mysqli_query($conexion,$consulta);
 
 	$num = mysqli_affected_rows($conexion);

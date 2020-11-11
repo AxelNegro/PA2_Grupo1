@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txtDescOpc" />
 
     <Button
-        android:id="@+id/btnModificar"
+        android:id="@+id/btnAlta"
         android:layout_width="375dp"
         android:layout_height="44dp"
         android:layout_marginStart="20dp"

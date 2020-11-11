@@ -13,6 +13,8 @@ import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
 import com.example.tp_integrador.ui.admin.fragConsignasMod;
+import com.example.tp_integrador.ui.admin.fragOrdenAlta;
+import com.example.tp_integrador.ui.admin.fragOrdenMod;
 import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
 
 import java.io.BufferedReader;
@@ -28,6 +30,12 @@ public class NivelDao extends AsyncTask<String, Void, String> {
     private Nivel nivel;
     private String urlAux, data;
     private int accion;
+    private fragOrdenAlta fragOrdAlt;
+    private fragOrdenMod fragOrdMod;
+
+    public NivelDao() {
+
+    }
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public NivelDao(Context context,Nivel nivel, int accion) {
@@ -37,17 +45,21 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    public NivelDao(Context context, int accion) {
+    public NivelDao(Context context, int accion, fragOrdenAlta fragOrdAlt) {
         this.context = context;
         this.accion = accion;
+        this.fragOrdAlt = fragOrdAlt;
         preparaVariables();
     }
 
-    public NivelDao() {
-
+    public NivelDao(Context context, int accion, fragOrdenMod fragOrdMod) {
+        this.context = context;
+        this.accion = accion;
+        this.fragOrdMod = fragOrdMod;
+        preparaVariables();
     }
 
-    public void UsuarioDAO(Context context, Nivel nivel, int accion){
+    public void NivelDao(Context context, Nivel nivel, int accion){
         this.context = context;
         this.nivel = nivel;
         this.accion = accion;
@@ -68,6 +80,8 @@ public class NivelDao extends AsyncTask<String, Void, String> {
                 //urlAux = "https://pagrupo1.000webhostapp.com/obtenerNivel.php";
                 llenarData();
                 break;
+            case 4: // Obtener todos los niveles
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosNiveles.php";
         }
     }
 
@@ -113,7 +127,7 @@ public class NivelDao extends AsyncTask<String, Void, String> {
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
-    //se ejecuta primero antes de execute()
+    //Se ejecuta primero antes de execute()
     protected String doInBackground(String... strings) {
         String resultado = "";
         Conexion conn = new Conexion();
@@ -144,6 +158,12 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         else if(accion == 3){
             /*String[] datos = resultado.split(";");
             mod.setearDatos(datos);*/
+        }
+        else if(accion == 4){
+            if(fragOrdAlt != null)
+                fragOrdAlt.llenarDDL(resultado,1);
+            else if(fragOrdMod != null)
+                fragOrdMod.llenarDDL(resultado,1);
         }
     }
 }

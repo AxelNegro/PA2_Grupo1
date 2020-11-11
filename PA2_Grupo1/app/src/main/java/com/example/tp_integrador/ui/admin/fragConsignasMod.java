@@ -7,24 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.ConsignaDao;
-import com.example.tp_integrador.dao.NivelDao;
-import com.example.tp_integrador.dao.SenasDao;
 import com.example.tp_integrador.entidad.clases.Consigna;
-import com.example.tp_integrador.entidad.clases.Nivel;
-import com.example.tp_integrador.entidad.clases.Sena;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class fragConsignasMod extends Fragment {
     private TextView txtIdConsigna, txtDescripcion, txtImagen;
@@ -46,7 +35,7 @@ public class fragConsignasMod extends Fragment {
         txtDescripcion = (TextView) rootView.findViewById(R.id.txtDesc);
         txtImagen = (TextView) rootView.findViewById(R.id.txtImagen);
         btnBuscar = (Button) rootView.findViewById(R.id.btnBuscar);
-        btnModificar = (Button) rootView.findViewById(R.id.btnModificar);
+        btnModificar = (Button) rootView.findViewById(R.id.btnAlta);
 
         consigna = new Consigna();
 

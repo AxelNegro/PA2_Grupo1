@@ -12,6 +12,8 @@ import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Sena;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasMod;
+import com.example.tp_integrador.ui.admin.fragOrdenAlta;
+import com.example.tp_integrador.ui.admin.fragOrdenMod;
 import com.example.tp_integrador.ui.cliente.ListadoSenas.fragListadoSenas;
 
 import java.io.BufferedReader;
@@ -28,6 +30,8 @@ public class SenasDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private fragListadoSenas fragList;
+    private fragOrdenAlta fragOrdAlta;
+    private fragOrdenMod fragOrdMod;
 
     //Listado de señas
     public SenasDao(Context context, int accion, fragListadoSenas fragList)
@@ -38,29 +42,45 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public SenasDao(Context context, int accion, fragOrdenAlta fragOrdAlta)
+    {
+        this.context = context;
+        this.accion = accion;
+        this.fragOrdAlta = fragOrdAlta;
+        preparaVariables();
+    }
+
+    public SenasDao(Context context, int accion, fragOrdenMod fragOrdMod)
+    {
+        this.context = context;
+        this.accion = accion;
+        this.fragOrdMod = fragOrdMod;
+        preparaVariables();
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/altaConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/altaSena.php";
                 //llenarData();
                 break;
             case 2: // Modificación de Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarSena.php";
                 //llenarData();
                 break;
             case 3: // Obtener una Sena
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerSena.php";
                 //llenarData();
                 break;
             case 4: // Obtener todos las Senas
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasSenas.php";
                 break;
         }
     }
 
     public void llenarData(){
         try {
-            if(accion >= 5){//Obtener señas por nivel
+            if(accion == 5){//Obtener señas por nivel
                 int idNivel = nivel.getIdNivel();
 
                 data = URLEncoder.encode("IdNivel", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idNivel), "UTF-8");
@@ -70,7 +90,6 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String obtenerInfo(Conexion conn){
         String line, resultado = "";
         if (conn.cerrar_1()) {
@@ -99,8 +118,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         return resultado;
     }
 
-    //se ejecuta primero antes de execute()
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+    //Se ejecuta primero antes de execute()
     @Override
     protected String doInBackground(String... strings) {
         String resultado = "";
@@ -114,7 +132,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
                     Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
                 }
             }
-            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno/Todos)
+            else if(accion == 4){ //Acciones que realizan lectura (Obtener uno)
                 resultado = obtenerInfo(conn);
             }
         }
@@ -125,7 +143,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         return resultado;
     }
 
-    //resultado despues del doInBackground()
+    //Resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
         if(accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
@@ -135,7 +153,12 @@ public class SenasDao extends AsyncTask<String, Void, String> {
             String[] datos = resultado.split(";");
         }
         else if(accion == 4){
-            fragList.LlenarGD(resultado);
+            if(fragList != null)
+                fragList.LlenarGD(resultado);
+            else if(fragOrdAlta != null)
+                fragOrdAlta.llenarDDL(resultado,2);
+            else if(fragOrdMod != null)
+                fragOrdMod.llenarDDL(resultado,2);
         }
     }
 }
