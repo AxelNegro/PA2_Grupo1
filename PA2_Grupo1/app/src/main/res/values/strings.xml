@@ -94,5 +94,7 @@
     <string name="lblId">Id de la consigna/seña</string>
     <string name="lblOrden">Orden de aparición</string>
     <string name="lblIdOrden">Id del orden de aparición</string>
+    <string name="lbltc">Tipo de cuenta</string>
+
 
 </resources>

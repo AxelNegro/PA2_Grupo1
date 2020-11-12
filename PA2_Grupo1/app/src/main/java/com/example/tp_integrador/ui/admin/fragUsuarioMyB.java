@@ -13,6 +13,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class fragUsuarioMyB extends Fragment {
     private EditText etsearchusername, etNombre, etApellido,etEmail,etKey,etConfirmKey;
     private Usuario User;
     private SwitchCompat switchEstado;
+    private Spinner spTipoCuenta;
 
 
     public static fragUsuarioMyB newInstance() {
@@ -51,6 +53,12 @@ public class fragUsuarioMyB extends Fragment {
         etKey = (EditText)view.findViewById(R.id.txtKey);
         etConfirmKey = (EditText)view.findViewById(R.id.txtConfirmKey);
         switchEstado = (SwitchCompat) view.findViewById(R.id.switchEstado);
+
+        /**------Spinner tipo cuenta-----**/
+        String[] listaTC = {"Cliente", "Administrador"};
+        spTipoCuenta = (Spinner) view.findViewById(R.id.ddlTipoCuenta);
+        spTipoCuenta.setAdapter(new ArrayAdapter<>(getContext(),android.R.layout.simple_spinner_dropdown_item, listaTC));
+
 
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) view.findViewById(R.id.btnBuscarUsuario);
@@ -73,7 +81,13 @@ public class fragUsuarioMyB extends Fragment {
         botonModificar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModificarUsuario();
+                try {
+                    ModificarUsuario();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -101,17 +115,22 @@ public class fragUsuarioMyB extends Fragment {
             }
         }
         catch (Exception e){
-
+            Toast.makeText(getContext(),"Error al cargar datos",Toast.LENGTH_LONG).show();
         }
     }
 
-    private void ModificarUsuario() {
+    private void ModificarUsuario() throws ExecutionException, InterruptedException {
         UsuarioDao UserDao;
         Usuario user = obtenerDatos();
 
         if(user != null){
             UserDao = new UsuarioDao(getContext(),user,2, (navAdmin) getActivity(),this);
+
+            //UserDao.execute();
+            if(UserDao.execute().get().equals("Usuario modificado exitosamente.")) limpiar();
+
             UserDao.execute();
+
         }
         else Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
     }
@@ -131,7 +150,7 @@ public class fragUsuarioMyB extends Fragment {
                     user.setApellido(etApellido.getText().toString());
                     user.setEmail(etEmail.getText().toString());
                     user.setKeyUser(etKey.getText().toString());
-                    user.setTipo_Cuenta(1);
+                    user.setTipo_Cuenta(spTipoCuenta.getSelectedItemPosition());
                     if (switchEstado.isChecked())user.setEstado(true);
                     else user.setEstado(false);
                 }else{
@@ -162,12 +181,14 @@ public class fragUsuarioMyB extends Fragment {
         etKey.setText("");
         etConfirmKey.setText("");
         switchEstado.setChecked(false);
+        spTipoCuenta.setSelection(0);
     }
 
     private boolean validarEmail(String email) {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
+
     public void ShowPasswordMod(View v) {
         CheckBox c=(CheckBox)v.findViewById(R.id.chkbViewKeys2);
         if(!c.isChecked()){
@@ -187,6 +208,8 @@ public class fragUsuarioMyB extends Fragment {
             etEmail.setText(datos[2]);
             etKey.setText(datos[3]);
             etConfirmKey.setText(datos[3]);
+            if(Integer.valueOf(datos[4]) == 0)spTipoCuenta.setSelection(0);
+            else spTipoCuenta.setSelection(1);
             if(Integer.valueOf(datos[5]) == 1)switchEstado.setChecked(true);
             else switchEstado.setChecked(false);
         }else {

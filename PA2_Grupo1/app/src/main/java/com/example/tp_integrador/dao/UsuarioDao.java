@@ -20,6 +20,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.dao.Conexion;
 import com.example.tp_integrador.ui.admin.navAdmin;
+import com.example.tp_integrador.ui.cliente.Perfil.fragPerfil;
 import com.example.tp_integrador.ui.cliente.navCliente;
 
 public class UsuarioDao extends AsyncTask<String, Void, String> {
@@ -29,10 +30,13 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion;
     private fragUsuarioMyB mod;
+    private fragPerfil modkey;
     private navAdmin main;
+    private navCliente mainc;
+    private boolean f = false;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
-    public UsuarioDao(Context context,Usuario user, int accion) {
+    public UsuarioDao(Context context, Usuario user, int accion) {
         this.context = context;
         this.user = user;
         this.accion = accion;
@@ -48,7 +52,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public UsuarioDao(Context context, Usuario user, int accion, fragUsuarioMyB mod) {
         this.context = context;
-        this.user= user;
+        this.user = user;
         this.accion = accion;
         this.mod = mod;
         preparaVariables();
@@ -56,9 +60,10 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public UsuarioDao(Context context, Usuario user, int accion, navAdmin main, fragUsuarioMyB mod) {
         this.context = context;
-        this.user= user;
+        this.user = user;
         this.accion = accion;
         this.main = main;
+        f = true;
         this.mod = mod;
         preparaVariables();
     }
@@ -69,22 +74,37 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
     public UsuarioDao(View v, Usuario user, int i) {
         this.context = v.getContext();
-        this.user= user;
+        this.user = user;
         this.accion = i;
         preparaVariables();
     }
 
-    public void UsuarioDAO(Context context, Usuario User, int accion){
+    public UsuarioDao(View v, Usuario user, int i, fragPerfil fragPerfil) {
+        this.context = v.getContext();
+        this.user = user;
+        this.accion = i;
+        this.modkey = fragPerfil;
+        preparaVariables();
+    }
+
+    public UsuarioDao(Context context, Usuario user, int i, navCliente activity) {
         this.context = context;
         this.user = user;
+        this.accion = i;
+        this.mainc = activity;
+        preparaVariables();
+    }
+
+    public void UsuarioDAO(Context context, Usuario User, int accion) {
+        this.context = context;
+        this.user = User;
         this.accion = accion;
         preparaVariables();
     }
 
 
-
-    public void preparaVariables(){
-        switch(accion){
+    public void preparaVariables() {
+        switch (accion) {
             case 1: // Alta de usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/altaUsuario.php";
                 llenarData();
@@ -99,12 +119,13 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 break;
             case 4: // Obtener todos los usuarios
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosUsuarios.php";
+                break;
         }
     }
 
-    public void llenarData(){
+    public void llenarData() {
         try {
-            if(accion == 1 || accion == 2) { //Alta-Modificación de usuario
+            if (accion == 1 || accion == 2) { //Alta-Modificación de usuario
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
                         + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8")
                         + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(user.getNombre(), "UTF-8")
@@ -113,14 +134,15 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                         + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(user.getTipo_Cuenta()), "UTF-8")
                         + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(user.isEstado() ? "1" : "0", "UTF-8");
             }
-            if (accion == 3) data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
-        }catch (Exception e){
+            if (accion == 3)
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    public String obtenerInfo(Conexion conn){
+    public String obtenerInfo(Conexion conn) {
         String line, resultado = "";
         if (conn.cerrar_1()) {
             InputStream inputStream = conn.obtenerInfo();
@@ -150,31 +172,36 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         String resultado = "";
         Conexion conn = new Conexion();
 
-        if(conn.conectar(urlAux)){
+        if (conn.conectar(urlAux)) {
             //Acciones que realizan escritura (Alta/Modificación)
-            if(accion == 1 || accion == 2 || accion == 3) {
+            if (accion == 1 || accion == 2 || accion == 3) {
                 if (conn.mandarInfo(data)) resultado = obtenerInfo(conn);
                 else Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
             }
             //Acciones que realizan lectura (Obtener uno/Todos)
-            else if(accion == 4) resultado = obtenerInfo(conn);
-            else Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
+            else if (accion == 4) resultado = obtenerInfo(conn);
+            else Log.d("BBDD", "Hubo un error al conectarse con la base de datos.");
         }
         return resultado;
     }
+
     //resultado despues del doInBackground()
-    protected void onPostExecute(String resultado){
-        if(accion == 1) {
+    protected void onPostExecute(String resultado) {
+        if (accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-        }
-        if(accion == 2){
-            if(resultado.equals("1")){
-                main.Actualizar();
-                Toast.makeText(context, "Modificado exitosamente", Toast.LENGTH_LONG).show();
-                mod.limpiar();
-            }
-            else
+            if (accion == 2 && f == true) main.Actualizar();
+            //if(accion == 2 ) mainc.Actualizar();
+            if (accion == 1) {
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+            }
+            if (accion == 2) {
+                if (resultado.equals("1")) {
+                    main.Actualizar();
+                    Toast.makeText(context, "Modificado exitosamente", Toast.LENGTH_LONG).show();
+                    mod.limpiar();
+                } else
+                    Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
