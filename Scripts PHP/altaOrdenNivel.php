@@ -52,10 +52,10 @@ if($num==0){
 		else
 		{
 			if(empty($IdSena)){
-				echo "Error al agregar la consigna al nivel.";
+				echo "La consigna ya se encuentra en este nivel.";
 			}
 			else{
-				echo "Error al agregar la seña al nivel.";
+				echo "La seña ya se encuentra en este nivel.";
 			}
 		}
 	}else{

@@ -1,9 +1,11 @@
 package com.example.tp_integrador.entidad.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +18,11 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.entidad.clases.ClaseModelo;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA.actListadoSenasCA;
+import com.example.tp_integrador.ui.cliente.CA.fragCA;
 
 import java.util.List;
 
@@ -26,10 +30,18 @@ public class NivelesxUsuarioAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private Context context;
     private List<NivelesxUsuario> items;
+    private fragCA CA;
 
     public NivelesxUsuarioAdapter(Context _context, List<NivelesxUsuario> _items) {
         this.context = _context;
         this.items = _items;
+        mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+    public NivelesxUsuarioAdapter(Context _context, List<NivelesxUsuario> _items, fragCA CA) {
+        this.context = _context;
+        this.items = _items;
+        this.CA = CA;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -115,6 +127,9 @@ public class NivelesxUsuarioAdapter extends BaseAdapter {
                 }
             }
         });
+
+        ClaseModelo model = ClaseModelo.getSingletonObject();
+        model.setbaseActivity(CA.getActivity());
 
         return convertView;
     }

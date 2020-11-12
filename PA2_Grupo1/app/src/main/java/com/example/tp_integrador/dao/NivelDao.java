@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
@@ -30,6 +31,7 @@ public class NivelDao extends AsyncTask<String, Void, String> {
     private Context context;
     private Nivel nivel;
     private Usuario usuario;
+    private NivelesxUsuario nivxus;
     private String urlAux, data;
     private int accion;
     private fragOrdenAlta fragOrdAlt;
@@ -73,6 +75,13 @@ public class NivelDao extends AsyncTask<String, Void, String> {
     public void NivelDao(Context context, Nivel nivel, int accion){
         this.context = context;
         this.nivel = nivel;
+        this.accion = accion;
+        preparaVariables();
+    }
+
+    public NivelDao(Context context,NivelesxUsuario nivxus, int accion) {
+        this.context = context;
+        this.nivxus = nivxus;
         this.accion = accion;
         preparaVariables();
     }

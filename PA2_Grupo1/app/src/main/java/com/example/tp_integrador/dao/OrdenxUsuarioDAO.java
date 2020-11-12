@@ -5,13 +5,9 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.tp_integrador.entidad.clases.Orden;
 import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
-import com.example.tp_integrador.ui.admin.fragOrdenAlta;
-import com.example.tp_integrador.ui.admin.fragOrdenList;
-import com.example.tp_integrador.ui.admin.fragOrdenMod;
-import com.example.tp_integrador.ui.admin.navAdmin;
 import com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA.actListadoSenasCA;
+import com.example.tp_integrador.ui.cliente.CA.fragCA;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -19,17 +15,18 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class OrdenxUsuarioDAO extends AsyncTask<String, Void, String> {
+public class OrdenxUsuarioDao extends AsyncTask<String, Void, String> {
     private Context context;
     private OrdenxUsuario ordxus;
     private String urlAux, data;
     private int accion;
     private actListadoSenasCA main;
+    private fragCA CA;
 
-    public OrdenxUsuarioDAO() {
+    public OrdenxUsuarioDao() {
     }
 
-    public OrdenxUsuarioDAO(Context context, OrdenxUsuario ordxus, int accion, actListadoSenasCA main) {
+    public OrdenxUsuarioDao(Context context, OrdenxUsuario ordxus, int accion, actListadoSenasCA main) {
         this.context = context;
         this.ordxus = ordxus;
         this.accion = accion;
@@ -39,8 +36,12 @@ public class OrdenxUsuarioDAO extends AsyncTask<String, Void, String> {
 
     public void preparaVariables(){
         switch(accion){
-            case 1: // Alta de orden
+            case 1: // Obtener Orden x Usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerOrdenxUsuario.php";
+                llenarData();
+                break;
+            case 2: // Alta Orden x Usuario
+                urlAux = "https://pagrupo1.000webhostapp.com/altaOrdenxUsuario.php";
                 llenarData();
                 break;
         }
@@ -48,10 +49,13 @@ public class OrdenxUsuarioDAO extends AsyncTask<String, Void, String> {
 
     public void llenarData(){
         try {
-            if(accion == 1) { //Alta de Orden
+            if(accion == 1) { //Obtener Orden x Usuario
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(ordxus.getUsuario().getNameUser(), "UTF-8")
                         + "&" + URLEncoder.encode("IdNivel", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(ordxus.getOrden().getNivel().getIdNivel()), "UTF-8");
-                Log.d("AAAAAA",data);
+            } //Alta Orden x Usuario
+            else if(accion == 2){
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(ordxus.getUsuario().getNameUser(), "UTF-8")
+                        + "&" + URLEncoder.encode("IdOrden", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(ordxus.getOrden().getIdOrden()), "UTF-8");
             }
 
         }catch (Exception e){
@@ -94,7 +98,7 @@ public class OrdenxUsuarioDAO extends AsyncTask<String, Void, String> {
         Conexion conn = new Conexion();
 
         if(conn.conectar(urlAux)){
-            if(accion == 1) { //Acciones que realizan escritura (Alta/Modificación)
+            if(accion == 1 || accion == 2) { //Acciones que realizan escritura (Alta/Modificación)
                 if (conn.mandarInfo(data)) {
                     resultado = obtenerInfo(conn);
                 } else {
@@ -116,6 +120,10 @@ public class OrdenxUsuarioDAO extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1){
             main.llenarGD(resultado);
+        }
+        else if (accion ==2){
+            Toast.makeText(context,resultado, Toast.LENGTH_LONG).show();
+            main.obtenerInfo();
         }
     }
 }

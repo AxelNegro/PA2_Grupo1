@@ -51,7 +51,7 @@ if($num>0){
 		}
 		else
 		{
-			echo "Error al modificar la orden.";
+			echo "Ya existe un orden igual al ingresado.";
 		}
 	}
 	else{

@@ -1,33 +1,25 @@
 package com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.dao.OrdenDao;
-import com.example.tp_integrador.dao.OrdenxUsuarioDAO;
-import com.example.tp_integrador.entidad.adapters.OrdenAdapter;
+import com.example.tp_integrador.dao.OrdenxUsuarioDao;
 import com.example.tp_integrador.entidad.adapters.OrdenxUsuarioAdapter;
-import com.example.tp_integrador.entidad.adapters.SenasAdapter;
-import com.example.tp_integrador.entidad.adapters.SenasCaAdapter;
+import com.example.tp_integrador.entidad.clases.ClaseModelo;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Nivel;
-import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.entidad.clases.Orden;
 import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
 import com.example.tp_integrador.entidad.clases.Sena;
 import com.example.tp_integrador.entidad.clases.Usuario;
-import com.example.tp_integrador.ui.actRegistrarse;
+import com.example.tp_integrador.ui.cliente.CA.fragCA;
 import com.example.tp_integrador.ui.cliente.navCliente;
 
 import java.util.ArrayList;
@@ -35,6 +27,7 @@ import java.util.ArrayList;
 public class actListadoSenasCA extends AppCompatActivity {
 
     private GridView gdEjercicios;
+    private fragCA CA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +45,7 @@ public class actListadoSenasCA extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
+                Actualizar();
                 onBackPressed();
             }
         });
@@ -59,6 +53,12 @@ public class actListadoSenasCA extends AppCompatActivity {
         gdEjercicios  = (GridView)findViewById(R.id.gdEjercicios);
 
         obtenerInfo();
+    }
+
+    public void Actualizar(){
+        ClaseModelo model = ClaseModelo.getSingletonObject();
+        navCliente nav = (navCliente) model.getbaseActivity();
+        nav.Actualizar();
     }
 
     public void obtenerInfo(){
@@ -82,7 +82,7 @@ public class actListadoSenasCA extends AppCompatActivity {
             ordxus.setOrden(ord);
             ordxus.setUsuario(usuario);
 
-            OrdenxUsuarioDAO ordxusDao = new OrdenxUsuarioDAO(this, ordxus, 1, this);
+            OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(this, ordxus, 1, this);
             ordxusDao.execute();
         }catch(Exception e){
             e.printStackTrace();
@@ -105,14 +105,20 @@ public class actListadoSenasCA extends AppCompatActivity {
         Sena sena = new Sena();
         Consigna con = new Consigna();
         Orden ord = new Orden();
+        Usuario usuario = new Usuario();
         OrdenxUsuario ordxus = new OrdenxUsuario();
 
         String [] filas, datos;
+
+        SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        String username = prefs.getString("username", "");
 
         if(!resultado.isEmpty()){
 
             filas = resultado.split("\\|");
             for(int i = 0;i<filas.length;i++){
+                usuario.setNameUser(username);
+
                 datos = filas[i].split(";");
 
                 if(!datos[2].isEmpty()){
@@ -140,13 +146,14 @@ public class actListadoSenasCA extends AppCompatActivity {
                 ord.setSena(sena);
 
                 ordxus.setOrden(ord);
-
+                ordxus.setUsuario(usuario);
 
                 lstOrdxUs.add(ordxus);
 
                 sena = new Sena();
                 con = new Consigna();
                 ord = new Orden();
+                usuario = new Usuario();
                 ordxus = new OrdenxUsuario();
             }
         }

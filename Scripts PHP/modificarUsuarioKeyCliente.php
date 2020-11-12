@@ -12,8 +12,12 @@ $Contrasena = $_POST['Contrasena'];
 	mysqli_query($conexion,$consulta);
 	$num = mysqli_affected_rows($conexion);
 
-	if($num > 0) echo "Contraseña modificada exitosamente.";
-	else echo "Error al modificar la contraseña.";
+	if($num > 0){
+	    echo "Contrasena modificada exitosamente.";
+	} 
+	else{
+	   echo "Error al modificar la contraseÃ±a.";  
+	}
 
 mysqli_close($conexion);
 ?>

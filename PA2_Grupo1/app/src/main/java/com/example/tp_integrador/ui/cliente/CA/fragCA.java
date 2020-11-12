@@ -17,6 +17,8 @@ import com.example.tp_integrador.entidad.adapters.NivelesxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.entidad.clases.Usuario;
+import com.example.tp_integrador.ui.admin.navAdmin;
+import com.example.tp_integrador.ui.cliente.navCliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +37,21 @@ public class fragCA extends Fragment {
             ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_ca, container, false);
 
+        ((navCliente)getActivity()).setFragmentRefreshListener(new navCliente.FragmentRefreshListener() {
+            @Override
+            public void onRefresh() {
+                obtenerInfo();
+            }
+        });
+
         gdNivel = (GridView)v.findViewById(R.id.gdNiveles);
 
+        obtenerInfo();
+
+        return v;
+    }
+
+    public void obtenerInfo(){
         Usuario user = new Usuario();
 
         SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
@@ -46,19 +61,17 @@ public class fragCA extends Fragment {
 
         NivelDao nivelDao = new NivelDao(getContext(),5,user, this);
         nivelDao.execute();
-
-        return v;
     }
 
     public void llenarGD(String resultado){
         List<NivelesxUsuario> lstNivelesxUsuario = armarLista(resultado);
 
-        NivelesxUsuarioAdapter adapter = new NivelesxUsuarioAdapter(getContext(),lstNivelesxUsuario);
+        NivelesxUsuarioAdapter adapter = new NivelesxUsuarioAdapter(getContext(),lstNivelesxUsuario, this);
         gdNivel.setAdapter(adapter);
 
     }
 
-    public List<NivelesxUsuario> armarLista(String resultado){
+    private List<NivelesxUsuario> armarLista(String resultado){
         Nivel niv = new Nivel();
         NivelesxUsuario nivxus = new NivelesxUsuario();
         List<NivelesxUsuario> lstNivelesxUsuario = new ArrayList<NivelesxUsuario>();

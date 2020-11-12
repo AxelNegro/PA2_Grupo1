@@ -17,7 +17,8 @@ if(empty($Descripcion)||empty($Resultado)||empty($IdConsigna))
 exit("Complete los datos.");
 }
 
-$consulta = "INSERT INTO opciones(Descripcion, Resultado, Estado) VALUES ('$Descripcion', '$Resultado', 1); SELECT LAST_INSERT_ID() as IdOpcion;";
+$consulta = "INSERT INTO opciones(Descripcion, Resultado, Estado) VALUES ('$Descripcion', '$Resultado', 1); 
+SELECT LAST_INSERT_ID() as IdOpcion;";
 $resultado = mysqli_query($conexion,$consulta);
 
 if(!empty($resultado))
@@ -37,17 +38,17 @@ if(!empty($resultado))
 		}
 		else
 		{
-			echo "Error al dar de alta la opción.";
+			echo "Error al dar de alta la opción. Num";
 		}
 		
 	}
 	else{
-		echo "Error al dar de alta la opción.";
+		echo "Error al dar de alta la opción. Id vacio";
 	}
 }
 else
 {
-	echo "Error al dar de alta la opción.";
+	echo "Error al dar de alta la opción. Por Resultado";
 }
 
 mysqli_close($conexion);
