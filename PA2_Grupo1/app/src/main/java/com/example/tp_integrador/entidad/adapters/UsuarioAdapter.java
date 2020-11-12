@@ -64,7 +64,8 @@ public class UsuarioAdapter extends BaseAdapter {
         lblKey.setText("Contrasenia: "+ Usr.getKeyUser());
         lblNomApe.setText("Nombre y apellido: " +Usr.getNombre() +", "+Usr.getApellido() );
         lblEmail.setText("Email: " +Usr.getEmail());
-        lblTc.setText("Tipo de cuenta: " + Usr.getTipo_Cuenta() + ".");
+        String tc = (Usr.getTipo_Cuenta() == 0)?"Cliente":"Administrador";
+        lblTc.setText("Tipo de cuenta: " +tc+".");
 
         return convertView;
     }

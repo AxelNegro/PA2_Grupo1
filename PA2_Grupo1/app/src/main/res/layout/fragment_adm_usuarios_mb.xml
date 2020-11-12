@@ -31,10 +31,10 @@
             android:layout_height="50dp"
             android:layout_marginTop="24dp"
             android:autofillHints="Ingrese su nombre"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtNombre"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,10 +75,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="28dp"
             android:autofillHints="Ingrese su apellido"
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:ems="10"
             android:gravity="center"
             android:hint="@string/TxtApellido"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ "
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtNombre" />
@@ -116,7 +116,8 @@
             style="@style/Widget.AppCompat.Button"
             android:layout_width="355dp"
             android:layout_height="50dp"
-            android:layout_marginTop="22dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_dos"
             android:ems="10"
             android:onClick="RedirecLogin"
@@ -124,10 +125,8 @@
             android:textColor="@drawable/txt_btn_dos"
             android:textSize="30sp"
             android:typeface="normal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.607"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switchEstado" />
+            app:layout_constraintTop_toBottomOf="@+id/ddlTipoCuenta" />
 
         <Button
             android:id="@+id/btnBuscarUsuario"
@@ -162,14 +161,35 @@
             android:id="@+id/chkbViewKeys2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
             android:text="@string/ViewKeys"
             android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnModificarUsuario"
             app:layout_constraintEnd_toStartOf="@+id/switchEstado"
-            app:layout_constraintHorizontal_bias="0.192"
+            app:layout_constraintHorizontal_bias="0.222"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey"
-            app:layout_constraintVertical_bias="0.531" />
+            app:layout_constraintTop_toBottomOf="@+id/txtConfirmKey" />
+
+        <Spinner
+            android:id="@+id/ddlTipoCuenta"
+            android:layout_width="172dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toEndOf="@+id/lbltc"
+            app:layout_constraintTop_toBottomOf="@+id/switchEstado" />
+
+        <TextView
+            android:id="@+id/lbltc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbltc"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/chkbViewKeys2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

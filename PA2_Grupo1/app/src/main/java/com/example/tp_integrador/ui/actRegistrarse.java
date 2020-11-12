@@ -63,7 +63,7 @@ public class actRegistrarse extends AppCompatActivity {
                     user.setApellido(etApellido.getText().toString());
                     user.setEmail(etEmail.getText().toString());
                     user.setKeyUser(etKey.getText().toString());
-                    user.setTipo_Cuenta(1);
+                    user.setTipo_Cuenta(0);
                     user.setEstado(true);
                 }else{
                     Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();

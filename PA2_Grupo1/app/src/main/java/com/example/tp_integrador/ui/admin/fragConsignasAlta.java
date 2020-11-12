@@ -4,12 +4,15 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -25,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class fragConsignasAlta extends Fragment {
-    private TextView txtImagen, txtDescripcion;
+    private EditText txtImagen, txtDescripcion;
     private Button alta;
 
     private Consigna consigna;
@@ -40,8 +43,8 @@ public class fragConsignasAlta extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_adm_consignas_alta, container, false);
-        txtDescripcion = (TextView) rootView.findViewById(R.id.txtDesc);
-        txtImagen = (TextView) rootView.findViewById(R.id.txtImagen);
+        txtDescripcion = (EditText) rootView.findViewById(R.id.txtDesc);
+        txtImagen = (EditText) rootView.findViewById(R.id.txtImagen);
         alta = (Button) rootView.findViewById(R.id.btnAlta);
 
         alta.setOnClickListener(new View.OnClickListener() {
@@ -51,16 +54,16 @@ public class fragConsignasAlta extends Fragment {
             }
         });
 
+        validarInputs();
+
         return rootView;
     }
 
     private void AltaConsigna(){
         consigna = new Consigna();
         obtenerDatos();
-        ConsignaDao consignaDao = new ConsignaDao(getContext(),consigna,1);
+        ConsignaDao consignaDao = new ConsignaDao(getContext(),consigna,1,(navAdmin)getActivity(),this);
         consignaDao.execute();
-
-        limpiar();
     }
 
     private void obtenerDatos(){
@@ -68,8 +71,53 @@ public class fragConsignasAlta extends Fragment {
         consigna.setURLImagen(txtImagen.getText().toString());
     }
 
-    private void limpiar() {
+    public void limpiar() {
         txtDescripcion.setText("");
         txtImagen.setText("");
+    }
+
+    private void validarInputs() {
+
+        txtDescripcion.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    txtDescripcion.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    txtDescripcion.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        txtImagen.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    txtImagen.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    txtImagen.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
     }
 }
