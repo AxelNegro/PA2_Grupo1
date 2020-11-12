@@ -24,7 +24,7 @@ mysqli_query($conexion,$consulta);
 $num = mysqli_affected_rows($conexion);
 if($num>0)
 {
-	echo "Consigna dada de alta correctamente.";
+	echo 1;
 }
 else
 {

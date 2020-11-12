@@ -43,10 +43,10 @@ if($num>0){
 		if($num>0)
 		{
 			if(empty($IdSena)){
-				echo "Orden de consigna agregada/modificada correctamente.";
+				echo 1;
 			}
 			else{
-				echo "Orden de seña agregada/modificada correctamente.";
+				echo 2;
 			}
 		}
 		else

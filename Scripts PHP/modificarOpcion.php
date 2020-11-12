@@ -30,7 +30,7 @@ if($num>0){
 	$num = mysqli_affected_rows($conexion);
 	if($num>0)
 	{
-		echo "Opción modificada correctamente.";
+		echo 1;
 	}
 	else
 	{

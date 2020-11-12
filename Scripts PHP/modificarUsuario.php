@@ -26,7 +26,7 @@ if($num > 0){
 	$num = mysqli_affected_rows($conexion);
 	if($num > 0)
 	{
-	    echo "Usuario modificado correctamente.";
+	    echo "Usuario modificado exitosamente.";
 	}
 	else
 	{

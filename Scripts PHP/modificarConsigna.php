@@ -29,7 +29,7 @@ if($num>0){
 	$num = mysqli_affected_rows($conexion);
 	if($num>0)
 	{
-		echo "Consigna modificada correctamente.";
+		echo 1;
 	}
 	else
 	{

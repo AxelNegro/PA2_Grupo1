@@ -33,7 +33,7 @@ if(!empty($resultado))
 		
 		if($num>0)
 		{
-			echo "Opción dada de alta correctamente.";
+			echo 1;
 		}
 		else
 		{
