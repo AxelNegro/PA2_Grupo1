@@ -29,6 +29,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     private Consigna consigna;
     private String urlAux, data;
     private int accion, idNivel;
+    private fragConsignasAlta alta;
     private fragConsignasList list;
     private fragConsignasMod mod;
     private navAdmin main;
@@ -36,18 +37,21 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
 
     //Alta de consigna
-    public ConsignaDao(Context context,Consigna consigna, int accion) {
+    public ConsignaDao(Context context,Consigna consigna, int accion, navAdmin main, fragConsignasAlta alta) {
         this.context = context;
         this.consigna = consigna;
         this.accion = accion;
+        this.alta = alta;
+        this.main = main;
         preparaVariables();
     }
 
-    public ConsignaDao(Context context,Consigna consigna, int accion, navAdmin main) {
+    public ConsignaDao(Context context,Consigna consigna, int accion, navAdmin main, fragConsignasMod mod) {
         this.context = context;
         this.consigna = consigna;
         this.accion = accion;
         this.main = main;
+        this.mod = mod;
         preparaVariables();
     }
 
@@ -193,11 +197,22 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     //resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
         if(accion == 1) {
-            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+            if(resultado.equals("1")){
+                Toast.makeText(context, "Consigna creada exitosamente", Toast.LENGTH_LONG).show();
+                alta.limpiar();
+                main.Actualizar();
+            }
+            else
+                Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
         }
         else if(accion == 2){
-            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            main.Actualizar();
+            if(resultado.equals("1")){
+                Toast.makeText(context, "Consigna modificada exitosamente", Toast.LENGTH_LONG).show();
+                mod.limpiar();
+                main.Actualizar();
+            }
+            else
+                Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
         }
         else if(accion == 3){
             mod.obtenerDatos(resultado);

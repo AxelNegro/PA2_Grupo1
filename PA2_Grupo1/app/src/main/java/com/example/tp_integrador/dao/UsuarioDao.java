@@ -54,11 +54,12 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    public UsuarioDao(Context context, Usuario user, int accion, navAdmin main) {
+    public UsuarioDao(Context context, Usuario user, int accion, navAdmin main, fragUsuarioMyB mod) {
         this.context = context;
         this.user= user;
         this.accion = accion;
         this.main = main;
+        this.mod = mod;
         preparaVariables();
     }
 
@@ -157,15 +158,23 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
             }
             //Acciones que realizan lectura (Obtener uno/Todos)
             else if(accion == 4) resultado = obtenerInfo(conn);
-                 else Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
+            else Log.d("BBDD","Hubo un error al conectarse con la base de datos.");
         }
         return resultado;
     }
-//resultado despues del doInBackground()
+    //resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
-        if(accion == 1 || accion == 2) {
-           Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-           if(accion == 2) main.Actualizar();
+        if(accion == 1) {
+            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+        }
+        if(accion == 2){
+            if(resultado.equals("1")){
+                main.Actualizar();
+                Toast.makeText(context, "Modificado exitosamente", Toast.LENGTH_LONG).show();
+                mod.limpiar();
+            }
+            else
+                Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
         }
     }
 }

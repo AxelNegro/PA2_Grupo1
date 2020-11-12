@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +33,7 @@ import java.util.List;
 public class fragOrdenAlta extends Fragment {
 
     private Spinner ddlNivel, ddlTipo, ddlSena;
-    private TextView txtId, txtOrden;
+    private EditText txtId, txtOrden;
     private Button btnAlta;
 
     @Override
@@ -47,8 +50,8 @@ public class fragOrdenAlta extends Fragment {
         ddlTipo = (Spinner)v.findViewById(R.id.ddlTipo);
         ddlSena = (Spinner)v.findViewById(R.id.ddlSena);
 
-        txtId = (TextView)v.findViewById(R.id.txtId);
-        txtOrden = (TextView)v.findViewById(R.id.txtOrden);
+        txtId = (EditText)v.findViewById(R.id.txtId);
+        txtOrden = (EditText)v.findViewById(R.id.txtOrden);
 
         btnAlta = (Button)v.findViewById(R.id.btnAlta);
 
@@ -65,6 +68,8 @@ public class fragOrdenAlta extends Fragment {
         ddlTipo.setAdapter(adapter);
 
         asignarOnSelected();
+
+        validarInputs();
 
         NivelDao nivelDao = new NivelDao(getContext(),4,this);
         nivelDao.execute();
@@ -121,7 +126,7 @@ public class fragOrdenAlta extends Fragment {
         Orden ord = obtenerDatos();
 
         if(ord!=null){
-            OrdenDao ordDao = new OrdenDao(getContext(),ord,1);
+            OrdenDao ordDao = new OrdenDao(getContext(),ord,1, (navAdmin)getActivity(),this);
             ordDao.execute();
         }
     }
@@ -132,7 +137,7 @@ public class fragOrdenAlta extends Fragment {
         Consigna con = new Consigna();
         Orden ord = new Orden();
         if(!(ddlNivel.getSelectedItem().toString().isEmpty()||ddlTipo.getSelectedItem().toString().isEmpty()
-            ||(ddlSena.getSelectedItem().toString().isEmpty()&&txtId.getText().toString().isEmpty())||
+                ||(ddlSena.getSelectedItem().toString().isEmpty()&&txtId.getText().toString().isEmpty())||
                 txtOrden.getText().toString().isEmpty())){
             try {
                 niv.setIdNivel(((int) ddlNivel.getSelectedItemId())+1);
@@ -157,5 +162,55 @@ public class fragOrdenAlta extends Fragment {
             Toast.makeText(getActivity(),"Complete los datos.", Toast.LENGTH_LONG).show();
         }
         return ord;
+    }
+
+    public void limpiar(){
+        txtId.setText("");
+        txtOrden.setText("");
+    }
+
+    private void validarInputs() {
+
+        txtId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    txtId.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    txtId.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        txtOrden.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    txtOrden.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    txtOrden.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
     }
 }

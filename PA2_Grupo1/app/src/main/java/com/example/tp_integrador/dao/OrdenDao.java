@@ -24,25 +24,29 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
     private Orden orden;
     private String urlAux, data;
     private int accion;
-    private fragOrdenMod fragOrdMod;
+    private fragOrdenMod fragOrdenMod;
+    private fragOrdenAlta fragOrdenAlta;
     private fragOrdenList fragOrdList;
     private navAdmin main;
 
     public OrdenDao() {
     }
 
-    public OrdenDao(Context context, Orden orden, int accion) {
-        this.context = context;
-        this.orden = orden;
-        this.accion = accion;
-        preparaVariables();
-    }
-
-    public OrdenDao(Context context, Orden orden, int accion, navAdmin main) {
+    public OrdenDao(Context context, Orden orden, int accion, navAdmin main,  fragOrdenAlta fragOrdenAlta) {
         this.context = context;
         this.orden = orden;
         this.accion = accion;
         this.main = main;
+        this.fragOrdenAlta = fragOrdenAlta;
+        preparaVariables();
+    }
+
+    public OrdenDao(Context context, Orden orden, int accion, navAdmin main, fragOrdenMod fragOrdenMod) {
+        this.context = context;
+        this.orden = orden;
+        this.accion = accion;
+        this.main = main;
+        this.fragOrdenMod = fragOrdenMod;
         preparaVariables();
     }
 
@@ -50,7 +54,7 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
         this.context = context;
         this.orden = orden;
         this.accion = accion;
-        this.fragOrdMod = fragOrdMod;
+        this.fragOrdenMod = fragOrdMod;
         preparaVariables();
     }
 
@@ -180,15 +184,40 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
 
     //Resultado despues del doInBackground()
     protected void onPostExecute(String resultado){
-        if(accion == 1 || accion == 2) {
-            Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            if(accion == 2) main.Actualizar();
+        if(accion == 1){
+            if (resultado.equals("1")){
+                Toast.makeText(context, "Consigna creada exitosamente", Toast.LENGTH_LONG).show();
+                fragOrdenAlta.limpiar();
+                main.Actualizar();
+            }
+            else if(resultado.equals("2")){
+                Toast.makeText(context, "seña creada exitosamente", Toast.LENGTH_LONG).show();
+                fragOrdenAlta.limpiar();
+                main.Actualizar();
+            }
+            else
+                Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+        }
+        else if(accion == 2){
+            if (resultado.equals("1")){
+                Toast.makeText(context, "Consigna modificada exitosamente", Toast.LENGTH_LONG).show();
+                fragOrdenMod.limpiar();
+                main.Actualizar();
+            }
+            else if(resultado.equals("2")){
+                Toast.makeText(context, "Seña modificada exitosamente", Toast.LENGTH_LONG).show();
+                fragOrdenMod.limpiar();
+                main.Actualizar();
+            }
+            else
+                Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
+
         }
         else if(accion == 3){
             fragOrdList.mostrarBaja(resultado);
         }
         else if(accion == 4){
-            fragOrdMod.setearDatos(resultado);
+            fragOrdenMod.setearDatos(resultado);
         }
         else if(accion == 5){
             fragOrdList.llenarGD(resultado);

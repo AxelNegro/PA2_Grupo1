@@ -6,7 +6,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.Fragment;
 
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +43,7 @@ public class fragUsuarioMyB extends Fragment {
 
         final View view = inflater.inflate(R.layout.fragment_adm_usuarios_mb,container,false);
 
-        /**------TextViews-----**/
+        /**------EditText-----**/
         etsearchusername = (EditText)view.findViewById(R.id.txtSearchUserName);
         etNombre = (EditText)view.findViewById(R.id.txtNombre);
         etApellido= (EditText)view.findViewById(R.id.txtApellido);
@@ -63,6 +65,8 @@ public class fragUsuarioMyB extends Fragment {
                 }
             }
         });
+
+        validarInputs();
 
         /**------Boton Modificar-----**/
         Button botonModificar = (Button) view.findViewById(R.id.btnModificarUsuario);
@@ -106,9 +110,8 @@ public class fragUsuarioMyB extends Fragment {
         Usuario user = obtenerDatos();
 
         if(user != null){
-            UserDao = new UsuarioDao(getContext(),user,2, (navAdmin) getActivity());
+            UserDao = new UsuarioDao(getContext(),user,2, (navAdmin) getActivity(),this);
             UserDao.execute();
-            limpiar();
         }
         else Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
     }
@@ -190,5 +193,134 @@ public class fragUsuarioMyB extends Fragment {
             etsearchusername.setError("El usuario ingresado no existe");
             limpiar();
         }
+    }
+
+    private void validarInputs() {
+
+        etsearchusername.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etsearchusername.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etsearchusername.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        etNombre.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etNombre.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etNombre.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        etApellido.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etApellido.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etApellido.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etEmail.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etEmail.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        etKey.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etKey.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etKey.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
+
+        etConfirmKey.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(";", "");
+                result = result.replaceAll("\\|", "");
+                if (!s.toString().equals(result)) {
+                    etConfirmKey.setText(result); // "edit" being the EditText on which the TextWatcher was set
+                    etConfirmKey.setSelection(result.length()); // to set the cursor at the end of the current text
+                }
+            }
+        });
     }
 }
