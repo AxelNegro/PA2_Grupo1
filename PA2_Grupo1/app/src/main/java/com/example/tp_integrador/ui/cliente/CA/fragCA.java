@@ -1,6 +1,9 @@
 package com.example.tp_integrador.ui.cliente.CA;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,15 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.NivelDao;
 import com.example.tp_integrador.entidad.adapters.NivelAdapter;
 import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class fragCA extends Fragment {
 
-    private vmCA vmCa;
     private GridView gdNivel;
 
     @Override
@@ -31,43 +35,54 @@ public class fragCA extends Fragment {
             ViewGroup container, Bundle savedInstanceState) {
         final View v = inflater.inflate(R.layout.fragment_ca, container, false);
 
-        LlenarGD(v);
+        gdNivel = (GridView)v.findViewById(R.id.gdNiveles);
+
+        Usuario user = new Usuario();
+
+        SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
+        String username = prefs.getString("username", "");
+
+        user.setNameUser(username);
+
+        NivelDao nivelDao = new NivelDao(getContext(),5,user, this);
+        nivelDao.execute();
 
         return v;
     }
 
-    public void LlenarGD(View v){
-        gdNivel = (GridView)v.findViewById(R.id.gdNiveles);
-        List<Nivel> lstLvl = armarLista();
+    public void llenarGD(String resultado){
+        List<Nivel> lstLvl = armarLista(resultado);
 
-        NivelAdapter adapter = new NivelAdapter(v.getContext(),lstLvl);
+        NivelAdapter adapter = new NivelAdapter(getContext(),lstLvl);
         gdNivel.setAdapter(adapter);
 
     }
 
-    public List<Nivel> armarLista(){
+    public List<Nivel> armarLista(String resultado){
+        Nivel niv = new Nivel();
         List<Nivel> lstNivel = new ArrayList<Nivel>();
 
-        Nivel lvl = new Nivel(1,"Colores");
-        lstNivel.add(lvl);
-        lvl = new Nivel(2,"Animales");
-        lstNivel.add(lvl);
-        lvl = new Nivel(3,"Comidas");
-        lstNivel.add(lvl);
-        lvl = new Nivel(4,"Nombres");
-        lstNivel.add(lvl);
-        lvl = new Nivel(5,"Familia");
-        lstNivel.add(lvl);
-        lvl = new Nivel(6,"Educación");
-        lstNivel.add(lvl);
-        lvl = new Nivel(7,"Lugares");
-        lstNivel.add(lvl);
-        lvl = new Nivel(8,"Sexualidad");
-        lstNivel.add(lvl);
-        lvl = new Nivel(9,"Tiempo");
-        lstNivel.add(lvl);
-        lvl = new Nivel(10,"Ubicación");
-        lstNivel.add(lvl);
+        String [] filas, datos;
+
+        if(!resultado.isEmpty()){
+
+            filas = resultado.split("\\|");
+            for(int i = 0;i<filas.length;i++){
+                datos = filas[i].split(";");
+
+                niv.setIdNivel(Integer.parseInt(datos[0]));
+                niv.setNivel(datos[1]);
+                if(datos[2].equals("1")){
+                    niv.setEstado(true);
+                }else{
+                    niv.setEstado(false);
+                }
+
+                lstNivel.add(niv);
+
+                niv = new Nivel();
+            }
+        }
 
         return lstNivel;
     }

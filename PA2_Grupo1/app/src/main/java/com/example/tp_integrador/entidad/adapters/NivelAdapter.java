@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
@@ -49,19 +50,29 @@ public class NivelAdapter extends BaseAdapter {
             //convertView.setLayoutParams(new GridView.LayoutParams(200,200));
         }
         final Nivel lvl = items.get(position);
+        Nivel lvlAux;
 
-        LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
+        try{
+            lvlAux = items.get(position-1);
+        }catch(Exception e){
+            lvlAux = null;
+        }
 
-        switch (position){
-            case 0:
-                lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_superado));
-                break;
-            case 1:
+        final LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
+
+        if(lvl.isEstado()){
+            lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_superado));
+        }else{
+            if(lvlAux == null){
                 lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_desbloqueado));
-                break;
-            default:
-                lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_bloqueado));
-                break;
+            }
+            else{
+                if(lvlAux.isEstado()){
+                    lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_desbloqueado));
+                }else{
+                    lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_bloqueado));
+                }
+            }
         }
 
         TextView txtNivel =  (TextView)convertView.findViewById(R.id.lblNivel);
@@ -69,13 +80,28 @@ public class NivelAdapter extends BaseAdapter {
         txtNivel.setText("Nivel " + String.valueOf(lvl.getIdNivel()));
         txtDesc.setText(lvl.getNivel());
 
+        final Nivel finalLvlAux = lvlAux;
+
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-                Intent intent = new Intent(context, actListadoSenasCA.class);
-                context.startActivity(intent);
-
+                if(lvl.isEstado()) {
+                    Intent intent = new Intent(context, actListadoSenasCA.class);
+                    context.startActivity(intent);
+                }else{
+                    if(finalLvlAux == null){
+                        Intent intent = new Intent(context, actListadoSenasCA.class);
+                        context.startActivity(intent);
+                    }
+                    else{
+                        if(finalLvlAux.isEstado()){
+                            Intent intent = new Intent(context, actListadoSenasCA.class);
+                            context.startActivity(intent);
+                        }else{
+                            Toast.makeText(context,"Nivel no desbloqueado.",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                }
             }
         });
 

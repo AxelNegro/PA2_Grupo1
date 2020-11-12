@@ -23,15 +23,18 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import com.example.tp_integrador.dao.Conexion;
+import com.example.tp_integrador.ui.cliente.CA.fragCA;
 
 public class NivelDao extends AsyncTask<String, Void, String> {
 
     private Context context;
     private Nivel nivel;
+    private Usuario usuario;
     private String urlAux, data;
     private int accion;
     private fragOrdenAlta fragOrdAlt;
     private fragOrdenMod fragOrdMod;
+    private fragCA fragCA;
 
     public NivelDao() {
 
@@ -59,6 +62,14 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public NivelDao(Context context, int accion, Usuario usuario, fragCA fragCA) {
+        this.context = context;
+        this.accion = accion;
+        this.fragCA = fragCA;
+        this.usuario = usuario;
+        preparaVariables();
+    }
+
     public void NivelDao(Context context, Nivel nivel, int accion){
         this.context = context;
         this.nivel = nivel;
@@ -82,6 +93,9 @@ public class NivelDao extends AsyncTask<String, Void, String> {
                 break;
             case 4: // Obtener todos los niveles
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosNiveles.php";
+            case 5: // Obtener niveles x usuario
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerNivelesxUsuario.php";
+                llenarData();
         }
     }
 
@@ -89,14 +103,14 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         try {
             if(accion == 1 || accion == 2) { //Alta-Modificación de nivel
             }
-            if (accion == 3){
+            if (accion == 5){
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(usuario.getNameUser(), "UTF-8");
             }
         }catch (Exception e){
             e.printStackTrace();
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public String obtenerInfo(Conexion conn){
         String line, resultado = "";
         if (conn.cerrar_1()) {
@@ -104,7 +118,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
             if (inputStream != null) {
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
                 StringBuilder stringBuilder = new StringBuilder();
-
                 try {
                     while ((line = bufferedReader.readLine()) != null) {
                         stringBuilder.append(line);
@@ -125,7 +138,6 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         return resultado;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     //Se ejecuta primero antes de execute()
     protected String doInBackground(String... strings) {
@@ -133,7 +145,7 @@ public class NivelDao extends AsyncTask<String, Void, String> {
         Conexion conn = new Conexion();
 
         if(conn.conectar(urlAux)){
-            if(accion == 1 || accion == 2 || accion == 3) { //Acciones que realizan escritura (Alta/Modificación)
+            if(accion == 1 || accion == 2 || accion == 3 || accion == 5) { //Acciones que realizan escritura (Alta/Modificación)
                 if (conn.mandarInfo(data)) {
                     resultado = obtenerInfo(conn);
                 } else {
@@ -164,6 +176,10 @@ public class NivelDao extends AsyncTask<String, Void, String> {
                 fragOrdAlt.llenarDDL(resultado,1);
             else if(fragOrdMod != null)
                 fragOrdMod.llenarDDL(resultado,1);
+        }
+        else if(accion == 5){
+            if(fragCA != null)
+                fragCA.llenarGD(resultado);
         }
     }
 }
