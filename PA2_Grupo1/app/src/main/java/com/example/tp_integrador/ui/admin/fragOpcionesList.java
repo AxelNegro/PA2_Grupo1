@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.entidad.adapters.NivelAdapter;
 import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Nivel;

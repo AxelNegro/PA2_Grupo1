@@ -3,7 +3,6 @@ package com.example.tp_integrador.ui.cliente.CA;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,9 @@ import androidx.fragment.app.Fragment;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.NivelDao;
-import com.example.tp_integrador.entidad.adapters.NivelAdapter;
+import com.example.tp_integrador.entidad.adapters.NivelesxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.entidad.clases.Usuario;
 
 import java.util.ArrayList;
@@ -51,16 +51,17 @@ public class fragCA extends Fragment {
     }
 
     public void llenarGD(String resultado){
-        List<Nivel> lstLvl = armarLista(resultado);
+        List<NivelesxUsuario> lstNivelesxUsuario = armarLista(resultado);
 
-        NivelAdapter adapter = new NivelAdapter(getContext(),lstLvl);
+        NivelesxUsuarioAdapter adapter = new NivelesxUsuarioAdapter(getContext(),lstNivelesxUsuario);
         gdNivel.setAdapter(adapter);
 
     }
 
-    public List<Nivel> armarLista(String resultado){
+    public List<NivelesxUsuario> armarLista(String resultado){
         Nivel niv = new Nivel();
-        List<Nivel> lstNivel = new ArrayList<Nivel>();
+        NivelesxUsuario nivxus = new NivelesxUsuario();
+        List<NivelesxUsuario> lstNivelesxUsuario = new ArrayList<NivelesxUsuario>();
 
         String [] filas, datos;
 
@@ -73,17 +74,20 @@ public class fragCA extends Fragment {
                 niv.setIdNivel(Integer.parseInt(datos[0]));
                 niv.setNivel(datos[1]);
                 if(datos[2].equals("1")){
-                    niv.setEstado(true);
+                    nivxus.setEstado(true);
                 }else{
-                    niv.setEstado(false);
+                    nivxus.setEstado(false);
                 }
 
-                lstNivel.add(niv);
+                nivxus.setNivel(niv);
+
+                lstNivelesxUsuario.add(nivxus);
 
                 niv = new Nivel();
+                nivxus = new NivelesxUsuario();
             }
         }
 
-        return lstNivel;
+        return lstNivelesxUsuario;
     }
 }

@@ -3,15 +3,13 @@ package com.example.tp_integrador.entidad.clases;
 public class Nivel {
     private int idNivel;
     private String nivel;
-    private boolean Estado;
 
     public Nivel() {
     }
 
-    public Nivel(int idNivel, String nivel, boolean Estado) {
+    public Nivel(int idNivel, String nivel) {
         this.idNivel = idNivel;
         this.nivel = nivel;
-        this.Estado = Estado;
     }
 
     public int getIdNivel() {
@@ -30,20 +28,12 @@ public class Nivel {
         this.nivel = nivel;
     }
 
-    public boolean isEstado() {
-        return Estado;
-    }
-
-    public void setEstado(boolean estado) {
-        Estado = estado;
-    }
 
     @Override
     public String toString() {
         return "Nivel{" +
                 "idNivel=" + idNivel +
                 ", nivel='" + nivel + '\'' +
-                ", Estado=" + Estado +
                 '}';
     }
 }

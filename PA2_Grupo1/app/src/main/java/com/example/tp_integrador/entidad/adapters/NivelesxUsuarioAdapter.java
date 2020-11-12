@@ -16,16 +16,17 @@ import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.entidad.clases.Nivel;
+import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.ui.cliente.CA.ListadoSenasCA.actListadoSenasCA;
 
 import java.util.List;
 
-public class NivelAdapter extends BaseAdapter {
+public class NivelesxUsuarioAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     Context context;
-    List<Nivel> items;
+    List<NivelesxUsuario> items;
 
-    public NivelAdapter(Context _context, List<Nivel> _items) {
+    public NivelesxUsuarioAdapter(Context _context, List<NivelesxUsuario> _items) {
         this.context = _context;
         this.items = _items;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -37,7 +38,7 @@ public class NivelAdapter extends BaseAdapter {
     }
 
     @Override
-    public Nivel getItem(int position) {
+    public NivelesxUsuario getItem(int position) {
         return items.get(position);
     }
 
@@ -49,25 +50,25 @@ public class NivelAdapter extends BaseAdapter {
             convertView = mInflater.inflate(R.layout.gditem_niveles, parent, false);
             //convertView.setLayoutParams(new GridView.LayoutParams(200,200));
         }
-        final Nivel lvl = items.get(position);
-        Nivel lvlAux;
+        final NivelesxUsuario nivxus = items.get(position);
+        NivelesxUsuario nivxusAux;
 
         try{
-            lvlAux = items.get(position-1);
+            nivxusAux = items.get(position-1);
         }catch(Exception e){
-            lvlAux = null;
+            nivxusAux = null;
         }
 
         final LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
-        if(lvl.isEstado()){
+        if(nivxus.isEstado()){
             lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_superado));
         }else{
-            if(lvlAux == null){
+            if(nivxusAux == null){
                 lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_desbloqueado));
             }
             else{
-                if(lvlAux.isEstado()){
+                if(nivxusAux.isEstado()){
                     lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_desbloqueado));
                 }else{
                     lnItem.setBackground(context.getResources().getDrawable(R.drawable.cb_bloqueado));
@@ -77,24 +78,24 @@ public class NivelAdapter extends BaseAdapter {
 
         TextView txtNivel =  (TextView)convertView.findViewById(R.id.lblNivel);
         TextView txtDesc = (TextView)convertView.findViewById(R.id.lblDescOpc);
-        txtNivel.setText("Nivel " + String.valueOf(lvl.getIdNivel()));
-        txtDesc.setText(lvl.getNivel());
+        txtNivel.setText("Nivel " + String.valueOf(nivxus.getNivel().getIdNivel()));
+        txtDesc.setText(nivxus.getNivel().getNivel());
 
-        final Nivel finalLvlAux = lvlAux;
+        final NivelesxUsuario finalNivxusAux = nivxusAux;
 
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
-                if(lvl.isEstado()) {
+                if(nivxus.isEstado()) {
                     Intent intent = new Intent(context, actListadoSenasCA.class);
                     context.startActivity(intent);
                 }else{
-                    if(finalLvlAux == null){
+                    if(finalNivxusAux == null){
                         Intent intent = new Intent(context, actListadoSenasCA.class);
                         context.startActivity(intent);
                     }
                     else{
-                        if(finalLvlAux.isEstado()){
+                        if(finalNivxusAux.isEstado()){
                             Intent intent = new Intent(context, actListadoSenasCA.class);
                             context.startActivity(intent);
                         }else{
