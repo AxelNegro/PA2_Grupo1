@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class fragListadoSenas extends Fragment {
 
-    private ListView listaSenas;
+    private GridView listaSenas;
     private vmListadoSenas vmListadoSenas;
 
 
@@ -33,7 +34,7 @@ public class fragListadoSenas extends Fragment {
 
         View root = inflater.inflate(R.layout.fragment_listadosenas, container, false);
 
-        listaSenas = (ListView) root.findViewById(R.id.listaSenas);
+        listaSenas = (GridView) root.findViewById(R.id.listaSenas);
 
         //Instancia la actividad main
         ((navCliente)getActivity()).setFragmentRefreshListener(new navCliente.FragmentRefreshListener() {
