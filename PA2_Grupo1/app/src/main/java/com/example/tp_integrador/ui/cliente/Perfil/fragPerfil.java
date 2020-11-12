@@ -160,19 +160,19 @@ public class fragPerfil extends Fragment {
             txtConfirmKey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
         }
     }
+
     private boolean validarKey(String key, String ck) {
         if(key.equals(ck)) return true;
         return false;
     }
+
     public void ModificarKey(View v) throws ExecutionException, InterruptedException {
         if(!(txtkey.getText().toString().isEmpty() || txtConfirmKey.getText().toString().isEmpty())) {
             if (validarKey(txtkey.getText().toString(), txtConfirmKey.getText().toString())) {
                 Usuario user=new Usuario();
                 user.setNameUser(username);
-                UsuarioDao x = new UsuarioDao(v,user,3,this);
-                setearDatos(x.execute().get().split(";"),user);
-
-                UsuarioDao UserDao = new UsuarioDao(v.getContext(),user,2, (navCliente) getActivity());
+                user.setKeyUser(key);
+                UsuarioDao UserDao = new UsuarioDao(v.getContext(),user,5, (navCliente) getActivity());
                     if(UserDao.execute().get().equals("Usuario modificado exitosamente.")) limpiar();
                     else Toast.makeText(v.getContext(),"Error al intentar modificar la contraseña. ",Toast.LENGTH_LONG).show();
             } else {
@@ -200,4 +200,5 @@ public class fragPerfil extends Fragment {
         txtkey.setText(key);
         txtConfirmKey.setText("");
     }
+
 }

@@ -120,6 +120,9 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
             case 4: // Obtener todos los usuarios
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodosUsuarios.php";
                 break;
+            case 5: // Modificación key de usuario
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuarioKeyCliente.php";
+                break;
         }
     }
 
@@ -134,8 +137,11 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                         + "&" + URLEncoder.encode("Tipo", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(user.getTipo_Cuenta()), "UTF-8")
                         + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(user.isEstado() ? "1" : "0", "UTF-8");
             }
-            if (accion == 3)
-                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
+            if (accion == 3) data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
+       if(accion == 5){
+           data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
+                   + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8");
+       }
         } catch (Exception e) {
             e.printStackTrace();
         }
