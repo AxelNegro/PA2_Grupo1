@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class OrdenxUsuarioDao extends AsyncTask<String, Void, String> {
+public class OrdenXUsuarioDao extends AsyncTask<String, Void, String> {
     private Context context;
     private OrdenxUsuario ordxus;
     private String urlAux, data;
@@ -23,10 +23,10 @@ public class OrdenxUsuarioDao extends AsyncTask<String, Void, String> {
     private actListadoSenasCA main;
     private fragCA CA;
 
-    public OrdenxUsuarioDao() {
+    public OrdenXUsuarioDao() {
     }
 
-    public OrdenxUsuarioDao(Context context, OrdenxUsuario ordxus, int accion, actListadoSenasCA main) {
+    public OrdenXUsuarioDao(Context context, OrdenxUsuario ordxus, int accion, actListadoSenasCA main) {
         this.context = context;
         this.ordxus = ordxus;
         this.accion = accion;
@@ -126,4 +126,7 @@ public class OrdenxUsuarioDao extends AsyncTask<String, Void, String> {
             main.obtenerInfo();
         }
     }
+
+
+
 }

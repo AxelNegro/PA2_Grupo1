@@ -8,6 +8,7 @@ import android.widget.Toast;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Opcion;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
+import com.example.tp_integrador.ui.admin.fragConsignasList;
 import com.example.tp_integrador.ui.admin.fragOpcionesAlta;
 import com.example.tp_integrador.ui.admin.fragOpcionesList;
 import com.example.tp_integrador.ui.admin.fragOpcionesMod;
@@ -41,6 +42,14 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    //Listado de consignas - fragConsignasList - accion 4
+    public OpcionDao(Context context, int accion, fragOpcionesList list) {
+        this.context = context;
+        this.accion = accion;
+        this.list = list;
+        preparaVariables();
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de opcion
@@ -48,19 +57,15 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 2: // Modificación de opcion
-                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
-                llenarData();
-                break;
+                //urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                //llenarData();
+                //break;
             case 3: // Obtener una opcion
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
-                llenarData();
-                break;
+                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                //llenarData();
+                //break;
             case 4: // Obtener todos las opciones x consigna
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
-                break;
-            case 5: // baja de opciones
-                urlAux = "https://pagrupo1.000webhostapp.com/bajaConsigna.php";
-                llenarData();
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasOpciones.php";
                 break;
         }
     }
@@ -80,6 +85,7 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
                         + "&" + URLEncoder.encode("URL_Imagen", "UTF-8") + "=" + URLEncoder.encode(consigna.getURLImagen(), "UTF-8")
                         + "&" + URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(consigna.getDesc(), "UTF-8");
             }
+
             else if (accion == 3){//Busqueda de opcion
                 data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8");
             }
@@ -178,7 +184,7 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
             //mod.obtenerDatos(resultado);
         }
         else if(accion == 4){
-            //list.llenarGD(resultado);
+            list.LlenarGD(resultado);
         }
         else if(accion == 5){
             //list.mostrarBaja(resultado);

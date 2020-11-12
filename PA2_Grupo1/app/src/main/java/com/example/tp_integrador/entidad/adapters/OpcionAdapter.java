@@ -3,6 +3,7 @@ package com.example.tp_integrador.entidad.adapters;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,7 +51,14 @@ public class OpcionAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.gditem_opciones, parent, false);
         }
+
         final Opcion opc = items.get(position);
+
+
+
+
+
+
 
         LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
@@ -60,19 +68,17 @@ public class OpcionAdapter extends BaseAdapter {
         TextView lblResultado = (TextView)convertView.findViewById(R.id.lblResultado);
         TextView lblEstado = (TextView)convertView.findViewById(R.id.lblEstado);
 
-        lblIdConsigna.setText("Id de la consigna: "+ String.valueOf(opc.getConsigna().getIdConsigna()) + ".");
+        lblIdConsigna.setText("Id de la consigna: 1.");
         lblIdOpcion.setText("Id de la opción: "+ String.valueOf(opc.getIdOpcion()) + ".");
         lblDesc.setText("Descripción: " + opc.getDesc() + ".");
 
-
-
-        if (opc.isRes()){
+        if (opc.isRes() == true){
             res = "Si";
         }else{
             res = "No";
         }
 
-        if(opc.isEstado()){
+        if(opc.isEstado() == true){
             est = "Activo";
         }else{
             est = "Inactivo";
@@ -82,6 +88,7 @@ public class OpcionAdapter extends BaseAdapter {
         lblEstado.setText("Estado: " + est + ".");
 
 
+        /*
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -103,7 +110,7 @@ public class OpcionAdapter extends BaseAdapter {
                     }
                 });
 
-                /*AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
+                AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
                 dialogo1.setTitle("Importante");
                 dialogo1.setMessage("¿Desea eliminar la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
                 dialogo1.setCancelable(false);
@@ -118,9 +125,10 @@ public class OpcionAdapter extends BaseAdapter {
                         dialogo1.cancel();
                     }
                 });
-                dialogo1.show();*/
+                dialogo1.show();
             }
         });
+*/
 
 
         return convertView;

@@ -15,7 +15,8 @@ import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.OrdenDao;
-import com.example.tp_integrador.dao.OrdenxUsuarioDao;
+import com.example.tp_integrador.dao.OrdenXUsuarioDao;
+import com.example.tp_integrador.dao.OrdenXUsuarioDao;
 import com.example.tp_integrador.entidad.clases.NivelesxUsuario;
 import com.example.tp_integrador.entidad.clases.Orden;
 import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
@@ -102,16 +103,16 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 if(ordxus.isEstado()) {
-                    OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(context,ordxus,2,main);
+                    OrdenXUsuarioDao ordxusDao = new OrdenXUsuarioDao(context,ordxus,2,main);
                     ordxusDao.execute();
                 }else{
                     if(finalOrdxusAux == null){
-                        OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(context,ordxus,2,main);
+                        OrdenXUsuarioDao ordxusDao = new OrdenXUsuarioDao(context,ordxus,2,main);
                         ordxusDao.execute();
                     }
                     else{
                         if(finalOrdxusAux.isEstado()){
-                            OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(context,ordxus,2,main);
+                            OrdenXUsuarioDao ordxusDao = new OrdenXUsuarioDao(context,ordxus,2,main);
                             ordxusDao.execute();
                         }else{
                             Toast.makeText(context,"Ejercicio no desbloqueado.",Toast.LENGTH_LONG).show();

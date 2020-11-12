@@ -10,10 +10,14 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.OpcionDao;
+import com.example.tp_integrador.dao.SenasDao;
 import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Opcion;
+import com.example.tp_integrador.entidad.clases.Sena;
+import com.example.tp_integrador.ui.cliente.navCliente;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,48 +37,72 @@ public class fragOpcionesList extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_adm_opciones_list, container, false);
 
-        LlenarGD(v);
+        gdOpcion = (GridView)v.findViewById(R.id.gdOpciones);
+
+        //Instancia la actividad main
+        ((navAdmin)getActivity()).setFragmentRefreshListener(new navAdmin.FragmentRefreshListener() {
+            @Override
+            public void onRefresh() {
+                obtenerInfo();
+            }
+        });
+        obtenerInfo();
 
         return v;
     }
 
-    public void LlenarGD(View v){
-        gdOpcion = (GridView)v.findViewById(R.id.gdOpciones);
-        List<Opcion> lstOpc = armarLista();
+    //Trae la informacion de la base
+    public void obtenerInfo(){
+        OpcionDao opcionDao = new OpcionDao(getContext(),4,this);
+        opcionDao.execute();
+    }
 
-        OpcionAdapter adapter = new OpcionAdapter(v.getContext(),lstOpc);
+    public void LlenarGD(String resultado){
+
+        List<Opcion> lstOpc = armarLista(resultado);
+
+        OpcionAdapter adapter = new OpcionAdapter(getContext(),lstOpc);
         gdOpcion.setAdapter(adapter);
     }
 
-    public List<Opcion> armarLista(){
-        List<Opcion> lstOpc = new ArrayList<Opcion>();
+    //Carga los articulos a una lista
+    public List<Opcion> armarLista(String Resultado){
 
-        Consigna cons = new Consigna(new Nivel(),1,"","",true);
-        Opcion opc = new Opcion(cons,1,"Perro",true,true);
-        lstOpc.add(opc);
+        List<Opcion> lstOpcion = new ArrayList<Opcion>();
 
-        opc = new Opcion(cons,2,"Gato",false,true);
-        lstOpc.add(opc);
+        String res;
+        String[] filas, datos;
 
-        opc = new Opcion(cons,3,"Aguila",false,true);
-        lstOpc.add(opc);
+        //Crea objetos de Opcion
+        Opcion con = new Opcion();
 
-        opc = new Opcion(cons,4,"Pez",false,true);
-        lstOpc.add(opc);
+        //Utiliza el metodo substring para separar los datos
+        if(Resultado!=null && !Resultado.isEmpty()) {
+            res = Resultado.substring(0, Resultado.length() - 1);
 
-        cons = new Consigna(new Nivel(),2,"","",true);
-        opc = new Opcion(cons,5,"Rojo",false,true);
-        lstOpc.add(opc);
+            //Con el metodo split divide
+            filas = Resultado.split("\\|");
 
-        opc = new Opcion(cons,6,"Azul",true,true);
-        lstOpc.add(opc);
+            for (int i = 0; i < filas.length; i++) {
 
-        opc = new Opcion(cons,7,"Amarillo",false,true);
-        lstOpc.add(opc);
+                datos = filas[i].split(";");
 
-        opc = new Opcion(cons,8,"Verde",false,true);
-        lstOpc.add(opc);
+                con.setIdOpcion(Integer.parseInt(datos[0]));
+                con.setDesc(datos[1]);
+                con.setRes(Boolean.parseBoolean(datos[2]));
+                con.setEstado(Boolean.parseBoolean(datos[3]));
 
-        return lstOpc;
+
+
+                lstOpcion.add(con);
+
+                con= new Opcion();
+            }
+        }
+        else{
+            lstOpcion = null;
+        }
+
+        return lstOpcion;
     }
 }
