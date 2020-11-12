@@ -33,7 +33,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     private fragPerfil modkey;
     private navAdmin main;
     private navCliente mainc;
-    private boolean f = false;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
     public UsuarioDao(Context context, Usuario user, int accion) {
@@ -63,7 +62,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         this.user = user;
         this.accion = accion;
         this.main = main;
-        f = true;
         this.mod = mod;
         preparaVariables();
     }
@@ -122,6 +120,11 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 break;
             case 5: // Modificación key de usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuarioKeyCliente.php";
+                llenarData();
+                break;
+            case 6: // Modificación datos de usuario
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuarioDatosCliente.php";
+                llenarData();
                 break;
         }
     }
@@ -142,6 +145,12 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
            data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
                    + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8");
        }
+            if(accion == 6){
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
+                        + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(user.getNombre(), "UTF-8")
+                        + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(user.getApellido(), "UTF-8")
+                        + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -180,7 +189,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
         if (conn.conectar(urlAux)) {
             //Acciones que realizan escritura (Alta/Modificación)
-            if (accion == 1 || accion == 2 || accion == 3) {
+            if (accion == 1 || accion == 2 || accion == 3 || accion == 5 || accion == 6) {
                 if (conn.mandarInfo(data)) resultado = obtenerInfo(conn);
                 else Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
             }
@@ -195,8 +204,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado) {
         if (accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            if (accion == 2 && f == true) main.Actualizar();
-            //if(accion == 2 ) mainc.Actualizar();
+            if (accion == 2) main.Actualizar();
             if (accion == 1) {
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
             }
