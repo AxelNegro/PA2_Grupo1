@@ -21,8 +21,8 @@ import java.util.List;
 
 public class UsuarioAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    Context context;
-    List<Usuario> items;
+    private Context context;
+    private List<Usuario> items;
     private AlertDialog dialog;
 
     //Trae el contexto, la lista de usuarios, e instancia un objeto de mainActivity

@@ -15,19 +15,19 @@ if(empty($Usuario)||empty($IdNivel)){
 	exit ("Complete los datos.");
 }
 
-$consulta = "SELECT ord.IdOrden, ord.IdConsigna IdConsigna, ord.IdSena IdSena, 
+$consulta = "SELECT ord.IdOrden IdOrden, ord.IdConsigna IdConsigna, ord.IdSena IdSena, 
         (SELECT sen.Sena   
          FROM senas sen   
          WHERE sen.IdSena = ord.IdSena) Sena,
 		CASE WHEN (SELECT COUNT(1) 
 				   FROM ordenxusuario ordxus
 				   WHERE ordxus.IdOrden = ord.IdOrden
-				   AND ordxus.Usuario = 'asd') > 0 
+				   AND ordxus.Usuario = '$Usuario') > 0 
 				   THEN '1' 
 				   ELSE '0' 
 				   END  Estado
 		FROM ordennivel ord
-		WHERE ord.IdNivel = 1
+		WHERE ord.IdNivel = '$IdNivel'
 		AND ord.Estado = '1'
 		AND (CASE WHEN ord.IdConsigna IS NOT NULL THEN 
 			 (SELECT con.ESTADO
@@ -39,7 +39,7 @@ $consulta = "SELECT ord.IdOrden, ord.IdConsigna IdConsigna, ord.IdSena IdSena,
 $resultado = mysqli_query($conexion,$consulta);
 
 while($mostrar=mysqli_fetch_array($resultado)){
-	echo $mostrar['IdOrden'] . ";";
+    echo $mostrar['IdOrden'] . ";";
 	echo $mostrar['IdConsigna'] . ";";
 	echo $mostrar['IdSena'] . ";";
 	echo $mostrar['Sena'] . ";";

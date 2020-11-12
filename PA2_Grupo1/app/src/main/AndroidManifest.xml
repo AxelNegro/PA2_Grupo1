@@ -68,6 +68,7 @@
             android:name=".ui.cliente.CA.ListadoSenasCA.actListadoSenasCA"
             android:theme="@style/AppTheme2">
         </activity>
+
     </application>
 
 </manifest>

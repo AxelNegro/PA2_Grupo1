@@ -2,6 +2,7 @@ package com.example.tp_integrador.entidad.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,8 +24,8 @@ import java.util.List;
 
 public class NivelesxUsuarioAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    Context context;
-    List<NivelesxUsuario> items;
+    private Context context;
+    private List<NivelesxUsuario> items;
 
     public NivelesxUsuarioAdapter(Context _context, List<NivelesxUsuario> _items) {
         this.context = _context;
@@ -83,19 +84,28 @@ public class NivelesxUsuarioAdapter extends BaseAdapter {
 
         final NivelesxUsuario finalNivxusAux = nivxusAux;
 
+        SharedPreferences prefs = context.getSharedPreferences("nivel",Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor = prefs.edit();
+
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
                 if(nivxus.isEstado()) {
+                    editor.putString("idNivel", String.valueOf(nivxus.getNivel().getIdNivel()));
+                    editor.commit();
                     Intent intent = new Intent(context, actListadoSenasCA.class);
                     context.startActivity(intent);
                 }else{
                     if(finalNivxusAux == null){
+                        editor.putString("idNivel", String.valueOf(nivxus.getNivel().getIdNivel()));
+                        editor.commit();
                         Intent intent = new Intent(context, actListadoSenasCA.class);
                         context.startActivity(intent);
                     }
                     else{
                         if(finalNivxusAux.isEstado()){
+                            editor.putString("idNivel", String.valueOf(nivxus.getNivel().getIdNivel()));
+                            editor.commit();
                             Intent intent = new Intent(context, actListadoSenasCA.class);
                             context.startActivity(intent);
                         }else{

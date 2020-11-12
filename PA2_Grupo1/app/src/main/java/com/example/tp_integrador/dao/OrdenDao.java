@@ -188,12 +188,10 @@ public class OrdenDao extends AsyncTask<String, Void, String> {
             if (resultado.equals("1")){
                 Toast.makeText(context, "Consigna creada exitosamente", Toast.LENGTH_LONG).show();
                 fragOrdenAlta.limpiar();
-                main.Actualizar();
             }
             else if(resultado.equals("2")){
-                Toast.makeText(context, "seña creada exitosamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Seña creada exitosamente", Toast.LENGTH_LONG).show();
                 fragOrdenAlta.limpiar();
-                main.Actualizar();
             }
             else
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();

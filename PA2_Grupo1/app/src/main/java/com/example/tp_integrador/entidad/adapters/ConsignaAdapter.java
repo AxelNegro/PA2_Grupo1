@@ -20,10 +20,10 @@ import java.util.List;
 
 public class ConsignaAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    Context context;
-    List<Consigna> items;
+    private Context context;
+    private List<Consigna> items;
     private AlertDialog dialog;
-    fragConsignasList fragConsignasList;
+    private fragConsignasList fragConsignasList;
 
     //Trae el contexto, la lista de articulos, e instancia un objeto de mainActivity
     public ConsignaAdapter(Context _context, List<Consigna> _items) {

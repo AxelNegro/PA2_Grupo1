@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,31 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".ui.cliente.CA.ListadoSenasCA.actListadoSenasCA">
 
-    <ListView
-        android:id="@+id/listaSenasCA"
-        android:layout_width="409dp"
-        android:layout_height="657dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:layout_marginBottom="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tbSenas"
+        android:layout_width="fill_parent"
+        android:layout_height="51dp"
+        android:background="@color/colorPrimaryDark"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="@style/ToolbarTheme"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:subtitleTextColor="#F8F1F1"
+        app:titleTextColor="#FFFFFF" />
 
-    <Button
-        android:id="@+id/btnMenuPrincipal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:onClick="Volver"
-        android:text="Volver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+    <GridView
+        android:id="@+id/gdEjercicios"
+        android:layout_width="401dp"
+        android:layout_height="571dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/cb_normal"
+        android:columnWidth="400dp"
+        android:gravity="center"
+        android:horizontalSpacing="5dp"
+        android:numColumns="1"
+        android:stretchMode="spacingWidthUniform"
+        android:verticalSpacing="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaSenasCA"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/tbSenas" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

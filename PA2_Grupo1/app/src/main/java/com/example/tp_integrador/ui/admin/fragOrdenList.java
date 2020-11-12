@@ -52,8 +52,8 @@ public class fragOrdenList extends Fragment {
     }
 
     public void obtenerInfo(){
-        OrdenDao artDao = new OrdenDao(getContext(),5,this);
-        artDao.execute();
+        OrdenDao ordDao = new OrdenDao(getContext(),5,this);
+        ordDao.execute();
     }
 
     public void llenarGD(String resultado){

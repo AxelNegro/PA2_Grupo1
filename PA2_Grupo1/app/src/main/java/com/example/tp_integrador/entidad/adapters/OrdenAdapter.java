@@ -20,10 +20,10 @@ import java.util.List;
 
 public class OrdenAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
-    Context context;
-    List<Orden> items;
+    private Context context;
+    private List<Orden> items;
     private AlertDialog dialog;
-    fragOrdenList fragOrdList;
+    private fragOrdenList fragOrdList;
 
     public OrdenAdapter(Context context, List<Orden> items, fragOrdenList fragOrdList) {
         this.context = context;
