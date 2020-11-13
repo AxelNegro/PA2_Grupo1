@@ -74,9 +74,15 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
         try {
 
             if(accion == 1 ) { //Alta
-                data = URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(opcion.getDesc(), "UTF-8")
-                        + "&" + URLEncoder.encode("Resultado", "UTF-8") + "=" + URLEncoder.encode(opcion.isRes() ? "1" : "0", "UTF-8")
-                        + "&" + URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8");
+                if(opcion.isRes()) {
+                    data = URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(opcion.getDesc(), "UTF-8")
+                            + "&" + URLEncoder.encode("Resultado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")
+                            + "&" + URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8");
+                }else{
+                    data = URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(opcion.getDesc(), "UTF-8")
+                            + "&" + URLEncoder.encode("Resultado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8")
+                            + "&" + URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8");
+                }
             }
             /*
             if(accion == 2) { //Modificación de opciones

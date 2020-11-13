@@ -89,8 +89,16 @@ public class fragOpcionesList extends Fragment {
 
                 con.setIdOpcion(Integer.parseInt(datos[0]));
                 con.setDesc(datos[1]);
-                con.setRes(Boolean.parseBoolean(datos[2]));
-                con.setEstado(Boolean.parseBoolean(datos[3]));
+                if(datos[2].equals("1")){
+                    con.setRes(true);
+                }else{
+                    con.setRes(false);
+                }
+                if(datos[3].equals("1")){
+                    con.setEstado(true);
+                }else{
+                    con.setEstado(false);
+                }
 
 
 
