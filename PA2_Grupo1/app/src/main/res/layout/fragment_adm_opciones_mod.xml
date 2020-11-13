@@ -24,21 +24,20 @@
         android:id="@+id/lblDescOpc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
         android:text="@string/lblDescOpc"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.094"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblTituloOpcAlta" />
+        app:layout_constraintTop_toBottomOf="@+id/txtIdConsignaMod" />
 
     <TextView
         android:id="@+id/lblResultadoOpc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="52dp"
         android:text="@string/lblResultadoOpc"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,8 +48,7 @@
         android:layout_width="375dp"
         android:layout_height="44dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/btnModificar"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,9 +58,8 @@
         android:id="@+id/cbResultado"
         android:layout_width="28dp"
         android:layout_height="23dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="52dp"
         android:text="@string/empty"
         app:layout_constraintStart_toEndOf="@+id/lblResultadoOpc"
         app:layout_constraintTop_toBottomOf="@+id/txtDescOpc" />
@@ -72,7 +69,7 @@
         android:layout_width="376dp"
         android:layout_height="111dp"
         android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="@string/txtDescOpc"
@@ -80,5 +77,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lblDescOpc"
         tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/txtIdConsignaMod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:text="ID Consigna"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtIdOpcionMod" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="ID Opcion"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloOpcAlta" />
+
+    <EditText
+        android:id="@+id/txtIdOpcionMod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <Button
+        android:id="@+id/btnBuscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="48dp"
+        android:text="Buscar"
+        app:layout_constraintStart_toEndOf="@+id/txtIdOpcionMod"
+        app:layout_constraintTop_toBottomOf="@+id/lblTituloOpcAlta" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

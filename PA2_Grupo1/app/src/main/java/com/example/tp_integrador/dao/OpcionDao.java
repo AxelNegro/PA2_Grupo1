@@ -12,9 +12,11 @@ import com.example.tp_integrador.entidad.clases.Opcion;
 import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
+import com.example.tp_integrador.ui.admin.fragConsignasMod;
 import com.example.tp_integrador.ui.admin.fragOpcionesAlta;
 import com.example.tp_integrador.ui.admin.fragOpcionesList;
 import com.example.tp_integrador.ui.admin.fragOpcionesMod;
+import com.example.tp_integrador.ui.admin.fragOrdenMod;
 import com.example.tp_integrador.ui.admin.navAdmin;
 
 import java.io.BufferedReader;
@@ -29,8 +31,8 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
     private String urlAux, data;
     private int accion, idConsigna;
     private fragOpcionesAlta alta;
-    private fragOpcionesList list;
     private fragOpcionesMod mod;
+    private fragOpcionesList list;
     private navAdmin main;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
@@ -41,6 +43,16 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
         this.opcion = opcion;
         this.accion = accion;
         this.alta = alta;
+        this.main = main;
+        preparaVariables();
+    }
+
+    // Busqueda // Modificar opcion
+    public OpcionDao(Context context, Opcion opcion, int accion, navAdmin main, fragOpcionesMod mod) {
+        this.context = context;
+        this.accion = accion;
+        this.mod = mod;
+        this.opcion = opcion;
         this.main = main;
         preparaVariables();
     }
@@ -68,11 +80,11 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 2: // Modificación de opcion
-                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarOpcion.php";
                 llenarData();
                 break;
             case 3: // Obtener una opcion
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerOpcion.php";
                 llenarData();
                 break;
             case 4: // Obtener todos las opciones x consigna
@@ -99,18 +111,24 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
                             + "&" + URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8");
                 }
             }
-            /*
-            if(accion == 2) { //Modificación de opciones
 
-                data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8")
-                        + "&" + URLEncoder.encode("URL_Imagen", "UTF-8") + "=" + URLEncoder.encode(consigna.getURLImagen(), "UTF-8")
-                        + "&" + URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(consigna.getDesc(), "UTF-8");
+            if(accion == 2) { //Modificación de opciones
+                if(opcion.isRes()) {
+                    data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8")
+                            + "&" + URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
+                            + "&" + URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(opcion.getDesc(), "UTF-8")
+                            + "&" + URLEncoder.encode("Resultado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
+                }else{
+                    data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getConsigna().getIdConsigna()), "UTF-8")
+                            + "&" + URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
+                            + "&" + URLEncoder.encode("Descripcion", "UTF-8") + "=" + URLEncoder.encode(opcion.getDesc(), "UTF-8")
+                            + "&" + URLEncoder.encode("Resultado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
+                }
             }
 
             else if (accion == 3){//Busqueda de opcion
-                data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8");
+                data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8");
             }
-             */
             else if(accion == 5)
             {
                 data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
@@ -180,7 +198,7 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado){
         if(accion == 1) {
             if(resultado.equals("1")){
-                Toast.makeText(context, "Consigna creada exitosamente", Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Opcion creada exitosamente", Toast.LENGTH_LONG).show();
                 alta.limpiar();
                 main.Actualizar();
             }
@@ -189,15 +207,15 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 2){
             if(resultado.equals("1")){
-                Toast.makeText(context, "Consigna modificada exitosamente", Toast.LENGTH_LONG).show();
-                //mod.limpiar();
+                Toast.makeText(context, "Opcion modificada exitosamente", Toast.LENGTH_LONG).show();
+                mod.limpiar();
                 main.Actualizar();
             }
             else
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
         }
         else if(accion == 3){
-            //mod.obtenerDatos(resultado);
+            mod.obtenerDatos(resultado);
         }
         else if(accion == 4){
             list.LlenarGD(resultado);

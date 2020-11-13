@@ -97,6 +97,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    /*
     //Listado de consignas - fragOpcionesAlta
     public ConsignaDao(Context context, int accion, fragOpcionesAlta altaOpciones) {
         this.context = context;
@@ -104,6 +105,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         this.altaOpciones = altaOpciones;
         preparaVariables();
     }
+    */
 
 
 
@@ -133,7 +135,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 7: //Cargar el Spinner de Alta Opciones
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
+                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
                 break;
         }
     }
@@ -254,7 +256,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
             adapter.mostrarPopupEjercicio(resultado,ordxus);
         }else if(accion == 7)
         {
-            altaOpciones.llenarDDL(resultado,1);
+            //altaOpciones.llenarDDL(resultado,1);
         }
     }
 }

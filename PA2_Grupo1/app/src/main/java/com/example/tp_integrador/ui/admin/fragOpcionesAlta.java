@@ -9,28 +9,18 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
-
-import androidx.viewpager.widget.ViewPager;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.dao.ConsignaDao;
 import com.example.tp_integrador.dao.OpcionDao;
-import com.example.tp_integrador.entidad.adapters.ViewPagerAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Opcion;
-import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class fragOpcionesAlta extends Fragment {
-    private Spinner spinnerIdConsigna;
-    private EditText txtDescripcion;
+    //private Spinner spinnerIdConsigna;
+    private EditText txtIdConsigna, txtDescripcion;
     private CheckBox ckbCorrecta;
     private Button alta;
 
@@ -48,7 +38,8 @@ public class fragOpcionesAlta extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_adm_opciones_alta, container, false);
 
-        spinnerIdConsigna = (Spinner) v.findViewById(R.id.spinnerTraerIdConsigna);
+        //spinnerIdConsigna = (Spinner) v.findViewById(R.id.spinnerTraerIdConsigna);
+        txtIdConsigna = (EditText) v.findViewById(R.id.txtIdConsigna);
         txtDescripcion = (EditText) v.findViewById(R.id.txtDescOpc);
         ckbCorrecta = (CheckBox) v.findViewById(R.id.cbResultado);
         alta = (Button) v.findViewById(R.id.btnAlta);
@@ -60,14 +51,15 @@ public class fragOpcionesAlta extends Fragment {
             }
         });
 
-        ConsignaDao consignaDao = new ConsignaDao(getContext(),7,this);
-        consignaDao.execute();
+        //ConsignaDao consignaDao = new ConsignaDao(getContext(),7,this);
+        //consignaDao.execute();
 
         validarInputs();
 
         return v;
     }
 
+    /*
     public void llenarDDL(String resultado, int Accion){
         List<String> lst = new ArrayList<String>();
 
@@ -88,6 +80,7 @@ public class fragOpcionesAlta extends Fragment {
             spinnerIdConsigna.setAdapter(adapter);
         }
     }
+    */
 
     private void AltaOpcion(){
         opcion = new Opcion();
@@ -98,9 +91,10 @@ public class fragOpcionesAlta extends Fragment {
 
     private void obtenerDatos(){
         Consigna con = new Consigna();
-        String [] filas = spinnerIdConsigna.getSelectedItem().toString().split("-");
-        int id = Integer.parseInt(filas[0]);
+        //String [] filas = spinnerIdConsigna.getSelectedItem().toString().split("-");
+        //int id = Integer.parseInt(filas[0]);
 
+        int id = Integer.parseInt(txtIdConsigna.getText().toString());
         con.setIdConsigna(id);
         opcion.setConsigna(con);
         opcion.setDesc(txtDescripcion.getText().toString());
@@ -113,6 +107,7 @@ public class fragOpcionesAlta extends Fragment {
     }
 
     public void limpiar() {
+        txtIdConsigna.setText("");
         txtDescripcion.setText("");
         ckbCorrecta.setChecked(false);
     }
