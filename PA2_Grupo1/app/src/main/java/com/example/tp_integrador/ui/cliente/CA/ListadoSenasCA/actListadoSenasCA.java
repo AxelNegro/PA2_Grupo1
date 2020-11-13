@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.tp_integrador.R;
-import com.example.tp_integrador.dao.OrdenXUsuarioDao;
+import com.example.tp_integrador.dao.OrdenxUsuarioDao;
 import com.example.tp_integrador.entidad.adapters.OrdenxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.ClaseModelo;
 import com.example.tp_integrador.entidad.clases.Consigna;
@@ -82,7 +82,7 @@ public class actListadoSenasCA extends AppCompatActivity {
             ordxus.setOrden(ord);
             ordxus.setUsuario(usuario);
 
-            OrdenXUsuarioDao ordxusDao = new OrdenXUsuarioDao(this, ordxus, 1, this);
+            OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(this, ordxus, 1, this);
             ordxusDao.execute();
         }catch(Exception e){
             e.printStackTrace();

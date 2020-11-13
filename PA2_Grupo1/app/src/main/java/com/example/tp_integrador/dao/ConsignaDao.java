@@ -2,26 +2,22 @@ package com.example.tp_integrador.dao;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
+import com.example.tp_integrador.entidad.adapters.OrdenxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
-import com.example.tp_integrador.entidad.clases.Usuario;
+import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
 import com.example.tp_integrador.ui.admin.fragConsignasMod;
-import com.example.tp_integrador.ui.admin.fragUsuarioMyB;
+import com.example.tp_integrador.ui.admin.navAdmin;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import com.example.tp_integrador.dao.Conexion;
-import com.example.tp_integrador.ui.admin.navAdmin;
 
 public class ConsignaDao extends AsyncTask<String, Void, String> {
 
@@ -32,12 +28,14 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     private fragConsignasAlta alta;
     private fragConsignasList list;
     private fragConsignasMod mod;
+    private OrdenxUsuarioAdapter adapter;
+    private OrdenxUsuario ordxus;
     private navAdmin main;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
 
     //Alta de consigna
-    public ConsignaDao(Context context,Consigna consigna, int accion, navAdmin main, fragConsignasAlta alta) {
+    public ConsignaDao(Context context, Consigna consigna, int accion, navAdmin main, fragConsignasAlta alta) {
         this.context = context;
         this.consigna = consigna;
         this.accion = accion;
@@ -46,7 +44,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    public ConsignaDao(Context context,Consigna consigna, int accion, navAdmin main, fragConsignasMod mod) {
+    public ConsignaDao(Context context, Consigna consigna, int accion, navAdmin main, fragConsignasMod mod) {
         this.context = context;
         this.consigna = consigna;
         this.accion = accion;
@@ -56,7 +54,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     }
 
     //Busqueda/Modificación de consigna
-    public ConsignaDao(Context context,Consigna consigna, int accion, fragConsignasMod mod) {
+    public ConsignaDao(Context context, Consigna consigna, int accion, fragConsignasMod mod) {
         this.context = context;
         this.consigna = consigna;
         this.accion = accion;
@@ -89,6 +87,14 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    //Baja de consignas
+    public ConsignaDao(int accion, OrdenxUsuario ordxus, OrdenxUsuarioAdapter adapter) {
+        this.accion = accion;
+        this.ordxus = ordxus;
+        this.adapter = adapter;
+        preparaVariables();
+    }
+
 
     public void preparaVariables(){
         switch(accion){
@@ -109,6 +115,10 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
                 break;
             case 5: // baja de consignas
                 urlAux = "https://pagrupo1.000webhostapp.com/bajaConsigna.php";
+                llenarData();
+                break;
+            case 6: // Obtener consignas
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
                 llenarData();
                 break;
         }
@@ -137,6 +147,9 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
                     data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8")
                             + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
                 }
+            }
+            else if(accion == 6){
+                data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(ordxus.getOrden().getConsigna().getIdConsigna()), "UTF-8");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -177,7 +190,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         Conexion conn = new Conexion();
 
         if(conn.conectar(urlAux)){
-            if(accion == 1 || accion == 2 || accion == 3 || accion == 5) { //Acciones que realizan escritura (Alta/Modificación)
+            if(accion == 1 || accion == 2 || accion == 3 || accion == 5 || accion == 6) { //Acciones que realizan escritura (Alta/Modificación)
                 if (conn.mandarInfo(data)) {
                     resultado = obtenerInfo(conn);
                 } else {
@@ -222,6 +235,9 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 5){
             list.mostrarBaja(resultado);
+        }
+        else if(accion == 6){
+            adapter.mostrarPopupEjercicio(resultado,ordxus);
         }
     }
 }

@@ -41,25 +41,25 @@
         app:layout_constraintTop_toBottomOf="@+id/imgSena">
 
         <RadioButton
-            android:id="@+id/rdPerro"
+            android:id="@+id/rd1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rdPerro" />
 
         <RadioButton
-            android:id="@+id/rdGato"
+            android:id="@+id/rd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rdGato" />
 
         <RadioButton
-            android:id="@+id/rdAguila"
+            android:id="@+id/rd3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rdAguila" />
 
         <RadioButton
-            android:id="@+id/rdPez"
+            android:id="@+id/rd4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/rdPez" />

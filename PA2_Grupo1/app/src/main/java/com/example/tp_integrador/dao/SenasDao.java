@@ -2,16 +2,12 @@ package com.example.tp_integrador.dao;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-
+import com.example.tp_integrador.entidad.adapters.OrdenxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Nivel;
 import com.example.tp_integrador.entidad.clases.Sena;
-import com.example.tp_integrador.ui.admin.fragConsignasAlta;
-import com.example.tp_integrador.ui.admin.fragConsignasMod;
 import com.example.tp_integrador.ui.admin.fragOrdenAlta;
 import com.example.tp_integrador.ui.admin.fragOrdenMod;
 import com.example.tp_integrador.ui.cliente.ListadoSenas.fragListadoSenas;
@@ -32,6 +28,8 @@ public class SenasDao extends AsyncTask<String, Void, String> {
     private fragListadoSenas fragList;
     private fragOrdenAlta fragOrdAlta;
     private fragOrdenMod fragOrdMod;
+    private com.example.tp_integrador.entidad.clases.OrdenxUsuario OrdenxUsuario;
+    private OrdenxUsuarioAdapter adapter;
 
     //Listado de señas
     public SenasDao(Context context, int accion, fragListadoSenas fragList)
@@ -58,6 +56,15 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public SenasDao(Context context, int accion, com.example.tp_integrador.entidad.clases.OrdenxUsuario OrdenxUsuario, OrdenxUsuarioAdapter adapter)
+    {
+        this.context = context;
+        this.accion = accion;
+        this.OrdenxUsuario = OrdenxUsuario;
+        this.adapter = adapter;
+        preparaVariables();
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de Sena
@@ -70,7 +77,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
                 break;
             case 3: // Obtener una Sena
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerSena.php";
-                //llenarData();
+                llenarData();
                 break;
             case 4: // Obtener todos las Senas
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasSenas.php";
@@ -80,10 +87,10 @@ public class SenasDao extends AsyncTask<String, Void, String> {
 
     public void llenarData(){
         try {
-            if(accion == 5){//Obtener señas por nivel
-                int idNivel = nivel.getIdNivel();
+            if(accion == 3){//Obtener una seña
+                int idSena = OrdenxUsuario.getOrden().getSena().getIdSena();
 
-                data = URLEncoder.encode("IdNivel", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idNivel), "UTF-8");
+                data = URLEncoder.encode("IdSena", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(idSena), "UTF-8");
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -150,7 +157,7 @@ public class SenasDao extends AsyncTask<String, Void, String> {
             //if(accion == 2) main.Actualizar();
         }
         else if(accion == 3){
-            String[] datos = resultado.split(";");
+            adapter.mostrarPopupSena(resultado);
         }
         else if(accion == 4){
             if(fragList != null)
