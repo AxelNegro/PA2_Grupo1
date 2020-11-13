@@ -2,6 +2,7 @@ package com.example.tp_integrador.entidad.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Build;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,11 +13,15 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.OpcionDao;
 import com.example.tp_integrador.entidad.clases.Opcion;
+import com.example.tp_integrador.ui.admin.fragOpcionesList;
+import com.example.tp_integrador.ui.admin.navAdmin;
 
 import java.util.List;
 
@@ -25,11 +30,15 @@ public class OpcionAdapter extends BaseAdapter {
     Context context;
     List<Opcion> items;
     private AlertDialog dialog;
+    navAdmin admin;
+    fragOpcionesList fragOpcList;
 
-    public OpcionAdapter(Context _context, List<Opcion> _items) {
+    public OpcionAdapter(Context _context, List<Opcion> _items, navAdmin admin, fragOpcionesList fragOpcList) {
         this.context = _context;
         this.items = _items;
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.admin = admin;
+        this.fragOpcList = fragOpcList;
     }
 
     @Override
@@ -51,6 +60,7 @@ public class OpcionAdapter extends BaseAdapter {
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.gditem_opciones, parent, false);
         }
+
 
         final Opcion opc = items.get(position);
 
@@ -88,10 +98,11 @@ public class OpcionAdapter extends BaseAdapter {
         lblEstado.setText("Estado: " + est + ".");
 
 
-        /*
+
         lnItem.setOnClickListener(new AdapterView.OnClickListener(){
             @Override
             public void onClick(View view) {
+                /*
                 AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
                 final View PopUp = mInflater.inflate(R.layout.popup_opcion,null);
 
@@ -109,6 +120,7 @@ public class OpcionAdapter extends BaseAdapter {
                         dialog.dismiss();
                     }
                 });
+                */
 
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
                 dialogo1.setTitle("Importante");
@@ -117,18 +129,23 @@ public class OpcionAdapter extends BaseAdapter {
 
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
+                        int idOpcion = opc.getIdOpcion();
+                        OpcionDao opcionDao = new OpcionDao(5, opc, fragOpcList);
+                        opcionDao.execute();
 
+                        admin.Actualizar();
+                        dialogo1.dismiss();
                     }
                 });
                 dialogo1.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialogo1, int id) {
-                        dialogo1.cancel();
+                        dialogo1.dismiss();
                     }
                 });
                 dialogo1.show();
             }
         });
-*/
+
 
 
         return convertView;

@@ -9,9 +9,11 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.viewpager.widget.ViewPager;
 
@@ -23,8 +25,12 @@ import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Opcion;
 import com.google.android.material.tabs.TabLayout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class fragOpcionesAlta extends Fragment {
-    private EditText txtIdConsigna, txtDescripcion;
+    private Spinner spinnerIdConsigna;
+    private EditText txtDescripcion;
     private CheckBox ckbCorrecta;
     private Button alta;
 
@@ -42,7 +48,7 @@ public class fragOpcionesAlta extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_adm_opciones_alta, container, false);
 
-        txtIdConsigna = (EditText) v.findViewById(R.id.txtIdConsigna);
+        spinnerIdConsigna = (Spinner) v.findViewById(R.id.spinnerTraerIdConsigna);
         txtDescripcion = (EditText) v.findViewById(R.id.txtDescOpc);
         ckbCorrecta = (CheckBox) v.findViewById(R.id.cbResultado);
         alta = (Button) v.findViewById(R.id.btnAlta);
@@ -54,9 +60,33 @@ public class fragOpcionesAlta extends Fragment {
             }
         });
 
+        ConsignaDao consignaDao = new ConsignaDao(getContext(),7,this);
+        consignaDao.execute();
+
         validarInputs();
 
         return v;
+    }
+
+    public void llenarDDL(String resultado, int Accion){
+        List<String> lst = new ArrayList<String>();
+
+        String [] filas, datos;
+
+        if(!resultado.isEmpty()){
+            filas = resultado.split("\\|");
+            for(int i = 0;i<filas.length;i++){
+                datos = filas[i].split(";");
+
+                lst.add(datos[0] + "-" + datos[2]);
+            }
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), R.layout.support_simple_spinner_dropdown_item, lst);
+
+        if(Accion == 1) {
+            spinnerIdConsigna.setAdapter(adapter);
+        }
     }
 
     private void AltaOpcion(){
@@ -68,7 +98,10 @@ public class fragOpcionesAlta extends Fragment {
 
     private void obtenerDatos(){
         Consigna con = new Consigna();
-        con.setIdConsigna(1);
+        String [] filas = spinnerIdConsigna.getSelectedItem().toString().split("-");
+        int id = Integer.parseInt(filas[0]);
+
+        con.setIdConsigna(id);
         opcion.setConsigna(con);
         opcion.setDesc(txtDescripcion.getText().toString());
         if (ckbCorrecta.isChecked() == true) {
@@ -80,7 +113,6 @@ public class fragOpcionesAlta extends Fragment {
     }
 
     public void limpiar() {
-        txtIdConsigna.setText("");
         txtDescripcion.setText("");
         ckbCorrecta.setChecked(false);
     }

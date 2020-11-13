@@ -11,6 +11,7 @@ import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
 import com.example.tp_integrador.ui.admin.fragConsignasMod;
+import com.example.tp_integrador.ui.admin.fragOpcionesAlta;
 import com.example.tp_integrador.ui.admin.navAdmin;
 
 import java.io.BufferedReader;
@@ -31,6 +32,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
     private OrdenxUsuarioAdapter adapter;
     private OrdenxUsuario ordxus;
     private navAdmin main;
+    private fragOpcionesAlta altaOpciones;
 
     //Utiliza constructores para seleccionar la accion a ejecutar dependiendo de los parametros que reciba
 
@@ -95,6 +97,15 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    //Listado de consignas - fragOpcionesAlta
+    public ConsignaDao(Context context, int accion, fragOpcionesAlta altaOpciones) {
+        this.context = context;
+        this.accion = accion;
+        this.altaOpciones = altaOpciones;
+        preparaVariables();
+    }
+
+
 
     public void preparaVariables(){
         switch(accion){
@@ -120,6 +131,9 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
             case 6: // Obtener consignas
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
                 llenarData();
+                break;
+            case 7: //Cargar el Spinner de Alta Opciones
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
                 break;
         }
     }
@@ -238,6 +252,9 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
         }
         else if(accion == 6){
             adapter.mostrarPopupEjercicio(resultado,ordxus);
+        }else if(accion == 7)
+        {
+            altaOpciones.llenarDDL(resultado,1);
         }
     }
 }

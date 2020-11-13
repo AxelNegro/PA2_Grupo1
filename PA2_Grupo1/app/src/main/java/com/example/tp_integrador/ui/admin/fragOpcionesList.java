@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.OpcionDao;
@@ -61,7 +62,9 @@ public class fragOpcionesList extends Fragment {
 
         List<Opcion> lstOpc = armarLista(resultado);
 
-        OpcionAdapter adapter = new OpcionAdapter(getContext(),lstOpc);
+        navAdmin admin = (navAdmin)getActivity();
+
+        OpcionAdapter adapter = new OpcionAdapter(getContext(),lstOpc, admin, this);
         gdOpcion.setAdapter(adapter);
     }
 
@@ -112,5 +115,10 @@ public class fragOpcionesList extends Fragment {
         }
 
         return lstOpcion;
+    }
+
+    public void mostrarBaja(String resultado) {
+        Toast.makeText(getContext(), resultado, Toast.LENGTH_LONG).show();
+        obtenerInfo();
     }
 }

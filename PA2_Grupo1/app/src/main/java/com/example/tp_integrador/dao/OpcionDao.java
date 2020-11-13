@@ -5,8 +5,11 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.tp_integrador.entidad.adapters.OpcionAdapter;
+import com.example.tp_integrador.entidad.adapters.OrdenxUsuarioAdapter;
 import com.example.tp_integrador.entidad.clases.Consigna;
 import com.example.tp_integrador.entidad.clases.Opcion;
+import com.example.tp_integrador.entidad.clases.OrdenxUsuario;
 import com.example.tp_integrador.ui.admin.fragConsignasAlta;
 import com.example.tp_integrador.ui.admin.fragConsignasList;
 import com.example.tp_integrador.ui.admin.fragOpcionesAlta;
@@ -50,6 +53,14 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    //Baja de consignas
+    public OpcionDao(int accion, Opcion opcion, fragOpcionesList list) {
+        this.accion = accion;
+        this.opcion = opcion;
+        this.list = list;
+        preparaVariables();
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de opcion
@@ -57,15 +68,19 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 2: // Modificación de opcion
-                //urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
-                //llenarData();
-                //break;
+                urlAux = "https://pagrupo1.000webhostapp.com/modificarConsigna.php";
+                llenarData();
+                break;
             case 3: // Obtener una opcion
-                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
-                //llenarData();
-                //break;
+                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
+                llenarData();
+                break;
             case 4: // Obtener todos las opciones x consigna
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasOpciones.php";
+                break;
+            case 5: // Borrar una opcion
+                urlAux = "https://pagrupo1.000webhostapp.com/bajaOpcion.php";
+                llenarData();
                 break;
         }
     }
@@ -95,17 +110,12 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
             else if (accion == 3){//Busqueda de opcion
                 data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8");
             }
-
-            else if (accion == 5){
-                if(consigna.isEstado()) {
-                    data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8")
-                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
-                }else{
-                    data = URLEncoder.encode("IdConsigna", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(consigna.getIdConsigna()), "UTF-8")
-                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
-                }
-            }
              */
+            else if(accion == 5)
+            {
+                data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
+                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
+            }
 
         }catch (Exception e){
             e.printStackTrace();
@@ -193,7 +203,7 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
             list.LlenarGD(resultado);
         }
         else if(accion == 5){
-            //list.mostrarBaja(resultado);
+            list.mostrarBaja(resultado);
         }
     }
 }
