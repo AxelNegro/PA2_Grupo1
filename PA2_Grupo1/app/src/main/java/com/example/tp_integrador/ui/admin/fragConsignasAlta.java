@@ -68,7 +68,7 @@ public class fragConsignasAlta extends Fragment {
 
     private void obtenerDatos(){
         consigna.setDesc(txtDescripcion.getText().toString());
-        consigna.setURLImagen(txtImagen.getText().toString());
+        consigna.setURLImagen("https://pagrupo1.000webhostapp.com/GaleriaDeImagenes/" + txtImagen.getText().toString());
     }
 
     public void limpiar() {
