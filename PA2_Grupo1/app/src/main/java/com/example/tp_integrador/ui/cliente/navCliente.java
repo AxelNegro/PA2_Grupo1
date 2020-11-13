@@ -106,6 +106,12 @@ public class navCliente extends AppCompatActivity {
 
     //cerrar session
     public void RedirecLogin(MenuItem v){
+        SharedPreferences prefs = getSharedPreferences("login_data",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("username", "");
+        editor.putString("key", "");
+        editor.putString("tc", "");
+        editor.commit();
         finish();
         Intent Reg=new Intent(this, actLogin.class);
         startActivity(Reg);

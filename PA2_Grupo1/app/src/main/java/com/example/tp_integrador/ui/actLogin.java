@@ -53,6 +53,7 @@ public class actLogin extends AppCompatActivity {
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("username", etNameUser.getText().toString());
                             editor.putString("key", etKeyUser.getText().toString());
+                            editor.putString("tc", datos[4]);
                             editor.commit();
                         }else{
                             Sig = new Intent(this, navAdmin.class);
@@ -60,6 +61,7 @@ public class actLogin extends AppCompatActivity {
                             SharedPreferences.Editor editor = prefs.edit();
                             editor.putString("username", etNameUser.getText().toString());
                             editor.putString("key", etKeyUser.getText().toString());
+                            editor.putString("tc", datos[4]);
                             editor.commit();
                         }
 
