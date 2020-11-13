@@ -1,8 +1,12 @@
 package com.example.tp_integrador.ui;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.CheckBox;
@@ -55,9 +59,10 @@ public class actRegistrarse extends AppCompatActivity {
                 etEmail.getText().toString().isEmpty() || etUsuario.getText().toString().isEmpty() ||
                 etKey.getText().toString().isEmpty() || etConfirmkey.getText().toString().isEmpty()) ){
             //Trae los datos de los txt que carga el usuario por pantalla
-            user = new Usuario();
             if(validarEmail(etEmail.getText().toString())) {
                 if(validarKey(etKey.getText().toString(),etConfirmkey.getText().toString())) {
+                    if(!validarCaracteresProhibidos()){
+                        user = new Usuario();
                     user.setNameUser(etUsuario.getText().toString());
                     user.setNombre(etNombre.getText().toString());
                     user.setApellido(etApellido.getText().toString());
@@ -65,6 +70,7 @@ public class actRegistrarse extends AppCompatActivity {
                     user.setKeyUser(etKey.getText().toString());
                     user.setTipo_Cuenta(0);
                     user.setEstado(true);
+                    }
                 }else{
                     Toast.makeText(this,"Las claves no coinciden.",Toast.LENGTH_LONG).show();
                     etKey.setError("Las claves no coinciden.");
@@ -103,6 +109,7 @@ public class actRegistrarse extends AppCompatActivity {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
+
     public void ShowPassword(View v) {
         if(!chkViewKeys.isChecked()){
             etKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
@@ -113,4 +120,23 @@ public class actRegistrarse extends AppCompatActivity {
             etConfirmkey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
         }
     }
+
+    public boolean validarCaracteresProhibidos(){
+        boolean x=false;
+
+        if(etUsuario.getText().toString().indexOf(";")!=-1 || etUsuario.getText().toString().indexOf("|")!=-1){
+            etUsuario.setError("Caracteres ; y | no permitidos");
+            x= true;
+        }else{
+        if(etKey.getText().toString().indexOf(";")!=-1 || etKey.getText().toString().indexOf("|")!=-1){
+            etKey.setError("Caracteres ; y | no permitidos");
+            x =true;
+        }else if(etConfirmkey.getText().toString().indexOf(";")!=-1 || etConfirmkey.getText().toString().indexOf("|")!=-1){
+              etConfirmkey.setError("Caracteres ; y | no permitidos");
+               x= true;
+            }
+        }
+        return x;
+    }
+
 }

@@ -194,6 +194,7 @@ public class fragPerfil extends Fragment {
       if(!(etNombre.getText().toString().isEmpty() || etApellido.getText().toString().isEmpty() ||
               etEmail.getText().toString().isEmpty())){
         if(validarEmail(etEmail.getText().toString())) {
+
             Usuario user=new Usuario();
             user.setNameUser(username);
             user.setNombre(etNombre.getText().toString());
@@ -207,6 +208,7 @@ public class fragPerfil extends Fragment {
             else {
                 Toast.makeText(v.getContext(),"Modifique los datos.",Toast.LENGTH_LONG).show();
             }
+
         }else{
             Toast.makeText(getContext(),"Email invalido",Toast.LENGTH_LONG).show();
             etEmail.setError("verifique el formato de email ingresado");
@@ -234,6 +236,7 @@ public class fragPerfil extends Fragment {
     public void ModificarKey(View v) throws ExecutionException, InterruptedException {
         if(!(txtkey.getText().toString().isEmpty() || txtConfirmKey.getText().toString().isEmpty())) {
             if (validarKey(txtkey.getText().toString(), txtConfirmKey.getText().toString())) {
+                if(!validarCaracteresProhibidos()){
                 Usuario user=new Usuario();
                 user.setNameUser(username);
                 user.setKeyUser(txtConfirmKey.getText().toString());
@@ -244,6 +247,7 @@ public class fragPerfil extends Fragment {
                 }
                 else {
                     Toast.makeText(v.getContext(),"Modifique la contraseña.",Toast.LENGTH_LONG).show();
+                }
                 }
             } else {
                 Toast.makeText(v.getContext(), "Las claves no coinciden.", Toast.LENGTH_LONG).show();
@@ -263,5 +267,22 @@ public class fragPerfil extends Fragment {
         Pattern pattern = Patterns.EMAIL_ADDRESS;
         return pattern.matcher(email).matches();
     }
+
+    public boolean validarCaracteresProhibidos(){
+        boolean x=false;
+
+        if(txtkey.getText().toString().indexOf(";")!=-1 || txtkey.getText().toString().indexOf("|")!=-1){
+            txtkey.setError("Caracteres ; y | no permitidos");
+            x= true;
+        }else{
+            if(txtConfirmKey.getText().toString().indexOf(";")!=-1 || txtConfirmKey.getText().toString().indexOf("|")!=-1){
+                txtConfirmKey.setError("Caracteres ; y | no permitidos");
+                x =true;
+            }
+        }
+        return x;
+    }
+
+
 
 }
