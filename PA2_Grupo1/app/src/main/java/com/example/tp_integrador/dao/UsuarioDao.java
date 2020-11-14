@@ -66,9 +66,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
-    public UsuarioDao() {
-
-    }
+    public UsuarioDao() {}
 
     public UsuarioDao(View v, Usuario user, int i) {
         this.context = v.getContext();
@@ -126,7 +124,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuarioDatosCliente.php";
                 llenarData();
                 break;
-            case 7: // Obtener un usuario
+            case 7: // Iniciar un usuario
                 urlAux = "https://pagrupo1.000webhostapp.com/iniciarUsuario.php";
                 llenarData();
                 break;
@@ -200,7 +198,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 if (conn.mandarInfo(data)) resultado = obtenerInfo(conn);
                 else Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
             }
-            //Acciones que realizan lectura (Obtener uno/Todos)
+            //Acciones que realizan lectura (Todos)
             else if (accion == 4) resultado = obtenerInfo(conn);
             else Log.d("BBDD", "Hubo un error al conectarse con la base de datos.");
         }
