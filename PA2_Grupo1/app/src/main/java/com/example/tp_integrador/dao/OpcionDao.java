@@ -131,8 +131,13 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
             }
             else if(accion == 5)
             {
-                data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
-                        + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
+                if(opcion.isEstado()) {
+                    data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
+                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("0", "UTF-8");
+                }else{
+                    data = URLEncoder.encode("IdOpcion", "UTF-8") + "=" + URLEncoder.encode(String.valueOf(opcion.getIdOpcion()), "UTF-8")
+                            + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8");
+                }
             }
 
         }catch (Exception e){

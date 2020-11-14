@@ -120,6 +120,7 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
                 llenarData();
                 break;
             case 3: // Obtener una consigna
+            case 6:
                 urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
                 llenarData();
                 break;
@@ -129,13 +130,6 @@ public class ConsignaDao extends AsyncTask<String, Void, String> {
             case 5: // baja de consignas
                 urlAux = "https://pagrupo1.000webhostapp.com/bajaConsigna.php";
                 llenarData();
-                break;
-            case 6: // Obtener consignas
-                urlAux = "https://pagrupo1.000webhostapp.com/obtenerConsigna.php";
-                llenarData();
-                break;
-            case 7: //Cargar el Spinner de Alta Opciones
-                //urlAux = "https://pagrupo1.000webhostapp.com/obtenerTodasConsignas.php";
                 break;
         }
     }

@@ -119,7 +119,11 @@ public class OpcionAdapter extends BaseAdapter {
 
                 AlertDialog.Builder dialogo1 = new AlertDialog.Builder(context);
                 dialogo1.setTitle("Importante");
-                dialogo1.setMessage("¿Desea eliminar la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
+                if(opc.isEstado()) {
+                    dialogo1.setMessage("¿Desea dar de baja la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
+                }else{
+                    dialogo1.setMessage("¿Desea dar de alta la opción con ID " + String.valueOf(opc.getIdOpcion()) + "?");
+                }
                 dialogo1.setCancelable(false);
 
                 dialogo1.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {

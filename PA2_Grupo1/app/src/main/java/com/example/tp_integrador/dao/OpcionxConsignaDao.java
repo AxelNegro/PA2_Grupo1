@@ -89,7 +89,6 @@ public class OpcionxConsignaDao extends AsyncTask<String, Void, String> {
     protected String doInBackground(String... strings) {
         String resultado = "";
         Conexion conn = new Conexion();
-
         if(conn.conectar(urlAux)){
             if(accion == 1 || accion == 2) { //Acciones que realizan escritura (Alta/Modificación)
                 if (conn.mandarInfo(data)) {

@@ -184,12 +184,10 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
     }
 
     public void armarListaSena(String resultado, OrdenxUsuario ordxus){
-
         if(resultado.isEmpty()){
             Toast.makeText(context, "Error al cargar las opcionas", Toast.LENGTH_LONG).show();
             return;
         }
-
         String[] registros = resultado.split("\\|");
         String[] datos;
         opciones = new ArrayList<>();
@@ -202,19 +200,24 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
             opciones.add(opc);
         }
 
+        boolean respuesta = false;
+
         for (Opcion o:opciones) {
             if(o.isRes()){
                 ConsignaDao consignaDao = new ConsignaDao(6, ordxus,this);
                 consignaDao.execute();
-                return;
+                respuesta = true;
             }
+        }
+
+        if(!respuesta) {
+            Toast.makeText(context, "La consigna seleccionada no posee respuesta correcta.", Toast.LENGTH_LONG).show();
+            OrdenxUsuarioDao ordxusDao = new OrdenxUsuarioDao(context, ordxus,2,main);
+            ordxusDao.execute();
         }
     }
 
     public void mostrarPopupEjercicio(String resultado, final OrdenxUsuario ordxus) {
-
-        Log.d("BBDD",resultado);
-
         if(resultado.isEmpty()){
             return;
         }
