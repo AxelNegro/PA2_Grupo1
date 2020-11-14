@@ -42,38 +42,45 @@ public class actLogin extends AppCompatActivity {
 
                 Usuario User = new Usuario();
                 User.setNameUser(etNameUser.getText().toString());
-                UsuarioDao usrdao = new UsuarioDao(V,User,3);
-                String[] datos = usrdao.execute().get().split(";");
+                User.setKeyUser(etKeyUser.getText().toString());
+                UsuarioDao usrdao = new UsuarioDao(V,User,7);
+                String resultado = usrdao.execute().get();
 
-                if(datos.length > 1){
-                    if(datos[3].equals(etKeyUser.getText().toString())){
-                        if(datos[4].equals("0")){
+                if(resultado.contains(";")&&resultado.contains("|")) {
+                    resultado = resultado.substring(0,resultado.length() - 1);
+                    String[] datos = resultado.split(";");
+
+                    if (datos.length > 1) {
+                        if (datos[1].equals("0")) {
+                            SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
+                            SharedPreferences.Editor editor = prefs.edit();
+
+                            editor.putString("username", etNameUser.getText().toString());
+                            editor.putString("key", etKeyUser.getText().toString());
+                            editor.putString("email", datos[0]);
+                            editor.putString("tc", datos[1]);
+                            editor.commit();
+
                             Sig = new Intent(this, navCliente.class);
-                            SharedPreferences prefs = getSharedPreferences("login_data",Context.MODE_PRIVATE);
+                        } else {
+
+                            SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = prefs.edit();
+
                             editor.putString("username", etNameUser.getText().toString());
                             editor.putString("key", etKeyUser.getText().toString());
-                            editor.putString("tc", datos[4]);
+                            editor.putString("email", datos[0]);
+                            editor.putString("tc", datos[1]);
                             editor.commit();
-                        }else{
+
                             Sig = new Intent(this, navAdmin.class);
-                            SharedPreferences prefs = getSharedPreferences("login_data",Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = prefs.edit();
-                            editor.putString("username", etNameUser.getText().toString());
-                            editor.putString("key", etKeyUser.getText().toString());
-                            editor.putString("tc", datos[4]);
-                            editor.commit();
                         }
-
-
                     }else{
-                        Toast.makeText(this,"Contraseña invalida",Toast.LENGTH_SHORT).show();
-                        etKeyUser.setError("Contraseña invalida");
+                        Toast.makeText(this, "Hubo un error al obtener al usuario.", Toast.LENGTH_SHORT).show();
                         return;
                     }
                 }else{
-                    Toast.makeText(this,"Usuario invalido",Toast.LENGTH_SHORT).show();
-                    etNameUser.setError("Usuario invalido");
+                    Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
                     return;
                 }
             }else{

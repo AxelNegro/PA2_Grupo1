@@ -63,20 +63,17 @@ public class navCliente extends AppCompatActivity {
         //datos de session
         SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
         String username = prefs.getString("username", "");
-        String key = prefs.getString("key", "");
+        String email = prefs.getString("email","");
 
         //Cargo los TextView
         try {
             lblUsuario.setText(username);
-            Usuario User = new Usuario();
-            User.setNameUser(username);
-            UsuarioDao x = new UsuarioDao(this,User,3);
-            String[] split = x.execute().get().split(";");
-            lblEmail.setText(split[2]);
+            lblEmail.setText(email);
         }catch (Exception e){
             Toast.makeText(this,"ERROR: "+e.getMessage(),Toast.LENGTH_LONG).show();
+            Intent Sig=new Intent(this, actLogin.class);
+            startActivity(Sig);
         }
-
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

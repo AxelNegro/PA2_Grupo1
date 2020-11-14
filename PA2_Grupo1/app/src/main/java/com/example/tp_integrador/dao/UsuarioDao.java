@@ -126,6 +126,10 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                 urlAux = "https://pagrupo1.000webhostapp.com/modificarUsuarioDatosCliente.php";
                 llenarData();
                 break;
+            case 7: // Obtener un usuario
+                urlAux = "https://pagrupo1.000webhostapp.com/iniciarUsuario.php";
+                llenarData();
+                break;
         }
     }
 
@@ -141,15 +145,19 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
                         + "&" + URLEncoder.encode("Estado", "UTF-8") + "=" + URLEncoder.encode(user.isEstado() ? "1" : "0", "UTF-8");
             }
             if (accion == 3) data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8");
-       if(accion == 5){
-           data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
-                   + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8");
-       }
+           if(accion == 5){
+               data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
+                       + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8");
+           }
             if(accion == 6){
                 data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
                         + "&" + URLEncoder.encode("Nombre", "UTF-8") + "=" + URLEncoder.encode(user.getNombre(), "UTF-8")
                         + "&" + URLEncoder.encode("Apellido", "UTF-8") + "=" + URLEncoder.encode(user.getApellido(), "UTF-8")
                         + "&" + URLEncoder.encode("Email", "UTF-8") + "=" + URLEncoder.encode(user.getEmail(), "UTF-8");
+            }
+            if(accion == 7){
+                data = URLEncoder.encode("Usuario", "UTF-8") + "=" + URLEncoder.encode(user.getNameUser(), "UTF-8")
+                        + "&" + URLEncoder.encode("Contrasena", "UTF-8") + "=" + URLEncoder.encode(user.getKeyUser(), "UTF-8");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -180,7 +188,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
         return resultado;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     //se ejecuta primero antes de execute()
     protected String doInBackground(String... strings) {
@@ -189,7 +196,7 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
 
         if (conn.conectar(urlAux)) {
             //Acciones que realizan escritura (Alta/Modificación)
-            if (accion == 1 || accion == 2 || accion == 3 || accion == 5 || accion == 6) {
+            if (accion == 1 || accion == 2 || accion == 3 || accion == 5 || accion == 6 || accion == 7) {
                 if (conn.mandarInfo(data)) resultado = obtenerInfo(conn);
                 else Log.d("BBDD", "Hubo un error al mandar la información a la base de datos.");
             }
@@ -204,7 +211,6 @@ public class UsuarioDao extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String resultado) {
         if (accion == 1 || accion == 2) {
             Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
-            if (accion == 2) main.Actualizar();
             if (accion == 1) {
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();
             }

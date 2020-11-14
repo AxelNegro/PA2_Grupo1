@@ -59,7 +59,7 @@ public class navAdmin extends AppCompatActivity {
         //datos de session
         SharedPreferences prefs = getSharedPreferences("login_data", Context.MODE_PRIVATE);
         String username = prefs.getString("username", "");
-        String key = prefs.getString("key", "");
+        String email = prefs.getString("email", "");
 
         //si username esta vacio redirecciona al login
         if(username.isEmpty()){
@@ -68,12 +68,8 @@ public class navAdmin extends AppCompatActivity {
         }
 
         //Cargo los TextView
-            Usuario User = new Usuario();
-            User.setNameUser(username);
-            UsuarioDao x = new UsuarioDao(this,User,3);
-            String[] split = x.execute().get().split(";");
             lblUsuario.setText(username);
-            lblEmail.setText(split[2]);
+            lblEmail.setText(email);
         }catch (Exception e){
             Toast.makeText(this,"ERROR: "+e.getMessage(),Toast.LENGTH_LONG).show();
         }
