@@ -128,9 +128,6 @@ public class fragUsuarioMyB extends Fragment {
 
             //UserDao.execute();
             if(UserDao.execute().get().equals("Usuario modificado exitosamente.")) limpiar();
-
-            UserDao.execute();
-
         }
         else Toast.makeText(getContext(),"Complete los datos correctamente.",Toast.LENGTH_LONG).show();
     }
