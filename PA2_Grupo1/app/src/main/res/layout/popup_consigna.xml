@@ -11,9 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="60dp"
-        android:text="@string/lblConsigna"
+        android:text="@string/empty"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -23,12 +22,9 @@
         android:layout_width="370dp"
         android:layout_height="292dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:contentDescription="@string/imgSena"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblConsigna"
-        app:srcCompat="@drawable/ic_sena_perro" />
+        app:layout_constraintTop_toBottomOf="@+id/lblConsigna" />
 
     <RadioGroup
         android:id="@+id/rgOpciones"
@@ -44,34 +40,33 @@
             android:id="@+id/rd1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rdPerro" />
+            android:text="@string/empty" />
 
         <RadioButton
             android:id="@+id/rd2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rdGato" />
+            android:text="@string/empty" />
 
         <RadioButton
             android:id="@+id/rd3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rdAguila" />
+            android:text="@string/empty" />
 
         <RadioButton
             android:id="@+id/rd4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/rdPez" />
+            android:text="@string/empty" />
     </RadioGroup>
 
     <Button
         android:id="@+id/btnConfirmar"
-        android:layout_width="172dp"
+        android:layout_width="130dp"
         android:layout_height="45dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/boton_confirmar"
         android:text="@string/confirmar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -79,10 +74,9 @@
 
     <Button
         android:id="@+id/btnVolver"
-        android:layout_width="172dp"
+        android:layout_width="130dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/boton_volver"
         android:text="@string/volver"

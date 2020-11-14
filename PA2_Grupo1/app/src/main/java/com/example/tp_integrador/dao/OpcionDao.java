@@ -200,7 +200,7 @@ public class OpcionDao extends AsyncTask<String, Void, String> {
             if(resultado.equals("1")){
                 Toast.makeText(context, "Opcion creada exitosamente", Toast.LENGTH_LONG).show();
                 alta.limpiar();
-                main.Actualizar();
+                //main.Actualizar();
             }
             else
                 Toast.makeText(context, resultado, Toast.LENGTH_LONG).show();

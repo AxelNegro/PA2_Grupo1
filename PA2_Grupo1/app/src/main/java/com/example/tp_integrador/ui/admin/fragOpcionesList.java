@@ -79,7 +79,8 @@ public class fragOpcionesList extends Fragment {
         String[] filas, datos;
 
         //Crea objetos de Opcion
-        Opcion con = new Opcion();
+        Consigna con = new Consigna();
+        Opcion opc = new Opcion();
 
         //Utiliza el metodo substring para separar los datos
         if(Resultado!=null && !Resultado.isEmpty()) {
@@ -92,24 +93,27 @@ public class fragOpcionesList extends Fragment {
 
                 datos = filas[i].split(";");
 
-                con.setIdOpcion(Integer.parseInt(datos[0]));
-                con.setDesc(datos[1]);
-                if(datos[2].equals("1")){
-                    con.setRes(true);
-                }else{
-                    con.setRes(false);
-                }
+                con.setIdConsigna(Integer.parseInt(datos[0]));
+
+                opc.setIdOpcion(Integer.parseInt(datos[1]));
+                opc.setDesc(datos[2]);
                 if(datos[3].equals("1")){
-                    con.setEstado(true);
+                    opc.setRes(true);
                 }else{
-                    con.setEstado(false);
+                    opc.setRes(false);
+                }
+                if(datos[4].equals("1")){
+                    opc.setEstado(true);
+                }else{
+                    opc.setEstado(false);
                 }
 
+                opc.setConsigna(con);
 
+                lstOpcion.add(opc);
 
-                lstOpcion.add(con);
-
-                con= new Opcion();
+                con = new Consigna();
+                opc = new Opcion();
             }
         }
         else{

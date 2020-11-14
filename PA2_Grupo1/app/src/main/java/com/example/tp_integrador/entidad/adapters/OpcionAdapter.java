@@ -65,11 +65,6 @@ public class OpcionAdapter extends BaseAdapter {
         final Opcion opc = items.get(position);
 
 
-
-
-
-
-
         LinearLayout lnItem = (LinearLayout)convertView.findViewById(R.id.lnItem);
 
         TextView lblIdConsigna = (TextView)convertView.findViewById(R.id.lblIdConsigna);
@@ -78,7 +73,7 @@ public class OpcionAdapter extends BaseAdapter {
         TextView lblResultado = (TextView)convertView.findViewById(R.id.lblResultado);
         TextView lblEstado = (TextView)convertView.findViewById(R.id.lblEstado);
 
-        lblIdConsigna.setText("Id de la consigna: 1.");
+        lblIdConsigna.setText("Id de la consigna: " + String.valueOf(opc.getConsigna().getIdConsigna()) +".");
         lblIdOpcion.setText("Id de la opción: "+ String.valueOf(opc.getIdOpcion()) + ".");
         lblDesc.setText("Descripción: " + opc.getDesc() + ".");
 

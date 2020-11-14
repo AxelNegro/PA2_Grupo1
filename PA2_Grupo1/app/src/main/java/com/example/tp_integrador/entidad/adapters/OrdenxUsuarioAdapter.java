@@ -235,18 +235,42 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
 
         Glide.with(PopUp.getContext()).load(datos[1]).into(imagen);
 
-        if(opciones.get(0) != null)
-            n1.setText(opciones.get(0).getDesc());
-        if(opciones.size() >= 2)
-            if(opciones.get(1) != null)
-                n2.setText(opciones.get(1).getDesc());
-        if(opciones.size() >= 3)
-            if(opciones.get(2) != null)
-                n3.setText(opciones.get(2).getDesc());
-        if(opciones.size() >= 4)
-            if(opciones.get(3) != null)
-                n4.setText(opciones.get(3).getDesc());
-
+        if(opciones != null) {
+            switch (opciones.size()){
+                case 1:
+                    if (opciones.get(0) != null) {
+                        n1.setText(opciones.get(0).getDesc());
+                        n2.setVisibility(View.GONE);
+                        n3.setVisibility(View.GONE);
+                        n4.setVisibility(View.GONE);
+                    }
+                    break;
+                case 2:
+                    if (opciones.get(0) != null&&opciones.get(1) != null) {
+                        n1.setText(opciones.get(0).getDesc());
+                        n2.setText(opciones.get(1).getDesc());
+                        n3.setVisibility(View.GONE);
+                        n4.setVisibility(View.GONE);
+                    }
+                    break;
+                case 3:
+                    if (opciones.get(0) != null&&opciones.get(1) != null&&opciones.get(2) != null) {
+                        n1.setText(opciones.get(0).getDesc());
+                        n2.setText(opciones.get(1).getDesc());
+                        n3.setText(opciones.get(2).getDesc());
+                        n4.setVisibility(View.GONE);
+                    }
+                    break;
+                case 4:
+                    if (opciones.get(0) != null&&opciones.get(1) != null&&opciones.get(2) != null&&opciones.get(3) != null) {
+                        n1.setText(opciones.get(0).getDesc());
+                        n2.setText(opciones.get(1).getDesc());
+                        n3.setText(opciones.get(2).getDesc());
+                        n4.setText(opciones.get(3).getDesc());
+                    }
+                    break;
+            }
+        }
         btnVolver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
