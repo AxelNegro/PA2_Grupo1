@@ -36,7 +36,7 @@ public class fragPerfil extends Fragment {
     private AlertDialog dialog;
     private Button btnContrasenia, btnDatos, btnVolver,btnModificarKey,btnModificarDatos;
     private EditText txtkey,txtConfirmKey,etEmail,etApellido,etNombre;
-    private String username,key;
+    private String username,key, email;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,15 +51,10 @@ public class fragPerfil extends Fragment {
         SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
         username = prefs.getString("username", "");
         key = prefs.getString("key", "");
-
+        email = prefs.getString("email","");
         //Cargo los TextView
         try {
-            lblUsuario.setText(username);
-            Usuario User = new Usuario();
-            User.setNameUser(username);
-            UsuarioDao x = new UsuarioDao(view,User,3);
-            String[] split = x.execute().get().split(";");
-            lblEmail.setText(split[2]);
+            lblEmail.setText(email);
         }catch (Exception e){
             Toast.makeText(getContext(),"ERROR: "+e.getMessage(),Toast.LENGTH_LONG).show();
         }
@@ -99,11 +94,6 @@ public class fragPerfil extends Fragment {
         //Recupero los TextView
          txtkey= PopUp.findViewById(R.id.txtContraseniaActual);
          txtConfirmKey= PopUp.findViewById(R.id.txtContraseniaNueva);
-
-        //datos de session
-        SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
-        String key = prefs.getString("key", "");
-        txtkey.setText(key);
 
         btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
         btnModificarKey = (Button) PopUp.findViewById(R.id.btnConfirmar);

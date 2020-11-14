@@ -64,8 +64,10 @@ public class fragOpcionesList extends Fragment {
 
         navAdmin admin = (navAdmin)getActivity();
 
-        OpcionAdapter adapter = new OpcionAdapter(getContext(),lstOpc, admin, this);
-        gdOpcion.setAdapter(adapter);
+        if(lstOpc!=null&&lstOpc.size()>0) {
+            OpcionAdapter adapter = new OpcionAdapter(getContext(), lstOpc, admin, this);
+            gdOpcion.setAdapter(adapter);
+        }
     }
 
     //Carga los articulos a una lista

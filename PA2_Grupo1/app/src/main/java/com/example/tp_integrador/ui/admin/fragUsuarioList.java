@@ -66,8 +66,10 @@ public class fragUsuarioList extends Fragment {
         //gdUsuarios = (GridView)v.findViewById(R.id.gdUsuarios);
         lstUsrs = armarLista(res);
 
-        UsuarioAdapter adapter = new UsuarioAdapter(v.getContext(),lstUsrs);
-        gdUsuarios.setAdapter(adapter);
+        if(lstUsrs!=null&&lstUsrs.size()>0) {
+            UsuarioAdapter adapter = new UsuarioAdapter(v.getContext(), lstUsrs);
+            gdUsuarios.setAdapter(adapter);
+        }
     }
 
     public Usuario verificarUsuario(){

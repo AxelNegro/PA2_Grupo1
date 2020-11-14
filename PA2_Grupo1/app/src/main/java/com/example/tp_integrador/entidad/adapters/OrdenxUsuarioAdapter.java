@@ -2,6 +2,7 @@ package com.example.tp_integrador.entidad.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -211,6 +212,8 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
     }
 
     public void mostrarPopupEjercicio(String resultado, final OrdenxUsuario ordxus) {
+
+        Log.d("BBDD",resultado);
 
         if(resultado.isEmpty()){
             return;

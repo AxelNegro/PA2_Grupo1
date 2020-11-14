@@ -61,8 +61,10 @@ public class fragOrdenList extends Fragment {
         if(!resultado.isEmpty())
             lstOrden = armarLista(resultado);
 
-        OrdenAdapter adapter = new OrdenAdapter(getContext(),lstOrden,this);
-        gdOrden.setAdapter(adapter);
+        if(lstOrden!=null&&lstOrden.size()>0) {
+            OrdenAdapter adapter = new OrdenAdapter(getContext(), lstOrden, this);
+            gdOrden.setAdapter(adapter);
+        }
     }
 
     //Carga los articulos a una lista

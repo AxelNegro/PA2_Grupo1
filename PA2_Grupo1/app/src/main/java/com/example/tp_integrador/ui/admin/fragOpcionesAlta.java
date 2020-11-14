@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.OpcionDao;
@@ -85,8 +86,13 @@ public class fragOpcionesAlta extends Fragment {
     private void AltaOpcion(){
         opcion = new Opcion();
         obtenerDatos();
-        OpcionDao opcionDao = new OpcionDao(getContext(), opcion, 1, (navAdmin)getActivity(), this);
-        opcionDao.execute();
+
+        if(opcion != null ) {
+            OpcionDao opcionDao = new OpcionDao(getContext(), opcion, 1, (navAdmin) getActivity(), this);
+            opcionDao.execute();
+        }else{
+            Toast.makeText(getContext(),"Complete los datos correctamente.", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void obtenerDatos(){
@@ -94,15 +100,18 @@ public class fragOpcionesAlta extends Fragment {
         //String [] filas = spinnerIdConsigna.getSelectedItem().toString().split("-");
         //int id = Integer.parseInt(filas[0]);
 
-        int id = Integer.parseInt(txtIdConsigna.getText().toString());
-        con.setIdConsigna(id);
-        opcion.setConsigna(con);
-        opcion.setDesc(txtDescripcion.getText().toString());
-        if (ckbCorrecta.isChecked() == true) {
-            opcion.setRes(true);
-        }else
-        {
-            opcion.setRes(false);
+        try {
+            int id = Integer.parseInt(txtIdConsigna.getText().toString());
+            con.setIdConsigna(id);
+            opcion.setConsigna(con);
+            opcion.setDesc(txtDescripcion.getText().toString());
+            if (ckbCorrecta.isChecked() == true) {
+                opcion.setRes(true);
+            } else {
+                opcion.setRes(false);
+            }
+        }catch(Exception e){
+            opcion = null;
         }
     }
 

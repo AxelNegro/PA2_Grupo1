@@ -134,10 +134,9 @@ public class fragOpcionesMod extends Fragment {
         if(Integer.parseInt(datos[2]) == 1)
         {
             cbResultado.setChecked(true);
-        }else
-            {
-                cbResultado.setChecked(false);
-            }
+        }else {
+            cbResultado.setChecked(false);
+        }
 
     }
 

@@ -65,8 +65,10 @@ public class fragConsignasList extends Fragment {
         if(!resultado.isEmpty())
             lstConsignas = armarLista(resultado);
 
-        ConsignaAdapter adapter = new ConsignaAdapter(getContext(),lstConsignas,this);
-        gdConsignas.setAdapter(adapter);
+        if(lstConsignas!=null&&lstConsignas.size()>0) {
+            ConsignaAdapter adapter = new ConsignaAdapter(getContext(), lstConsignas, this);
+            gdConsignas.setAdapter(adapter);
+        }
     }
 
     //Carga los articulos a una lista
