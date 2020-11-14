@@ -184,7 +184,6 @@ public class fragPerfil extends Fragment {
       if(!(etNombre.getText().toString().isEmpty() || etApellido.getText().toString().isEmpty() ||
               etEmail.getText().toString().isEmpty())){
         if(validarEmail(etEmail.getText().toString())) {
-
             Usuario user=new Usuario();
             user.setNameUser(username);
             user.setNombre(etNombre.getText().toString());
@@ -195,10 +194,7 @@ public class fragPerfil extends Fragment {
                 Toast.makeText(v.getContext(),"Datos modificados exitosamente.",Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }
-            else {
-                Toast.makeText(v.getContext(),"Modifique los datos.",Toast.LENGTH_LONG).show();
-            }
-
+            else Toast.makeText(v.getContext(),"Modifique los datos.",Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getContext(),"Email invalido",Toast.LENGTH_LONG).show();
             etEmail.setError("verifique el formato de email ingresado");
@@ -235,9 +231,7 @@ public class fragPerfil extends Fragment {
                     Toast.makeText(v.getContext(),"Contraseña modificada exitosamente.",Toast.LENGTH_LONG).show();
                     RedirecLogin(v);
                 }
-                else {
-                    Toast.makeText(v.getContext(),"Modifique la contraseña.",Toast.LENGTH_LONG).show();
-                }
+                else Toast.makeText(v.getContext(),"Modifique la contraseña.",Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(v.getContext(), "Las claves no coinciden.", Toast.LENGTH_LONG).show();
