@@ -77,8 +77,8 @@ public class actRegistrarse extends AppCompatActivity {
                     etConfirmkey.setError("Las claves no coinciden.");
                 }
             }else {
-                Toast.makeText(this,"Email invalido",Toast.LENGTH_LONG).show();
-                etEmail.setError("verifique el email ingresado");
+                Toast.makeText(this,"Email invalido.",Toast.LENGTH_LONG).show();
+                etEmail.setError("Verifique el email ingresado.");
             }
         }
         else Toast.makeText(this,"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
@@ -125,14 +125,14 @@ public class actRegistrarse extends AppCompatActivity {
         boolean x=false;
 
         if(etUsuario.getText().toString().indexOf(";")!=-1 || etUsuario.getText().toString().indexOf("|")!=-1){
-            etUsuario.setError("Caracteres ; y | no permitidos");
+            etUsuario.setError("Caracteres invalidos ingresados.");
             x= true;
         }else{
         if(etKey.getText().toString().indexOf(";")!=-1 || etKey.getText().toString().indexOf("|")!=-1){
-            etKey.setError("Caracteres ; y | no permitidos");
+            etKey.setError("Caracteres invalidos ingresados.");
             x =true;
         }else if(etConfirmkey.getText().toString().indexOf(";")!=-1 || etConfirmkey.getText().toString().indexOf("|")!=-1){
-              etConfirmkey.setError("Caracteres ; y | no permitidos");
+              etConfirmkey.setError("Caracteres invalidos ingresados.");
                x= true;
             }
         }
