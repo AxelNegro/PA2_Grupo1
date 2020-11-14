@@ -282,7 +282,4 @@ public class fragPerfil extends Fragment {
         }
         return x;
     }
-
-
-
 }
