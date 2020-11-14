@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">EnseñarteLSA</string>
     <string name="bienvenido">¡Bienvenido!</string>
-    <string name="bvn2">Esta aplicación te ayudará a aprender los conceptos básicos del lenguaje de señas argentina.</string>
+    <string name="bvn2">Esta aplicacion te va a ayudar a aprender ciertos conceptos basicos de la Lengua de Señas Argentina y asi fomentar el aprendizaje de este idioma, clave para romper las barreras de comunicacion.</string>
     <string name="TxtUsuario">Usuario</string>
     <string name="TxtNombre">Nombre</string>
     <string name="TxtApellido">Apellido</string>
@@ -84,7 +84,7 @@
     <string name="imgSena">Seña</string>
     <string name="lblNombreSena">Seña</string>
     <string name="lblDescripcionSena">Seña</string>
-    <string name="lblTituloUsersList">Baja y Listado de Usuarios</string>
+    <string name="lblTituloUsersList">Listado de Usuarios</string>
     <string name="EstadoUsuario">Estado Usuario</string>
     <string name="btnBuscarUser">Buscar</string>
     <string name="ViewKeys">Ver claves</string>
