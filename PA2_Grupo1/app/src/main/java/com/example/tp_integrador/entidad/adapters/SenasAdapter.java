@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.example.tp_integrador.R;
+import com.example.tp_integrador.dao.OrdenxUsuarioDao;
 import com.example.tp_integrador.entidad.clases.Sena;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ public class SenasAdapter extends BaseAdapter {
     private final LayoutInflater mInflater;
     private Context context;
     private int layout;
+    private AlertDialog dialog;
     private List<Sena> senas;
 
     public SenasAdapter(Context context, int layout, List<Sena> senas){
@@ -78,9 +81,28 @@ public class SenasAdapter extends BaseAdapter {
         lnItem.setOnClickListener(new AdapterView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String dat = sen.getDescripcion();
-                Log.d("myTag",dat);
-                Toast.makeText(context, "Hola", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(context);
+                final View PopUp = mInflater.inflate(R.layout.popup_sena_info,null);
+
+                ImageView imagen = (ImageView) PopUp.findViewById(R.id.imgSena2);
+                TextView nombreSena =(TextView)   PopUp.findViewById(R.id.txtNombreSena);
+                TextView descripcion = (TextView)  PopUp.findViewById(R.id.txtDescripcionSena);
+                Button btnVolver = (Button)  PopUp.findViewById(R.id.btnVolver);
+
+                nombreSena.setText(sen.getNombreSena());
+                descripcion.setText(sen.getDescripcion());
+                Glide.with(PopUp.getContext()).load(sen.getImagen()).into(imagen);
+
+                btnVolver.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialogBuilder.setView(PopUp);
+                dialog = dialogBuilder.create();
+                dialog.show();
             }
         });
 
