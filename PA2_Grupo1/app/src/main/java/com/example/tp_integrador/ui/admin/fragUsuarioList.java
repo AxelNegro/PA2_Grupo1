@@ -40,7 +40,7 @@ public class fragUsuarioList extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_adm_usuarios_list, container, false);
 
         gdUsuarios = (GridView) v.findViewById(R.id.gdUsuarios);
-        etSearchUsuario = (EditText) v.findViewById(R.id.txtSearchUserName) ;
+        etSearchUsuario = (EditText) v.findViewById(R.id.txtSearchUserName);
 
         /**------Boton Buscar-----**/
         Button botonBuscar = (Button) v.findViewById(R.id.btnBuscar);
@@ -63,7 +63,6 @@ public class fragUsuarioList extends Fragment {
     }
 
     public void LlenarGD(View v,String res){
-        //gdUsuarios = (GridView)v.findViewById(R.id.gdUsuarios);
         lstUsrs = armarLista(res);
 
         if(lstUsrs!=null&&lstUsrs.size()>0) {
@@ -71,18 +70,18 @@ public class fragUsuarioList extends Fragment {
             gdUsuarios.setAdapter(adapter);
         }
     }
-
+    //verifica que el usuario ingresado este en la grilla
     public Usuario verificarUsuario(){
         for (Usuario reg :lstUsrs ) if(reg.getNameUser().equals(etSearchUsuario.getText().toString()))return reg;
         return null;
     }
-
+    //Carga el usuario a la grilla si existe
     public void listarUsuario(View v){
         if(!etSearchUsuario.getText().toString().isEmpty()){
            Usuario x = verificarUsuario();
             if( x != null){
                 LlenarGD(v,x.toString());
-            }else etSearchUsuario.setError("El usuario igresado no existe.");
+            }else etSearchUsuario.setError("El usuario ingresado no existe.");
         }else{
             etSearchUsuario.setError("Ingrese un usuario.");
             LlenarGD(v,obtenerInfo());

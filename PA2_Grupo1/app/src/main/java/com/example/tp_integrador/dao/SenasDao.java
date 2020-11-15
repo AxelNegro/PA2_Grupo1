@@ -65,6 +65,9 @@ public class SenasDao extends AsyncTask<String, Void, String> {
         preparaVariables();
     }
 
+    public SenasDao(Context context, int accion) {
+    }
+
     public void preparaVariables(){
         switch(accion){
             case 1: // Alta de Sena

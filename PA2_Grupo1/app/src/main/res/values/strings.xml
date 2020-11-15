@@ -95,6 +95,7 @@
     <string name="lblOrden">Orden de aparición</string>
     <string name="lblIdOrden">Id del orden de aparición</string>
     <string name="lbltc">Tipo de cuenta</string>
+    <string name="BuscarSena">Ingrese una palabra</string>
 
     <string name="nav_ejercicios">Ejercicios</string>
     <string name="nueva_key2">Confirmar contraseña nueva</string>

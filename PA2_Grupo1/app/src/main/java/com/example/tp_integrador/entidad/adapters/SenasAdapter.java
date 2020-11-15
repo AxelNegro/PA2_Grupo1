@@ -43,6 +43,13 @@ public class SenasAdapter extends BaseAdapter {
         mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public SenasAdapter(Context context, List<Sena> lstSenas) {
+        this.context = context;
+        this.senas = lstSenas;
+        mInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    }
+
+
     @Override
     public int getCount() {
         return this.senas.size();
