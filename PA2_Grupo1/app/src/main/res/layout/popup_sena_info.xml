@@ -32,11 +32,11 @@
         android:id="@+id/txtDescripcionSena"
         android:layout_width="355dp"
         android:layout_height="50dp"
-        android:layout_marginStart="28dp"
         android:layout_marginTop="28dp"
         android:ems="10"
         android:gravity="center"
         android:hint="@string/empty"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNombreSena" />
 
@@ -44,10 +44,10 @@
         android:id="@+id/btnVolver"
         android:layout_width="172dp"
         android:layout_height="45dp"
-        android:layout_marginStart="116dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/boton_volver"
         android:text="@string/volver"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDescripcionSena" />
 

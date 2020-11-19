@@ -225,16 +225,22 @@ public class OrdenxUsuarioAdapter extends BaseAdapter {
         final View PopUp = mInflater.inflate(R.layout.popup_consigna,null);
 
         final RadioGroup group =  PopUp.findViewById(R.id.rgOpciones);
+
+        TextView lblConsigna = PopUp.findViewById(R.id.lblConsigna);
+
         ImageView imagen = PopUp.findViewById(R.id.imgSena);
+
         Button btnConfirmar = PopUp.findViewById(R.id.btnConfirmar);
         Button btnVolver = PopUp.findViewById(R.id.btnVolver);
+
         RadioButton n1 = PopUp.findViewById(R.id.rd1);
         RadioButton n2 = PopUp.findViewById(R.id.rd2);
         RadioButton n3 = PopUp.findViewById(R.id.rd3);
         RadioButton n4 = PopUp.findViewById(R.id.rd4);
 
-
         String[] datos = resultado.split(";");
+
+        lblConsigna.setText(datos[2]);
 
         Glide.with(PopUp.getContext()).load(datos[1]).into(imagen);
 

@@ -25,6 +25,7 @@ import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.actLogin;
 import com.example.tp_integrador.ui.admin.navAdmin;
 import com.example.tp_integrador.ui.cliente.navCliente;
+import com.google.android.material.navigation.NavigationView;
 
 import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
@@ -36,16 +37,21 @@ public class fragPerfil extends Fragment {
     private AlertDialog dialog;
     private Button btnContrasenia, btnDatos, btnVolver,btnModificarKey,btnModificarDatos;
     private EditText txtkey,txtConfirmKey,etEmail,etApellido,etNombre;
+    private TextView lblUsuario, lblEmail, lblEmailH;
     private String username,key, email;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        NavigationView navigationView = getActivity().findViewById(R.id.nav_view_cli);
+        View headerLayout = navigationView.getHeaderView(0);
+        lblEmailH= headerLayout.findViewById(R.id.LblEmailUsuario);
+
         final View view = inflater.inflate(R.layout.fragment_perfil,container,false);
 
         //Recupero los TextView
-        TextView  lblUsuario= view.findViewById(R.id.txtNombre);
-        TextView  lblEmail= view.findViewById(R.id.txtEmail);
+        lblUsuario= view.findViewById(R.id.txtNombre);
+        lblEmail= view.findViewById(R.id.txtEmail);
 
         //datos de session
         SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
@@ -54,6 +60,7 @@ public class fragPerfil extends Fragment {
         email = prefs.getString("email","");
         //Cargo los TextView
         try {
+            lblUsuario.setText(username);
             lblEmail.setText(email);
         }catch (Exception e){
             Toast.makeText(getContext(),"ERROR: "+e.getMessage(),Toast.LENGTH_LONG).show();
@@ -192,6 +199,14 @@ public class fragPerfil extends Fragment {
             UsuarioDao UserDao = new UsuarioDao(v.getContext(),user,6, (navCliente) getActivity());
             if(UserDao.execute().get().equals("Datos modificados exitosamente.")){
                 Toast.makeText(v.getContext(),"Datos modificados exitosamente.",Toast.LENGTH_LONG).show();
+                lblEmail.setText(user.getEmail());
+                lblEmailH.setText(user.getEmail());
+
+                SharedPreferences prefs = getActivity().getSharedPreferences("login_data", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = prefs.edit();
+
+                editor.putString("email", user.getEmail());
+
                 dialog.dismiss();
             }
             else Toast.makeText(v.getContext(),"Modifique los datos.",Toast.LENGTH_LONG).show();
