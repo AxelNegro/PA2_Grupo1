@@ -76,9 +76,8 @@ public class fragListadoSenas extends Fragment {
             List<Sena> x=LLenarList();
             if( x != null && x.size() > 0){
                 LlenarGD(v,x);
-            }else etSearchSena.setError("no existen señas que de acuerdo a su busqueda.");
+            }else etSearchSena.setError("No existen señas que de acuerdo a su busqueda.");
         }else{
-            etSearchSena.setError("Ingrese una palabra o parte de ella.");
             obtenerInfo();
         }
     }

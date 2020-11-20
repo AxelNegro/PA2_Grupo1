@@ -26,19 +26,32 @@
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="28dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:hint="@string/nueva_key"
+        android:hint="@string/actual_key"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitulo" />
+        app:layout_constraintTop_toBottomOf="@+id/txtTitulo"
+        tools:ignore="Autofill" />
 
     <EditText
         android:id="@+id/txtContraseniaNueva"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:hint="@string/nueva_key"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaActual"
+        tools:ignore="Autofill" />
+
+    <EditText
+        android:id="@+id/txtContraseniaNueva2"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="70dp"
@@ -49,38 +62,33 @@
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaActual" />
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva"
+        tools:ignore="Autofill" />
 
     <Button
         android:id="@+id/btnConfirmar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="64dp"
         android:background="@drawable/boton_confirmar"
         android:text="@string/confirmar"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.216"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva2" />
 
     <Button
         android:id="@+id/btnVolver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="68dp"
-        android:layout_marginBottom="50dp"
         android:background="@drawable/boton_volver"
         android:text="@string/volver"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.979"
         app:layout_constraintStart_toEndOf="@+id/btnConfirmar"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva"
-        app:layout_constraintVertical_bias="0.128" />
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva2" />
 
     <CheckBox
         android:id="@+id/chkVerClaves"
@@ -91,6 +99,6 @@
         android:text="@string/ViewKeys"
         app:layout_constraintBottom_toTopOf="@+id/btnConfirmar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva"
+        app:layout_constraintTop_toBottomOf="@+id/txtContraseniaNueva2"
         app:layout_constraintVertical_bias="0.21" />
 </androidx.constraintlayout.widget.ConstraintLayout>

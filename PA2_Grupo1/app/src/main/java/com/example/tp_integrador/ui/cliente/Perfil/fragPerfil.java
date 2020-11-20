@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 import android.text.InputType;
 import android.util.Patterns;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -23,7 +22,6 @@ import com.example.tp_integrador.R;
 import com.example.tp_integrador.dao.UsuarioDao;
 import com.example.tp_integrador.entidad.clases.Usuario;
 import com.example.tp_integrador.ui.actLogin;
-import com.example.tp_integrador.ui.admin.navAdmin;
 import com.example.tp_integrador.ui.cliente.navCliente;
 import com.google.android.material.navigation.NavigationView;
 
@@ -36,7 +34,7 @@ public class fragPerfil extends Fragment {
     private AlertDialog.Builder dialogBuilder;
     private AlertDialog dialog;
     private Button btnContrasenia, btnDatos, btnVolver,btnModificarKey,btnModificarDatos;
-    private EditText txtkey,txtConfirmKey,etEmail,etApellido,etNombre;
+    private EditText txtKeyAct, txtKeyNueva,txtKeyNueva2,etEmail,etApellido,etNombre;
     private TextView lblUsuario, lblEmail, lblEmailH;
     private String username,key, email;
 
@@ -99,8 +97,9 @@ public class fragPerfil extends Fragment {
         final View PopUp = getLayoutInflater().inflate(R.layout.popup_key,null);
 
         //Recupero los TextView
-         txtkey= PopUp.findViewById(R.id.txtContraseniaActual);
-         txtConfirmKey= PopUp.findViewById(R.id.txtContraseniaNueva);
+        txtKeyAct= PopUp.findViewById(R.id.txtContraseniaActual);
+        txtKeyNueva= PopUp.findViewById(R.id.txtContraseniaNueva);
+        txtKeyNueva2= PopUp.findViewById(R.id.txtContraseniaNueva2);
 
         btnVolver = (Button) PopUp.findViewById(R.id.btnVolver);
         btnModificarKey = (Button) PopUp.findViewById(R.id.btnConfirmar);
@@ -212,7 +211,7 @@ public class fragPerfil extends Fragment {
             else Toast.makeText(v.getContext(),"Modifique los datos.",Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getContext(),"Email invalido",Toast.LENGTH_LONG).show();
-            etEmail.setError("verifique el formato de email ingresado");
+            etEmail.setError("Verifique el formato de email ingresado");
         }
       }else Toast.makeText(getContext(),"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
     }
@@ -220,27 +219,30 @@ public class fragPerfil extends Fragment {
     public void ShowPasswordMod(View v) {
         CheckBox c=(CheckBox)v.findViewById(R.id.chkVerClaves);
         if(!c.isChecked()){
-            txtkey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-            txtConfirmKey.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            txtKeyAct.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            txtKeyNueva.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+            txtKeyNueva2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         }else{
-            txtkey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
-            txtConfirmKey.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            txtKeyAct.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            txtKeyNueva.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
+            txtKeyNueva2.setInputType(InputType.TYPE_TEXT_VARIATION_NORMAL);
         }
     }
 
-    private boolean validarKey(String key, String ck) {
-        if(key.equals(ck)) return true;
+    private boolean validarKey() {
+        if(txtKeyAct.getText().toString().equals(key))
+            if(txtKeyNueva.getText().toString().equals(txtKeyNueva2.getText().toString())) return true;
         return false;
     }
 
     public void ModificarKey(View v) throws ExecutionException, InterruptedException {
-        if(!(txtkey.getText().toString().isEmpty() || txtConfirmKey.getText().toString().isEmpty())) {
-            if (validarKey(txtkey.getText().toString(), txtConfirmKey.getText().toString())) {
+        if(!(txtKeyAct.getText().toString().isEmpty() || txtKeyNueva.getText().toString().isEmpty() || txtKeyNueva2.getText().toString().isEmpty())) {
+            if (validarKey()) {
                 if(!validarCaracteresProhibidos()){
                 Usuario user=new Usuario();
                 user.setNameUser(username);
-                user.setKeyUser(txtConfirmKey.getText().toString());
+                user.setKeyUser(txtKeyNueva2.getText().toString());
                 UsuarioDao UserDao = new UsuarioDao(v.getContext(),user,5, (navCliente) getActivity());
                 if(UserDao.execute().get().equals("Contrasena modificada exitosamente.")){
                     Toast.makeText(v.getContext(),"Contraseña modificada exitosamente.",Toast.LENGTH_LONG).show();
@@ -249,9 +251,7 @@ public class fragPerfil extends Fragment {
                 else Toast.makeText(v.getContext(),"Modifique la contraseña.",Toast.LENGTH_LONG).show();
                 }
             } else {
-                Toast.makeText(v.getContext(), "Las claves no coinciden.", Toast.LENGTH_LONG).show();
-                txtkey.setError("Las claves no coinciden.");
-                txtConfirmKey.setError("Las claves no coinciden.");
+                Toast.makeText(v.getContext(), "Clave actual ingresada erronea o las claves no coinciden.", Toast.LENGTH_LONG).show();
             }
         }else Toast.makeText(v.getContext(),"Debe completar todos los campos.",Toast.LENGTH_LONG).show();
     }
@@ -270,12 +270,12 @@ public class fragPerfil extends Fragment {
     public boolean validarCaracteresProhibidos(){
         boolean x=false;
 
-        if(txtkey.getText().toString().indexOf(";")!=-1 || txtkey.getText().toString().indexOf("|")!=-1){
-            txtkey.setError("Caracteres ; y | no permitidos");
+        if(txtKeyNueva.getText().toString().indexOf(";")!=-1 || txtKeyNueva.getText().toString().indexOf("|")!=-1){
+            txtKeyNueva.setError("Caracteres ; y | no permitidos");
             x= true;
         }else{
-            if(txtConfirmKey.getText().toString().indexOf(";")!=-1 || txtConfirmKey.getText().toString().indexOf("|")!=-1){
-                txtConfirmKey.setError("Caracteres ; y | no permitidos");
+            if(txtKeyNueva2.getText().toString().indexOf(";")!=-1 || txtKeyNueva2.getText().toString().indexOf("|")!=-1){
+                txtKeyNueva2.setError("Caracteres ; y | no permitidos");
                 x =true;
             }
         }
